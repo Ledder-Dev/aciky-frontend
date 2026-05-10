@@ -158,9 +158,10 @@ function renderTransactions(transactions, canEditDelete = false) {
 
   list.innerHTML = transactions.map(tx => {
     const isIncome = tx.type === 'income'
-    const typeStyle = isIncome ? 'bg-green-100 text-green-700' : 'bg-red-50 text-red-600'
-    const amountStyle = isIncome ? 'text-green-600' : 'text-accent-terracotta'
-    const sign = isIncome ? '+' : '-'
+    const isExchange = tx.type === 'exchange'
+    const typeStyle = isIncome ? 'bg-green-100 text-green-700' : isExchange ? 'bg-accent-teal/10 text-accent-teal' : 'bg-red-50 text-red-600'
+    const amountStyle = isIncome ? 'text-green-600' : isExchange ? 'text-accent-teal' : 'text-accent-terracotta'
+    const sign = isIncome ? '+' : isExchange ? '⇄' : '-'
     const date = new Date(tx.date.slice(0, 10) + 'T12:00:00').toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
 
     return `
@@ -332,9 +333,9 @@ function updateConversionPreview() {
   if (cup > 0 && usd > 0) {
     preview.classList.remove('hidden')
     document.getElementById('convPreviewExpense').textContent =
-      `− ${cup.toLocaleString('es-CU', { minimumFractionDigits: 2 })} CUP (Gasto)`
+      `⇄ ${cup.toLocaleString('es-CU', { minimumFractionDigits: 2 })} CUP`
     document.getElementById('convPreviewIncome').textContent =
-      `+ ${usd.toLocaleString('es-CU', { minimumFractionDigits: 2 })} USD (Ingreso)`
+      `⇄ ${usd.toLocaleString('es-CU', { minimumFractionDigits: 2 })} USD`
   } else {
     preview.classList.add('hidden')
   }
@@ -367,11 +368,11 @@ async function saveConversion() {
     await Promise.all([
       apiFetch('/api/transactions', {
         method: 'POST',
-        body: JSON.stringify({ type: 'expense', amount: cup, currency: 'CUP', category, date, description: desc })
+        body: JSON.stringify({ type: 'exchange', amount: cup, currency: 'CUP', category, date, description: desc })
       }),
       apiFetch('/api/transactions', {
         method: 'POST',
-        body: JSON.stringify({ type: 'income', amount: usd, currency: 'USD', category, date, description: desc })
+        body: JSON.stringify({ type: 'exchange', amount: usd, currency: 'USD', category, date, description: desc })
       })
     ])
     closeConversionModal()
@@ -404,14 +405,19 @@ function generateReport() {
     ? `<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:24px">${t('report.noTransactions')}</td></tr>`
     : lastTransactions.map(tx => {
         const isIncome = tx.type === 'income'
+        const isExchange = tx.type === 'exchange'
+        const typeBg = isIncome ? '#dcfce7' : isExchange ? '#e0f2f7' : '#fee2e2'
+        const typeColor = isIncome ? '#16a34a' : isExchange ? '#5AACCC' : '#dc2626'
+        const amountColor = isIncome ? '#16a34a' : isExchange ? '#5AACCC' : '#e8a090'
+        const sign = isIncome ? '+' : isExchange ? '⇄' : '-'
         const date = new Date(tx.date.slice(0, 10) + 'T12:00:00').toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
         return `
           <tr>
             <td>${date}</td>
-            <td><span style="padding:2px 8px;border-radius:99px;font-size:11px;background:${isIncome ? '#dcfce7' : '#fee2e2'};color:${isIncome ? '#16a34a' : '#dc2626'}">${t('type.' + tx.type)}</span></td>
+            <td><span style="padding:2px 8px;border-radius:99px;font-size:11px;background:${typeBg};color:${typeColor}">${t('type.' + tx.type)}</span></td>
             <td>${escapeHtml(tx.category)}${tx.donation_id ? ' ★' : ''}</td>
             <td>${escapeHtml(tx.description || '—')}</td>
-            <td style="text-align:right;font-weight:600;color:${isIncome ? '#16a34a' : '#e8a090'}">${isIncome ? '+' : '-'}${Number(tx.amount).toLocaleString('es-CU', { minimumFractionDigits: 2 })} ${tx.currency}</td>
+            <td style="text-align:right;font-weight:600;color:${amountColor}">${sign}${Number(tx.amount).toLocaleString('es-CU', { minimumFractionDigits: 2 })} ${tx.currency}</td>
           </tr>`
       }).join('')
 

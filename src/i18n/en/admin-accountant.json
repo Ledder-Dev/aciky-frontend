@@ -26,6 +26,7 @@
     "all": "All",
     "income": "Income",
     "expense": "Expenses",
+    "exchange": "Exchanges",
     "month": "Month"
   },
   "table": {
@@ -38,7 +39,8 @@
   },
   "type": {
     "income": "Income",
-    "expense": "Expense"
+    "expense": "Expense",
+    "exchange": "Exchange"
   },
   "empty": "No transactions recorded.",
   "modal": {
