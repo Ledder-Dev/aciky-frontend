@@ -26,6 +26,7 @@
     "all": "Todas",
     "income": "Ingresos",
     "expense": "Gastos",
+    "exchange": "Intercambios",
     "month": "Mes"
   },
   "table": {
@@ -38,7 +39,8 @@
   },
   "type": {
     "income": "Ingreso",
-    "expense": "Gasto"
+    "expense": "Gasto",
+    "exchange": "Intercambio"
   },
   "empty": "No hay transacciones registradas.",
   "modal": {

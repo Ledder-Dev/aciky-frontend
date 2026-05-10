@@ -108,9 +108,10 @@ function renderTransactions(transactions) {
 
   list.innerHTML = transactions.map(tx => {
     const isIncome = tx.type === 'income'
-    const typeStyle = isIncome ? 'bg-green-100 text-green-700' : 'bg-red-50 text-red-600'
-    const amountStyle = isIncome ? 'text-green-600' : 'text-accent-terracotta'
-    const sign = isIncome ? '+' : '-'
+    const isExchange = tx.type === 'exchange'
+    const typeStyle = isIncome ? 'bg-green-100 text-green-700' : isExchange ? 'bg-accent-teal/10 text-accent-teal' : 'bg-red-50 text-red-600'
+    const amountStyle = isIncome ? 'text-green-600' : isExchange ? 'text-accent-teal' : 'text-accent-terracotta'
+    const sign = isIncome ? '+' : isExchange ? '⇄' : '-'
     const date = new Date(tx.date.slice(0, 10) + 'T12:00:00').toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
 
     return `
