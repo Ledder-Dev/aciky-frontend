@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-30
+Last updated: 2026-05-03
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,15 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Accounting: exchange type + correct per-currency balances - COMPLETE** (2026-05-02–03)
+  - `src/js/admin/accountant.js` + `src/js/accountant.js`: exchange transactions render in teal with `⇄` sign instead of green/red; `saveConversion` sends `type: 'exchange'` for both legs
+  - `pages/admin/accountant.html`: added "Intercambios" filter button; conversion preview dots changed from red/green to teal
+  - `src/i18n/es|en/admin-accountant.json`: added `type.exchange` and `filter.exchange` keys
+  - Backend: `VALID_TYPES` includes `exchange`; `getSummary()` runs two parallel queries — income/expense totals exclude exchange, balances subtract CUP exchange out and add USD exchange in; past conversion rows backfilled to `type='exchange'` via category match
+- [x] **Production hotfixes - COMPLETE** (2026-05-02)
+  - `/api/activities` 500: `member_price` column was missing in production DB — migration applied
+  - `/api/activities/instructor/my-classes` 500 for instructors with no classes: Express route ordering bug — `my-classes` now registered before `/:id`
+  - Broadcast email greeting: changed from "Hola" to "Sat Nam" in backend email template
 - [x] **Membership guide expanded + email broadcast async fix + schedule descriptions - COMPLETE** (2026-04-28–30)
   - `pages/membership.html`: leadership section now loads dynamically from `/api/users/team` (name + spiritual name + photo + role, same data as about.html); added CEU Evaluation Team section (events must be pre-evaluated for YB alignment + CEU credits; members encouraged to share all instructor activities for credits → extra benefits); added Collaboration & Mutual Benefit section (collaborate not compete, voluntary contributions, member price as the only current ask)
   - `src/js/membership.js`: new module — `initMembership()` fetches team, renders rows with circular photo + name + position; re-renders on language change
