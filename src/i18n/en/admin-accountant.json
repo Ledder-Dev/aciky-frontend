@@ -16,7 +16,7 @@
     "title": "ACIKY Fund",
     "income": "Income",
     "expenses": "Expenses",
-    "exchange": "Exchanges",
+    "exchange": "Currency Exchange",
     "balance": "Balance",
     "cup": "CUP",
     "usd": "USD",
@@ -27,7 +27,7 @@
     "all": "All",
     "income": "Income",
     "expense": "Expenses",
-    "exchange": "Exchanges",
+    "exchange": "Currency Exchange",
     "month": "Month"
   },
   "table": {
@@ -41,7 +41,7 @@
   "type": {
     "income": "Income",
     "expense": "Expense",
-    "exchange": "Exchange"
+    "exchange": "Currency Exchange"
   },
   "empty": "No transactions recorded.",
   "modal": {

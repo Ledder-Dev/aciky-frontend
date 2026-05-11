@@ -16,7 +16,7 @@
     "title": "Fondo ACIKY",
     "income": "Ingresos",
     "expenses": "Gastos",
-    "exchange": "Intercambios",
+    "exchange": "Cambio de Moneda",
     "balance": "Balance",
     "cup": "CUP",
     "usd": "USD",
@@ -27,7 +27,7 @@
     "all": "Todas",
     "income": "Ingresos",
     "expense": "Gastos",
-    "exchange": "Intercambios",
+    "exchange": "Cambio de Moneda",
     "month": "Mes"
   },
   "table": {
@@ -41,7 +41,7 @@
   "type": {
     "income": "Ingreso",
     "expense": "Gasto",
-    "exchange": "Intercambio"
+    "exchange": "Cambio de Moneda"
   },
   "empty": "No hay transacciones registradas.",
   "modal": {

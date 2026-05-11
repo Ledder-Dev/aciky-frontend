@@ -9,11 +9,11 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
-- [x] **Accounting: exchange type + correct per-currency balances - COMPLETE** (2026-05-02–03)
-  - `src/js/admin/accountant.js` + `src/js/accountant.js`: exchange transactions render in teal with `⇄` sign instead of green/red; `saveConversion` sends `type: 'exchange'` for both legs
-  - `pages/admin/accountant.html`: added "Intercambios" filter button; conversion preview dots changed from red/green to teal
-  - `src/i18n/es|en/admin-accountant.json`: added `type.exchange` and `filter.exchange` keys
-  - Backend: `VALID_TYPES` includes `exchange`; `getSummary()` runs two parallel queries — income/expense totals exclude exchange, balances subtract CUP exchange out and add USD exchange in; past conversion rows backfilled to `type='exchange'` via category match
+- [x] **Accounting: currency exchange type + correct per-currency balances - COMPLETE** (2026-05-02–03)
+  - `src/js/admin/accountant.js` + `src/js/accountant.js`: exchange transactions render in teal with `⇄` sign; `saveConversion` sends `type: 'exchange'` for both legs (was `income`/`expense`, which inflated totals)
+  - `pages/admin/accountant.html`: added "Cambio de Moneda" filter button; summary CUP/USD columns show a teal "Cambio de Moneda ⇄ −X CUP / +Y USD" row (hidden when zero), derived as `income − expense − balance` — no backend change needed; conversion preview changed from red/green to teal
+  - `src/i18n/es|en/admin-accountant.json`: added `type.exchange`, `filter.exchange`, `summary.exchange` keys — label is "Cambio de Moneda" / "Currency Exchange" throughout
+  - Backend: `VALID_TYPES` includes `exchange`; `getSummary()` runs two parallel queries — income/expense totals exclude exchange rows, balances subtract CUP exchanges out and add USD exchanges in; past conversion rows backfilled to `type='exchange'` via category LIKE match
 - [x] **Production hotfixes - COMPLETE** (2026-05-02)
   - `/api/activities` 500: `member_price` column was missing in production DB — migration applied
   - `/api/activities/instructor/my-classes` 500 for instructors with no classes: Express route ordering bug — `my-classes` now registered before `/:id`
