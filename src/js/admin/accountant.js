@@ -130,6 +130,24 @@ function renderSummary() {
   document.getElementById('expenseUsd').textContent = fmt(summary.expense_usd, 'USD')
   document.getElementById('balanceUsd').textContent = fmt(summary.balance_usd, 'USD')
 
+  const exchangeOutCup = (summary.income_cup || 0) - (summary.expense_cup || 0) - (summary.balance_cup || 0)
+  const exchangeInUsd = (summary.balance_usd || 0) - (summary.income_usd || 0) + (summary.expense_usd || 0)
+
+  const cupRow = document.getElementById('exchangeCupRow')
+  const usdRow = document.getElementById('exchangeUsdRow')
+  if (exchangeOutCup > 0.001) {
+    document.getElementById('exchangeCup').textContent = `⇄ −${Number(exchangeOutCup).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CUP`
+    cupRow?.classList.remove('hidden')
+  } else {
+    cupRow?.classList.add('hidden')
+  }
+  if (exchangeInUsd > 0.001) {
+    document.getElementById('exchangeUsd').textContent = `⇄ +${Number(exchangeInUsd).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`
+    usdRow?.classList.remove('hidden')
+  } else {
+    usdRow?.classList.add('hidden')
+  }
+
   let totalIncome, totalExpense
   if (totalCurrency === 'CUP') {
     totalIncome = (summary.income_cup || 0) + (summary.income_usd || 0) * exchangeRate
