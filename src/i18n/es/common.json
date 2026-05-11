@@ -22,6 +22,7 @@
     "logoutMobile": "Cerrar Sesión",
     "admin": "Admin",
     "adminPanel": "Panel Admin",
+    "finances": "Finanzas",
     "greeting": "Hola, {{name}}",
     "openMenu": "Abrir menú"
   },
@@ -50,6 +51,7 @@
     "events": "Eventos",
     "accountant": "Contabilidad",
     "donations": "Donaciones",
+    "emailBroadcast": "Emails",
     "cleanup": "Limpieza",
     "settings": "Configuración",
     "backToSite": "Volver al sitio"

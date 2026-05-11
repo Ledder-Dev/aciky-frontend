@@ -17,6 +17,12 @@
     <main class="pb-12">
       <section class="px-6 py-8">
 
+        <!-- Back link for non-admin accountants -->
+        <a id="accountantBackLink" href="/pages/dashboard.html" class="hidden items-center gap-1 text-primary text-sm font-medium hover:underline mb-4">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span data-i18n="backToDashboard">Volver al inicio</span>
+        </a>
+
         <!-- Header -->
         <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
@@ -36,6 +42,11 @@
             <button id="convertBtn" class="bg-accent-teal text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">currency_exchange</span>
               <span data-i18n="convertButton">Convertir CUP → USD</span>
+            </button>
+            <!-- Generate report -->
+            <button id="generateReportBtn" class="bg-white border border-slate-200 text-primary-dark px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">description</span>
+              <span data-i18n="report.button">Generar informe</span>
             </button>
             <!-- Add transaction -->
             <button id="addTransactionBtn" class="bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors flex items-center gap-1">
@@ -72,6 +83,10 @@
                 <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
                 <span id="expenseCup" class="font-semibold text-accent-terracotta">—</span>
               </div>
+              <div id="exchangeCupRow" class="hidden flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
+                <span id="exchangeCup" class="font-semibold text-accent-teal">—</span>
+              </div>
               <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
                 <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
                 <span id="balanceCup" class="font-bold text-primary-dark">—</span>
@@ -88,6 +103,10 @@
               <div class="flex justify-between text-sm">
                 <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
                 <span id="expenseUsd" class="font-semibold text-accent-terracotta">—</span>
+              </div>
+              <div id="exchangeUsdRow" class="hidden flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
+                <span id="exchangeUsd" class="font-semibold text-accent-teal">—</span>
               </div>
               <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
                 <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
@@ -121,6 +140,7 @@
             <button data-filter-type="all" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium bg-primary-dark text-white" data-i18n="filter.all">Todas</button>
             <button data-filter-type="income" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:bg-slate-50" data-i18n="filter.income">Ingresos</button>
             <button data-filter-type="expense" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:bg-slate-50" data-i18n="filter.expense">Gastos</button>
+            <button data-filter-type="exchange" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:bg-slate-50" data-i18n="filter.exchange">Cambio de Moneda</button>
           </div>
           <input type="month" id="monthFilter" class="px-3 py-2 rounded-2xl border border-slate-200 text-sm outline-none focus:border-primary bg-white" />
         </div>
@@ -249,8 +269,8 @@
           <!-- Preview -->
           <div id="convPreview" class="hidden bg-slate-50 rounded-xl p-3 space-y-1 text-xs text-slate-600">
             <p class="font-semibold text-slate-700" data-i18n="conversion.preview">Se crearán 2 transacciones:</p>
-            <p id="convPreviewExpense" class="text-accent-terracotta"></p>
-            <p id="convPreviewIncome" class="text-green-600"></p>
+            <p id="convPreviewExpense" class="text-accent-teal"></p>
+            <p id="convPreviewIncome" class="text-accent-teal"></p>
           </div>
 
           <div id="convError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>

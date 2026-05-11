@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-13
+Last updated: 2026-05-03
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,97 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Accounting: currency exchange type + correct per-currency balances - COMPLETE** (2026-05-02–03)
+  - `src/js/admin/accountant.js` + `src/js/accountant.js`: exchange transactions render in teal with `⇄` sign; `saveConversion` sends `type: 'exchange'` for both legs (was `income`/`expense`, which inflated totals)
+  - `pages/admin/accountant.html`: added "Cambio de Moneda" filter button; summary CUP/USD columns show a teal "Cambio de Moneda ⇄ −X CUP / +Y USD" row (hidden when zero), derived as `income − expense − balance` — no backend change needed; conversion preview changed from red/green to teal
+  - `src/i18n/es|en/admin-accountant.json`: added `type.exchange`, `filter.exchange`, `summary.exchange` keys — label is "Cambio de Moneda" / "Currency Exchange" throughout
+  - Backend: `VALID_TYPES` includes `exchange`; `getSummary()` runs two parallel queries — income/expense totals exclude exchange rows, balances subtract CUP exchanges out and add USD exchanges in; past conversion rows backfilled to `type='exchange'` via category LIKE match
+- [x] **Production hotfixes - COMPLETE** (2026-05-02)
+  - `/api/activities` 500: `member_price` column was missing in production DB — migration applied
+  - `/api/activities/instructor/my-classes` 500 for instructors with no classes: Express route ordering bug — `my-classes` now registered before `/:id`
+  - Broadcast email greeting: changed from "Hola" to "Sat Nam" in backend email template
+- [x] **Membership guide expanded + email broadcast async fix + schedule descriptions - COMPLETE** (2026-04-28–30)
+  - `pages/membership.html`: leadership section now loads dynamically from `/api/users/team` (name + spiritual name + photo + role, same data as about.html); added CEU Evaluation Team section (events must be pre-evaluated for YB alignment + CEU credits; members encouraged to share all instructor activities for credits → extra benefits); added Collaboration & Mutual Benefit section (collaborate not compete, voluntary contributions, member price as the only current ask)
+  - `src/js/membership.js`: new module — `initMembership()` fetches team, renders rows with circular photo + name + position; re-renders on language change
+  - `src/main.js`: route added for `/pages/membership.html` → `initMembership()`
+  - `src/i18n/es|en/membership.json`: added `ceu.*`, `collab.*`, `leadership.loading/empty` keys
+  - `src/js/schedule.js`: removed `line-clamp-2` from card descriptions — full text now shown
+  - `src/js/admin/emailBroadcast.js`: handles `{ queued }` response from backend in addition to `{ sent, errors }`; shows "N emails en camino" message
+  - `src/i18n/es|en/admin-email-broadcast.json`: added `success.queued` key
+  - `backend-specs/email-broadcast-async.md`: spec — respond immediately with `{ queued: N }`, send via `setImmediate` to avoid Heroku H12 30s timeout; backend implemented
+- [x] **Member price on class cards + membership guide page - COMPLETE** (2026-04-27)
+  - `pages/admin/schedule.html`: "Precio" renamed to "Precio público", new "Precio miembro" input added alongside it
+  - `src/js/admin/schedule.js`: reads and saves `member_price` field
+  - `src/js/schedule.js`: public card shows member price in light green below public price when set
+  - `src/i18n/es|en/schedule.json`: added `card.memberPrice` key
+  - `backend-specs/activity-member-price.md`: spec — `member_price DECIMAL(10,2)` column; backend implemented: added to `findAll`/`findByInstructor` SELECTs, `create()` INSERT, `createActivity`/`updateActivity` in service
+  - `pages/membership.html`: new printable membership guide page — browser bar with print button, ACIKY header, sections: who we are, KRI requirement, participation (6 ways), leadership structure, main activities, quote, contact
+  - `src/i18n/es|en/membership.json`: new translation files for membership guide; activities now include Festival, Rutas Doradas, Online Sadhana, Clases y Talleres, Renacimientos
+  - `pages/about.html`: "Ver guía de membresía" button added to membership section
+- [x] **Email broadcast + admin user creation + donations split - COMPLETE** (2026-04-27)
+  - `pages/admin/email-broadcast.html` + `src/js/admin/emailBroadcast.js`: new admin page — role checkboxes (users/instructors) with live recipient count, bilingual subject + HTML body fields, email preview modal, send with success/error count
+  - `src/i18n/es|en/admin-email-broadcast.json`: new translation files
+  - `backend-specs/email-broadcast.md`: spec — `POST /api/emails/broadcast` (admin-only), bilingual HTML email template, returns `{ sent, errors }`; `POST /api/users` sets `email_verified = 1` for admin-created users automatically
+  - Backend implemented: broadcast sends bilingual HTML to verified users by role; admin-created users skip email verification
+  - `pages/donations.html` split into appeal page (why donate, uses, impact, quote, benefits, promise + CTA) and `pages/donate.html` (PayPal + CUP + confirmation form)
+  - `src/js/donate.js`: new module with PayPal loading + form submission; `src/js/donations.js` simplified to description loader only
+  - `src/i18n/es|en/donate.json`: new translation files; `donations.json` updated with new content sections (uses, impact, quote, benefits, promise, cta)
+  - `pages/about.html` + `src/i18n/es|en/about.json`: updated history, mission, membership to reflect ACIKY as Cuba's NKYTA affiliated with IKYTA; tone aligned with IKYTA's "uplift and empower" language
+  - `src/partials/admin-nav.html` + `src/i18n/es|en/common.json`: "Emails" nav link added
+  - `vite.config.js`, `src/main.js`, `src/js/i18n.js`: registered `donate` and `adminEmailBroadcast` pages
+
+## Recently Completed
+- [x] **Accountant report button fix + GET transactions access - COMPLETE** (2026-04-23)
+  - `pages/accountant.html`: removed "Generar informe" button (was wrongly visible to plain instructors)
+  - `pages/admin/accountant.html`: added "Generar informe" button (visible to all who can reach the page: accountant instructors + admins)
+  - `src/js/admin/accountant.js`: added `lastTransactions`, `generateReport()` function, wired `generateReportBtn` listener
+  - `src/js/accountant.js`: removed `generateReport()`, `lastTransactions`, and report button logic entirely
+  - `src/i18n/es|en/admin-accountant.json`: added `report.*` keys
+  - `backend-specs/accountant-role.md`: spec — `GET /api/transactions` must use `requireInstructor` (not `requireAccountantOrAdmin`) so plain instructors can view the read-only ledger; backend fix applied to dev
+- [x] **Accountant access flag + finance report - COMPLETE** (2026-04-22)
+  - `backend-specs/accountant-role.md`: spec — backend implemented on dev: `is_accountant TINYINT(1)` added to users table; `findAll`/`findTeamMembers`/`update` include the field; `checkAuth` returns it; `requireAccountantOrAdmin` middleware added; POST/PUT/DELETE transaction routes use it; `GET /api/transactions` uses `requireInstructor`
+  - `src/js/auth.js`: added `requireAccountantAccess()` (admin or is_accountant)
+  - `src/js/admin/accountant.js`: uses `requireAccountantAccess()` instead of `requireAdmin()`; hides admin nav + shows back link for non-admin accountants; edit/delete buttons gated on `canEditDelete` (admin only)
+  - `src/js/admin/users.js` + `pages/admin/users.html`: `is_accountant` checkbox in user modal (admin-only page); `$` badge shown in user table
+  - `src/js/dashboard.js` + `pages/dashboard.html`: finances button routes accountant instructors to admin accountant page, hides for plain instructors
+  - `src/i18n/es|en/admin-users.json`: added `isAccountant` and `isAccountantHint` keys
+- [x] **Board Committee description update - COMPLETE** (2026-04-22)
+  - `src/i18n/es|en/about.json`: `team.description` updated to reflect President + Vice President + Board Committee structure
+- [x] **Accountant monthly report generator - COMPLETE** (2026-04-21)
+  - `src/i18n/es|en/accountant.json`: added `report.*` keys (retained for read-only page i18n)
+- [x] **Online Sadhana: Amrit Vela explanation updated - COMPLETE** (2026-04-21)
+  - `src/i18n/es|en/onlinesadhana.json`: `overview.card1` updated to explain true Ambrosial Hours (4–7 AM/PM, why they're special) and clarify ACIKY practices 7:30–9:00 AM because guided by a master from Mexico
+- [x] **Donations: PayPal transparency note - COMPLETE** (2026-04-22)
+  - `pages/donations.html`: green info box below PayPal button explaining Cuba's PayPal limitations and the trusted teacher's account; instruction to write "Donación ACIKY" / "Donation ACIKY" in the payment
+  - `src/i18n/es|en/donations.json`: added `paypal.notice` and `paypal.noticeText` keys
+- [x] **Blog author name fix - COMPLETE** (2026-04-18)
+  - `src/js/blog.js`: `getAuthorName()` was passing `name: post.author_name` (username) to `formatUserName`; fixed to `name: post.author_first_name`; removed debug `console.log`
+- [x] **Blog author bio + spaces instructor bio - COMPLETE** (2026-04-17)
+  - `backend-specs/blog-author-fix-and-bio.md`: spec — backend implemented (v135): `u.bio AS author_bio` + `u.bio_en AS author_bio_en` added to `findAllPublished`, `findAll`, `findById` in `blogRepository.js`; `author_id` confirmed never overwritten on edit
+  - `pages/blog.html`: restructured author header in detail view — larger avatar, name + date inline, `#blogDetailAuthorBio` element below (hidden when empty)
+  - `src/js/blog.js`: `showPostDetail` renders `post.author_bio`/`post.author_bio_en`; `getAuthorName()` helper uses `formatUserName` fallback (`first_name`/`last_name` → `name` → `username`) — awaiting backend to add those three fields to the same SELECTs
+  - `src/js/spaces.js`: per-instructor rows with avatar + name + bio for all instructors
+- [x] **Fix: instructor/admin bio on space cards - COMPLETE** (2026-04-18)
+  - `backend-specs/space-instructors-include-bio.md`: spec — backend fix: added `bio` and `bio_en` to instructor mapping object in `spaceService.js:31` inside `getAllSpaces`; `getSpaceById` already returned raw rows so it was unaffected
+  - `src/js/blog.js`: `getAuthorName()` helper uses `formatUserName` fallback — awaiting backend to add `author_first_name`, `author_last_name`, `author_username` to the three SELECT queries in `blogRepository.js` (same queries as bio fix) — frontend already wired
+
+## Recently Completed
+- [x] **About page: membership CTAs + donation section + principles carousel - COMPLETE** (2026-04-17)
+  - `pages/about.html`: added "Únete a ACIKY" membership section (KRI-certified member card + become-certified card, both with WhatsApp CTAs); added donation inspiration section linking to `pages/donations.html`; converted guiding principles `<ol>` to horizontal scrollable carousel with prev/next nav buttons
+  - `src/js/about.js`: merged WhatsApp link updates into single `updateWhatsAppLinks()`; added `initPrinciplesCarousel()` with scroll/disabled-state logic
+  - `src/i18n/es|en/about.json`: added `membership.*`, `donate.*` keys; updated `team.joinTitle/joinDescription` to clarify Committee is for members only
+- [x] **Golden Routes: "Únete" WhatsApp buttons per role - COMPLETE** (2026-04-17)
+  - `pages/golden-routes.html`: added "Quiero participar" WhatsApp button to each of the 4 involve cards (instructor, host, leader, sponsor)
+  - `src/js/goldenRoutes.js`: imported `getWhatsAppNumber`/`buildWhatsAppUrl`; added `updateInvolveLinks()` called on init and language change
+  - `src/i18n/es|en/golden-routes.json`: added `involve.joinButton` and `whatsappMessage` per role
+- [x] **Fix: admin-role users assignable to spaces - COMPLETE** (2026-04-17)
+  - `backend-specs/space-instructors-allow-admin-role.md`: spec — backend implemented: removed `AND u.role = 'instructor'` filter from `spaceRepository.findInstructorsBySpaceId` (line 53) and `findInstructorsBySpaceIds` (line 68); admin-role users assigned to a space are now returned alongside instructors
+- [x] **Instructor bio self-edit on profile page - COMPLETE** (2026-04-13)
+  - `backend-specs/instructor-bio-self-edit.md`: spec — backend implemented: `PUT /api/users/profile` now accepts `bio` and `bio_en`, saved only for instructor/admin role, empty strings stored as null
+  - `pages/dashboard.html`: bio (ES) + bio_en (EN) textareas added to profile form inside `#profileBioSection`, hidden by default
+  - `src/js/dashboard.js`: shows bio section and populates fields on load for instructor/admin; includes bio/bio_en in PUT body on save
+  - `src/i18n/es|en/dashboard.json`: added `form.bio`, `form.bioPlaceholder`, `form.bioHint`, `form.bioEn`, `form.bioEnPlaceholder` keys
+
 - [x] **Instructor bio + lineage attribution + about page principles - COMPLETE** (2026-04-13)
   - `backend-specs/instructor-bio.md`: spec — backend implemented: `bio` TEXT + `bio_en` TEXT added to `users` table; `userRepository.findTeamMembers/findAll/update`, `spaceRepository.findInstructorsBySpaceId(s)` updated to include bio fields; `userService.createUser/updateUser` pass bio through with same role guard as position
   - `pages/admin/users.html` + `src/js/admin/users.js`: bio/bio_en textareas added inside `#positionField` (shows only for instructor/admin role); populated on edit, saved on submit

@@ -45,18 +45,23 @@ export async function initAbout() {
   // Listen for language changes to re-render
   window.addEventListener('languageChanged', () => {
     loadTeam()
-    updateJoinWhatsAppLink()
+    updateWhatsAppLinks()
   })
 
   loadTeam()
-  updateJoinWhatsAppLink()
+  updateWhatsAppLinks()
+  initPrinciplesCarousel()
 }
 
-function updateJoinWhatsAppLink() {
-  const btn = document.getElementById('teamJoinWhatsappBtn')
-  if (btn) {
-    btn.href = buildWhatsAppUrl(waPhone, t('team.whatsappMessage'))
-  }
+function updateWhatsAppLinks() {
+  const teamBtn = document.getElementById('teamJoinWhatsappBtn')
+  if (teamBtn) teamBtn.href = buildWhatsAppUrl(waPhone, t('team.whatsappMessage'))
+
+  const memberBtn = document.getElementById('membershipWhatsappBtn')
+  if (memberBtn) memberBtn.href = buildWhatsAppUrl(waPhone, t('membership.member.whatsappMessage'))
+
+  const certifyBtn = document.getElementById('certifyWhatsappBtn')
+  if (certifyBtn) certifyBtn.href = buildWhatsAppUrl(waPhone, t('membership.certify.whatsappMessage'))
 }
 
 function renderTeamCard(instructor) {
@@ -80,6 +85,27 @@ function renderTeamCard(instructor) {
       ${bio ? `<p class="text-xs text-slate-400 leading-relaxed mt-2">${bio}</p>` : ''}
     </div>
   `
+}
+
+function initPrinciplesCarousel() {
+  const carousel = document.getElementById('principlesCarousel')
+  const prevBtn = document.getElementById('principlesPrevBtn')
+  const nextBtn = document.getElementById('principlesNextBtn')
+  if (!carousel || !prevBtn || !nextBtn) return
+
+  const scrollAmount = 280
+
+  function updateButtonStates() {
+    const isAtStart = carousel.scrollLeft <= 10
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10
+    prevBtn.disabled = isAtStart
+    nextBtn.disabled = isAtEnd
+  }
+
+  prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' }))
+  nextBtn.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' }))
+  carousel.addEventListener('scroll', updateButtonStates)
+  updateButtonStates()
 }
 
 function escapeHtml(str) {

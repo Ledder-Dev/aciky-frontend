@@ -6,12 +6,12 @@
   },
   "history": {
     "title": "Nuestra Historia",
-    "p1": "ACIKY (Alianza Cubana de Instructores en Kundalini Yoga) nació de la visión de compartir las herramientas transformadoras del yoga y la meditación con cada rincón de nuestra comunidad. Creemos que el bienestar no es un lujo, sino un derecho fundamental para todos.",
-    "p2": "A través de los años, hemos construido un refugio de paz donde la tradición ancestral se encuentra con el ritmo de la vida moderna, ofreciendo un camino hacia el equilibrio físico, mental y espiritual."
+    "p1": "ACIKY es la Asociación Nacional de Maestros de Kundalini Yoga de Cuba (NKYTA), afiliada a IKYTA — la Asociación Internacional de Maestros de Kundalini Yoga. Surgió de la unión de instructores cubanos comprometidos con elevar y sostener la enseñanza de esta ciencia sagrada en todo el país.",
+    "p2": "Hemos construido una comunidad donde los maestros se apoyan mutuamente, comparten recursos y crecen juntos, conectando la práctica del Kundalini Yoga en Cuba con la familia global de instructores certificados."
   },
   "mission": {
     "title": "Nuestra Misión",
-    "description": "ACIKY nació con el propósito de expandir el Kundalini Yoga en Cuba, haciendo accesible esta práctica transformadora a todas las personas que buscan equilibrio, paz interior y crecimiento personal."
+    "description": "Nuestra misión es elevar y empoderar a los maestros de Kundalini Yoga en Cuba — apoyando su práctica, fortaleciendo las comunidades de yoga y compartiendo la ciencia sagrada del Kundalini Yoga en cada rincón del país."
   },
   "kundalini": {
     "title": "¿Qué es el Kundalini Yoga?",
@@ -39,16 +39,37 @@
   },
   "team": {
     "title": "Comité Directivo",
-    "description": "En ACIKY no hay un líder máximo: las decisiones se toman en conjunto. Cada miembro del Comité aporta su voz y su visión, guiando el camino de la asociación con horizontalidad y respeto mutuo.",
+    "description": "ACIKY está dirigida por un Presidente y un Vicepresidente, acompañados por el Comité Directivo. Juntos toman las decisiones que guían el rumbo de la organización, velando por el crecimiento y la integridad de la comunidad.",
     "loading": "Cargando equipo...",
     "error": "No se pudo cargar el equipo",
     "retry": "Reintentar",
     "empty": "Pronto conocerás al Comité Directivo",
     "photoAlt": "Foto de {{name}}",
-    "joinTitle": "¿Quieres ser parte del Comité?",
-    "joinDescription": "Si sientes el llamado a contribuir al crecimiento de ACIKY, escríbenos. Nos encantaría tenerte con nosotros!.",
+    "joinTitle": "¿Quieres ser parte del Comité Directivo?",
+    "joinDescription": "El Comité Directivo está abierto exclusivamente a miembros de ACIKY. Si ya eres miembro y sientes el llamado a contribuir al crecimiento de la organización, escríbenos.",
     "joinButton": "Preguntar por WhatsApp",
     "whatsappMessage": "Hola, me gustaría saber más sobre cómo ser parte del Comité Directivo de ACIKY (este mensaje es desde el sitio web de ACIKY)"
+  },
+  "membership": {
+    "title": "Únete a ACIKY",
+    "member": {
+      "title": "¿Eres instructor certificado KRI?",
+      "description": "ACIKY acepta como miembros a instructores con certificación KRI. Al unirte, formas parte de una red de maestros que se apoyan mutuamente y quedas conectado con IKYTA — la comunidad global de instructores certificados de Kundalini Yoga. Escríbenos para dar el paso.",
+      "infoButton": "Ver guía de membresía",
+      "button": "Solicitar membresía",
+      "whatsappMessage": "Hola, soy instructor certificado KRI y me gustaría solicitar mi membresía en ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    },
+    "certify": {
+      "title": "¿Quieres convertirte en instructor certificado?",
+      "description": "Si el Kundalini Yoga ha transformado tu vida y sientes el llamado a enseñar, el camino comienza con la formación KRI. Contáctanos para orientarte sobre cómo dar ese paso.",
+      "button": "Saber más",
+      "whatsappMessage": "Hola, me gustaría saber más sobre cómo convertirme en instructor certificado KRI para poder unirme a ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    }
+  },
+  "donate": {
+    "title": "Apoya Nuestra Misión",
+    "description": "Tu contribución hace posible que el Kundalini Yoga siga llegando a más personas en Cuba. Cada donación, grande o pequeña, es un acto de amor a la comunidad.",
+    "button": "Donar ahora"
   },
   "values": {
     "title": "Nuestros Valores",

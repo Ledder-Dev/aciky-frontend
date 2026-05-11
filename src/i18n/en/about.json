@@ -6,12 +6,12 @@
   },
   "history": {
     "title": "Our Story",
-    "p1": "ACIKY (Cuban Alliance of Instructors in Kundalini Yoga) was born from the vision of sharing the transformative tools of yoga and meditation with every corner of our community. We believe that wellness is not a luxury, but a fundamental right for all.",
-    "p2": "Over the years, we have built a refuge of peace where ancestral tradition meets the rhythm of modern life, offering a path towards physical, mental, and spiritual balance."
+    "p1": "ACIKY is Cuba's National Kundalini Yoga Teachers Association (NKYTA), affiliated with IKYTA — the International Kundalini Yoga Teachers Association. It emerged from the coming together of Cuban instructors committed to uplifting and sustaining the teaching of this sacred science across the country.",
+    "p2": "We have built a community where teachers support one another, share resources, and grow together — connecting Kundalini Yoga in Cuba with the global family of certified instructors."
   },
   "mission": {
     "title": "Our Mission",
-    "description": "ACIKY was founded with the purpose of expanding Kundalini Yoga in Cuba, making this transformative practice accessible to all people seeking balance, inner peace, and personal growth."
+    "description": "Our mission is to uplift and empower Kundalini Yoga teachers in Cuba — supporting their practice, expanding yoga communities, and sharing the sacred science of Kundalini Yoga across every corner of the country."
   },
   "kundalini": {
     "title": "What is Kundalini Yoga?",
@@ -39,16 +39,37 @@
   },
   "team": {
     "title": "Board Committee",
-    "description": "At ACIKY there is no single leader: decisions are made together. Each Committee member brings their voice and vision, guiding the association with horizontality and mutual respect.",
+    "description": "ACIKY is led by a President and a Vice President, supported by the Board Committee. Together they make the decisions that guide the organization, overseeing the growth and integrity of the community.",
     "loading": "Loading team...",
     "error": "Could not load team",
     "retry": "Retry",
     "empty": "You will soon meet the Board Committee",
     "photoAlt": "Photo of {{name}}",
-    "joinTitle": "Want to join the Committee?",
-    "joinDescription": "If you feel the calling to contribute to ACIKY's growth, reach out. We'd love to have you with us!.",
+    "joinTitle": "Want to join the Board Committee?",
+    "joinDescription": "The Board Committee is open exclusively to ACIKY members. If you are already a member and feel called to contribute to the organization's growth, reach out to us.",
     "joinButton": "Ask via WhatsApp",
     "whatsappMessage": "Hello, I'd like to know more about joining ACIKY's Board Committee (este mensaje es desde el sitio web de ACIKY)"
+  },
+  "membership": {
+    "title": "Join ACIKY",
+    "member": {
+      "title": "Are you a KRI-certified instructor?",
+      "description": "ACIKY accepts as members instructors with KRI certification. By joining, you become part of a network of teachers who support one another, and connect with IKYTA — the global community of certified Kundalini Yoga teachers. Reach out to take that step.",
+      "infoButton": "View membership guide",
+      "button": "Apply for membership",
+      "whatsappMessage": "Hello, I am a KRI-certified instructor and I'd like to apply for ACIKY membership (este mensaje es desde el sitio web de ACIKY)"
+    },
+    "certify": {
+      "title": "Want to become a certified instructor?",
+      "description": "If Kundalini Yoga has transformed your life and you feel called to teach, the journey begins with KRI training. Contact us for guidance on how to take that step.",
+      "button": "Learn more",
+      "whatsappMessage": "Hello, I'd like to know more about becoming a KRI-certified instructor to join ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    }
+  },
+  "donate": {
+    "title": "Support Our Mission",
+    "description": "Your contribution makes it possible for Kundalini Yoga to keep reaching more people in Cuba. Every donation, big or small, is an act of love for the community.",
+    "button": "Donate now"
   },
   "values": {
     "title": "Our Values",

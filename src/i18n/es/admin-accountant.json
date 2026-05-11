@@ -1,5 +1,6 @@
 {
   "pageTitle": "Contabilidad - Admin ACIKY",
+  "backToDashboard": "Volver al inicio",
   "title": "Contabilidad",
   "subtitle": "Gestiona ingresos y gastos de ACIKY",
   "addButton": "Agregar transacción",
@@ -15,6 +16,7 @@
     "title": "Fondo ACIKY",
     "income": "Ingresos",
     "expenses": "Gastos",
+    "exchange": "Cambio de Moneda",
     "balance": "Balance",
     "cup": "CUP",
     "usd": "USD",
@@ -25,6 +27,7 @@
     "all": "Todas",
     "income": "Ingresos",
     "expense": "Gastos",
+    "exchange": "Cambio de Moneda",
     "month": "Mes"
   },
   "table": {
@@ -37,7 +40,8 @@
   },
   "type": {
     "income": "Ingreso",
-    "expense": "Gasto"
+    "expense": "Gasto",
+    "exchange": "Cambio de Moneda"
   },
   "empty": "No hay transacciones registradas.",
   "modal": {
@@ -69,6 +73,22 @@
   },
   "donationBadge": "Donación",
   "convertButton": "Convertir CUP → USD",
+  "report": {
+    "button": "Generar informe",
+    "title": "Informe Financiero",
+    "organization": "ACIKY — Alianza Cubana de Instructores en Kundalini Yoga",
+    "period": "Período",
+    "allMonths": "Todos los meses",
+    "generatedOn": "Generado el",
+    "summaryTitle": "Resumen del fondo",
+    "transactionsTitle": "Movimientos",
+    "noTransactions": "No hay transacciones en este período.",
+    "income": "Ingresos",
+    "expenses": "Gastos",
+    "balance": "Balance",
+    "total": "Total equivalente",
+    "exchangeRate": "Tasa de cambio"
+  },
   "conversion": {
     "title": "Convertir CUP → USD",
     "subtitle": "Registra la salida de CUP y la entrada de USD en un solo paso.",
