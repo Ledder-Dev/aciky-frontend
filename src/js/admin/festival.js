@@ -287,7 +287,12 @@ async function saveSettings() {
   const settingsBody = {
     donation_paypal_url: getVal('donationPaypalUrl') || '',
     donation_description_es: getVal('donationDescriptionEs') || '',
-    donation_description_en: getVal('donationDescriptionEn') || ''
+    donation_description_en: getVal('donationDescriptionEn') || '',
+    festival_maps_url: getVal('mapsUrl') || '',
+    festival_price_es: getVal('priceEs') || '',
+    festival_price_en: getVal('priceEn') || '',
+    festival_transportation_es: getVal('transportationEs') || '',
+    festival_transportation_en: getVal('transportationEn') || ''
   }
 
   try {
@@ -332,6 +337,11 @@ async function loadProgramVisibility() {
     setVal('donationPaypalUrl', s['donation_paypal_url'])
     setVal('donationDescriptionEs', s['donation_description_es'])
     setVal('donationDescriptionEn', s['donation_description_en'])
+    setVal('mapsUrl', s['festival_maps_url'])
+    setVal('priceEs', s['festival_price_es'])
+    setVal('priceEn', s['festival_price_en'])
+    setVal('transportationEs', s['festival_transportation_es'])
+    setVal('transportationEn', s['festival_transportation_en'])
   } catch {
     // keep default (visible)
   }

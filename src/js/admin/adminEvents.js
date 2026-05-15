@@ -165,9 +165,10 @@ function openEditModal(id) {
   if (addressField) addressField.classList.toggle('hidden', !!ev.is_online)
 
   if (ev.date) {
-    const dt = new Date(ev.date)
-    document.getElementById('eventDate').value = dt.toISOString().split('T')[0]
-    document.getElementById('eventTime').value = dt.toTimeString().substring(0, 5)
+    const dateStr = ev.date.replace('Z', '')
+    const [datePart, timePart] = dateStr.split('T')
+    document.getElementById('eventDate').value = datePart || ''
+    document.getElementById('eventTime').value = timePart ? timePart.substring(0, 5) : ''
   } else {
     document.getElementById('eventDate').value = ''
     document.getElementById('eventTime').value = ''

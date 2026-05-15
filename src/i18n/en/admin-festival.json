@@ -37,6 +37,20 @@
     "earlyBirdTextEn": "Text (EN)",
     "earlyBirdTextEnPlaceholder": "Early registration discount description... (optional)"
   },
+  "logistics": {
+    "title": "Logistics",
+    "mapsUrl": "Google Maps Link",
+    "mapsUrlPlaceholder": "https://maps.google.com/...",
+    "mapsUrlHint": "Copy the link from the browser address bar in Google Maps (do not use the short \"Share\" link).",
+    "price": "Price",
+    "pricePlaceholder": "E.g.: 500 CUP / 15 USD per person",
+    "priceEn": "Price (EN)",
+    "priceEnPlaceholder": "E.g.: 500 CUP / 15 USD per person (optional)",
+    "transportation": "Transportation",
+    "transportationPlaceholder": "E.g.: Departure from Parque Central at 7:00 AM. ACIKY-organized bus. Price: 50 CUP.",
+    "transportationEn": "Transportation (EN)",
+    "transportationEnPlaceholder": "E.g.: Departure from Parque Central at 7:00 AM. ACIKY-organized bus. (optional)"
+  },
   "donations": {
     "title": "Donation Settings",
     "paypalUrl": "PayPal Link",

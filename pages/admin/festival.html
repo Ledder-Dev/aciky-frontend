@@ -130,6 +130,50 @@
             </div>
           </div>
 
+          <!-- Section: Logistics -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <h2 class="text-lg font-bold text-primary-dark mb-5 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">directions</span>
+              <span data-i18n="logistics.title">Logística</span>
+            </h2>
+            <div class="space-y-4">
+
+              <!-- Maps URL -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="logistics.mapsUrl">Enlace de Google Maps</label>
+                <input type="url" id="mapsUrl" maxlength="1000"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="logistics.mapsUrlPlaceholder" placeholder="https://maps.google.com/..." />
+                <p class="text-xs text-slate-400 mt-1" data-i18n="logistics.mapsUrlHint">Copia el enlace desde la barra del navegador en Google Maps (no uses el enlace corto de "Compartir").</p>
+              </div>
+
+              <!-- Price -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="logistics.price">Precio</label>
+                <input type="text" id="priceEs" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="logistics.pricePlaceholder" placeholder="Ej: 500 CUP / 15 USD por persona" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="logistics.priceEn">Price (EN)</label>
+                <input type="text" id="priceEn" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="logistics.priceEnPlaceholder" placeholder="E.g.: 500 CUP / 15 USD per person (optional)" />
+              </div>
+
+              <!-- Transportation -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="logistics.transportation">Transporte</label>
+                <textarea id="transportationEs" rows="3" maxlength="1000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="logistics.transportationPlaceholder" placeholder="Ej: Salida desde el Parque Central a las 7:00 AM. Bus organizado por ACIKY. Precio: 50 CUP."></textarea>
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="logistics.transportationEn">Transportation (EN)</label>
+                <textarea id="transportationEn" rows="3" maxlength="1000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="logistics.transportationEnPlaceholder" placeholder="E.g.: Departure from Parque Central at 7:00 AM. ACIKY-organized bus. Price: 50 CUP. (optional)"></textarea>
+              </div>
+
+            </div>
+          </div>
+
           <!-- Section: Program -->
           <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
             <h2 class="text-lg font-bold text-primary-dark mb-5 flex items-center gap-2">
