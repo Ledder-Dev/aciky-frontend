@@ -16,6 +16,7 @@ export async function initFestival() {
   })
 
   await Promise.all([loadFestivalSettings(), loadProgramVisibility()])
+  renderDynamicSections()
 }
 
 async function loadProgramVisibility() {
@@ -44,7 +45,6 @@ async function loadFestivalSettings() {
   } catch (err) {
     console.warn('Could not load festival settings:', err.message)
   }
-  renderDynamicSections()
 }
 
 function renderDynamicSections() {
