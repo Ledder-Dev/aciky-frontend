@@ -4,6 +4,7 @@ import { apiFetch } from './api.js'
 import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 let festivalSettings = null
+let festivalLogistics = {}
 let waPhone = '5350759360'
 
 export async function initFestival() {
@@ -23,6 +24,13 @@ async function loadProgramVisibility() {
     const s = data.data || {}
     if (s['festival_program_visible'] === '0') {
       document.getElementById('festivalProgramSection')?.classList.add('hidden')
+    }
+    festivalLogistics = {
+      mapsUrl: s['festival_maps_url'] || '',
+      priceEs: s['festival_price_es'] || '',
+      priceEn: s['festival_price_en'] || '',
+      transportationEs: s['festival_transportation_es'] || '',
+      transportationEn: s['festival_transportation_en'] || ''
     }
   } catch {
     // silently keep section visible on error
@@ -99,6 +107,12 @@ function renderEventDetails() {
   const earlyBirdTitle = s ? (lang === 'en' ? (s.early_bird_title_en || s.early_bird_title_es) : s.early_bird_title_es) : null
   const earlyBirdText = s ? (lang === 'en' ? (s.early_bird_text_en || s.early_bird_text_es) : s.early_bird_text_es) : null
 
+  const mapsUrl = festivalLogistics.mapsUrl
+  const price = lang === 'en' ? (festivalLogistics.priceEn || festivalLogistics.priceEs) : festivalLogistics.priceEs
+  const transportation = lang === 'en'
+    ? (festivalLogistics.transportationEn || festivalLogistics.transportationEs)
+    : festivalLogistics.transportationEs
+
   container.innerHTML = `
     <h3 class="text-lg font-bold text-primary-dark mb-4">${t('registration.details.title')}</h3>
     <div class="space-y-3">
@@ -129,8 +143,28 @@ function renderEventDetails() {
         <div>
           <p class="text-xs text-slate-500 uppercase font-semibold">${t('registration.details.location.label')}</p>
           <p class="text-sm text-slate-700">${escapeHtml(location || t('registration.details.location.value'))}</p>
+          ${mapsUrl ? `<a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-primary hover:text-primary-dark font-medium mt-1">
+            <span class="material-symbols-outlined text-xs">map</span>
+            ${t('registration.details.mapsLink')}
+          </a>` : ''}
         </div>
       </div>
+      ${price ? `
+      <div class="flex gap-3">
+        <span class="material-symbols-outlined text-primary text-xl">payments</span>
+        <div>
+          <p class="text-xs text-slate-500 uppercase font-semibold">${t('registration.details.price.label')}</p>
+          <p class="text-sm text-slate-700">${escapeHtml(price)}</p>
+        </div>
+      </div>` : ''}
+      ${transportation ? `
+      <div class="flex gap-3">
+        <span class="material-symbols-outlined text-primary text-xl">directions_bus</span>
+        <div>
+          <p class="text-xs text-slate-500 uppercase font-semibold">${t('registration.details.transportation.label')}</p>
+          <p class="text-sm text-slate-700">${escapeHtml(transportation)}</p>
+        </div>
+      </div>` : ''}
       ${earlyBirdTitle || earlyBirdText ? `
       <div class="mt-4 p-4 bg-primary/5 rounded-xl">
         <p class="text-xs font-semibold text-primary-dark mb-2">${escapeHtml(earlyBirdTitle || '')}</p>

@@ -172,6 +172,13 @@
       },
       "topic": {
         "label": "Tema del Festival"
+      },
+      "mapsLink": "Ver en Google Maps",
+      "price": {
+        "label": "Precio"
+      },
+      "transportation": {
+        "label": "Transporte"
       }
     },
     "earlyBird": {
