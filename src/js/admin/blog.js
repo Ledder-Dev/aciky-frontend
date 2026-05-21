@@ -4,6 +4,7 @@ import { t } from '../i18n.js'
 import { initBlocks, addBlock, getBlocks, render as renderBlocks } from './blogBlocks.js'
 
 let allPosts = []
+let allUsers = []
 let currentUser = null
 
 const STATUS_STYLES = {
@@ -19,6 +20,10 @@ export async function initAdminBlog() {
   if (user.role === 'instructor') {
     const adminNav = document.querySelector('nav.bg-primary-dark')
     if (adminNav) adminNav.classList.add('hidden')
+  }
+
+  if (user.role === 'admin') {
+    await loadUsers()
   }
 
   await loadPosts()
@@ -42,6 +47,28 @@ export async function initAdminBlog() {
     if (action === 'delete') confirmDelete(postId)
     if (action === 'toggle-publish') togglePublished(postId)
   })
+}
+
+// ─── Users (admin author picker) ──────────────────────────────────────────────
+
+async function loadUsers() {
+  try {
+    const data = await apiFetch('/api/users')
+    allUsers = (data.data || []).filter(u => u.role === 'instructor' || u.role === 'admin')
+    populateAuthorSelect()
+  } catch (err) {
+    console.warn('Could not load users for author picker:', err.message)
+  }
+}
+
+function populateAuthorSelect() {
+  const select = document.getElementById('postAuthor')
+  if (!select) return
+  select.innerHTML = allUsers.map(u => {
+    const name = [u.first_name, u.last_name].filter(Boolean).join(' ') || u.name
+    const label = u.spiritual_name ? `${name} (${u.spiritual_name})` : name
+    return `<option value="${u.id}">${escapeHtml(label)}</option>`
+  }).join('')
 }
 
 // ─── Load / Render ────────────────────────────────────────────────────────────
@@ -150,6 +177,13 @@ function openCreateModal() {
   clearPdfUI()
   hideFormError()
 
+  const authorSection = document.getElementById('postAuthorSection')
+  if (authorSection && currentUser.role === 'admin') {
+    authorSection.classList.remove('hidden')
+    const select = document.getElementById('postAuthor')
+    if (select) select.value = currentUser.id
+  }
+
   initBlocks([])
   if (modal) modal.classList.remove('hidden')
 }
@@ -168,6 +202,13 @@ function openEditModal(id) {
   document.getElementById('postTags').value = post.tags || ''
   document.getElementById('postTagsEn').value = post.tags_en || ''
   document.getElementById('postPublished').checked = !!post.published
+
+  const authorSection = document.getElementById('postAuthorSection')
+  if (authorSection && currentUser.role === 'admin') {
+    authorSection.classList.remove('hidden')
+    const select = document.getElementById('postAuthor')
+    if (select) select.value = post.author_id || currentUser.id
+  }
 
   // PDF
   clearPdfUI()
@@ -215,6 +256,7 @@ async function savePost(e) {
   const content = firstText?.content_es || ''
   const contentEn = firstText?.content_en || ''
 
+  const authorSelect = document.getElementById('postAuthor')
   const body = {
     title: document.getElementById('postTitle').value.trim(),
     title_en: document.getElementById('postTitleEn').value.trim() || null,
@@ -226,7 +268,10 @@ async function savePost(e) {
     pdf_url: document.getElementById('pdfUrl').value || null,
     pdf_title: document.getElementById('pdfTitle').value.trim() || null,
     pdf_title_en: document.getElementById('pdfTitleEn').value.trim() || null,
-    published: document.getElementById('postPublished').checked ? 1 : 0
+    published: document.getElementById('postPublished').checked ? 1 : 0,
+    ...(currentUser.role === 'admin' && authorSelect?.value
+      ? { author_id: parseInt(authorSelect.value) }
+      : {})
   }
 
   try {

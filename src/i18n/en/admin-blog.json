@@ -12,6 +12,7 @@
   "modal": {
     "newTitle": "New Article",
     "editTitle": "Edit Article",
+    "author": "Author",
     "title": "Title",
     "titlePlaceholder": "Article title",
     "content": "Content",
