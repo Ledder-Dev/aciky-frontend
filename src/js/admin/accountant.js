@@ -148,15 +148,16 @@ function renderSummary() {
     usdRow?.classList.add('hidden')
   }
 
-  let totalIncome, totalExpense
+  let totalIncome, totalExpense, totalBal
   if (totalCurrency === 'CUP') {
     totalIncome = (summary.income_cup || 0) + (summary.income_usd || 0) * exchangeRate
     totalExpense = (summary.expense_cup || 0) + (summary.expense_usd || 0) * exchangeRate
+    totalBal = (summary.balance_cup || 0) + (summary.balance_usd || 0) * exchangeRate
   } else {
     totalIncome = (summary.income_usd || 0) + (summary.income_cup || 0) / exchangeRate
     totalExpense = (summary.expense_usd || 0) + (summary.expense_cup || 0) / exchangeRate
+    totalBal = (summary.balance_usd || 0) + (summary.balance_cup || 0) / exchangeRate
   }
-  const totalBal = totalIncome - totalExpense
 
   document.getElementById('totalIncome').textContent = fmt(totalIncome, totalCurrency)
   document.getElementById('totalExpense').textContent = fmt(totalExpense, totalCurrency)
@@ -410,13 +411,15 @@ function generateReport() {
     : t('report.allMonths')
   const generatedDate = new Date().toLocaleDateString(undefined, { day: '2-digit', month: 'long', year: 'numeric' })
 
-  let totalIncome, totalExpense
+  let totalIncome, totalExpense, totalBal
   if (totalCurrency === 'CUP') {
     totalIncome = (summary.income_cup || 0) + (summary.income_usd || 0) * exchangeRate
     totalExpense = (summary.expense_cup || 0) + (summary.expense_usd || 0) * exchangeRate
+    totalBal = (summary.balance_cup || 0) + (summary.balance_usd || 0) * exchangeRate
   } else {
     totalIncome = (summary.income_usd || 0) + (summary.income_cup || 0) / exchangeRate
     totalExpense = (summary.expense_usd || 0) + (summary.expense_cup || 0) / exchangeRate
+    totalBal = (summary.balance_usd || 0) + (summary.balance_cup || 0) / exchangeRate
   }
 
   const txRows = lastTransactions.length === 0
@@ -504,7 +507,7 @@ function generateReport() {
       <div class="currency" style="color:#708558">${t('report.total')} (${totalCurrency})</div>
       <div class="summary-row"><span class="label">${t('report.income')}</span><span class="income">${fmt(totalIncome, totalCurrency)}</span></div>
       <div class="summary-row"><span class="label">${t('report.expenses')}</span><span class="expense">${fmt(totalExpense, totalCurrency)}</span></div>
-      <div class="summary-row balance" style="border-color:#a3be84"><span>${t('report.balance')}</span><span style="font-size:15px">${fmt(totalIncome - totalExpense, totalCurrency)}</span></div>
+      <div class="summary-row balance" style="border-color:#a3be84"><span>${t('report.balance')}</span><span style="font-size:15px">${fmt(totalBal, totalCurrency)}</span></div>
       <div class="rate">${t('report.exchangeRate')}: 1 USD = ${exchangeRate} CUP</div>
     </div>
   </div>
