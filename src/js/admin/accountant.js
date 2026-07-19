@@ -63,6 +63,14 @@ export async function initAdminAccountant() {
   document.getElementById('convCancelBtn')?.addEventListener('click', closeConversionModal)
   document.getElementById('convSaveBtn')?.addEventListener('click', saveConversion)
 
+  document.getElementById('transactionsList')?.addEventListener('click', async e => {
+    const btn = e.target.closest('[data-action]')
+    if (!btn) return
+    const id = parseInt(btn.dataset.id)
+    if (btn.dataset.action === 'edit') openModal(lastTransactions.find(tx => tx.id === id))
+    if (btn.dataset.action === 'delete') await deleteTransaction(id)
+  })
+
   // Live preview on input
   ;['convCupAmount', 'convUsdAmount', 'convRate'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', updateConversionPreview)
@@ -197,14 +205,6 @@ function renderTransactions(transactions, canEditDelete = false) {
         </div>
       </div>`
   }).join('')
-
-  list.addEventListener('click', async e => {
-    const btn = e.target.closest('[data-action]')
-    if (!btn) return
-    const id = parseInt(btn.dataset.id)
-    if (btn.dataset.action === 'edit') openModal(transactions.find(tx => tx.id === id))
-    if (btn.dataset.action === 'delete') await deleteTransaction(id)
-  }, { once: true })
 }
 
 function openModal(tx = null) {
