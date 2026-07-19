@@ -81,19 +81,10 @@ function renderSummary() {
   document.getElementById('expenseUsd').textContent = fmt(summary.expense_usd, 'USD')
   document.getElementById('balanceUsd').textContent = fmt(summary.balance_usd, 'USD')
 
-  let totalIncome, totalExpense, totalBal
-  if (totalCurrency === 'CUP') {
-    totalIncome = (summary.income_cup || 0) + (summary.income_usd || 0) * exchangeRate
-    totalExpense = (summary.expense_cup || 0) + (summary.expense_usd || 0) * exchangeRate
-    totalBal = (summary.balance_cup || 0) + (summary.balance_usd || 0) * exchangeRate
-  } else {
-    totalIncome = (summary.income_usd || 0) + (summary.income_cup || 0) / exchangeRate
-    totalExpense = (summary.expense_usd || 0) + (summary.expense_cup || 0) / exchangeRate
-    totalBal = (summary.balance_usd || 0) + (summary.balance_cup || 0) / exchangeRate
-  }
+  const totalBal = totalCurrency === 'CUP'
+    ? (summary.balance_cup || 0) + (summary.balance_usd || 0) * exchangeRate
+    : (summary.balance_usd || 0) + (summary.balance_cup || 0) / exchangeRate
 
-  document.getElementById('totalIncome').textContent = fmt(totalIncome, totalCurrency)
-  document.getElementById('totalExpense').textContent = fmt(totalExpense, totalCurrency)
   document.getElementById('totalBalance').textContent = fmt(totalBal, totalCurrency)
   const label = document.getElementById('totalCurrencyLabel')
   if (label) label.textContent = `1 USD = ${exchangeRate} CUP`
