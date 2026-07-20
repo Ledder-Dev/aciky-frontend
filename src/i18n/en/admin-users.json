@@ -2,6 +2,13 @@
   "pageTitle": "User Management",
   "title": "Users",
   "newButton": "New",
+  "recent": {
+    "title": "New registrations",
+    "subtitle": "Users who recently registered and you haven't reviewed yet",
+    "registeredOn": "Registered on",
+    "markSeen": "Mark as seen",
+    "loadError": "Error loading new registrations"
+  },
   "table": {
     "image": "Photo",
     "user": "User",

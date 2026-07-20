@@ -2,6 +2,13 @@
   "pageTitle": "Gestión de Usuarios",
   "title": "Usuarios",
   "newButton": "Nuevo",
+  "recent": {
+    "title": "Nuevos registros",
+    "subtitle": "Usuarios que se registraron recientemente y aún no has revisado",
+    "registeredOn": "Registrado el",
+    "markSeen": "Marcar como visto",
+    "loadError": "Error al cargar los nuevos registros"
+  },
   "table": {
     "image": "Foto",
     "user": "Usuario",

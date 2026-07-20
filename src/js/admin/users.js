@@ -10,6 +10,7 @@ export async function initAdminUsers() {
   if (!user) return
 
   await loadUsers()
+  await loadRecentRegistrations()
 
   // Create user button
   const createBtn = document.getElementById('createUserBtn')
@@ -59,6 +60,16 @@ export async function initAdminUsers() {
     })
   }
 
+  // Recent registrations delegation
+  const recentList = document.getElementById('recentRegistrationsList')
+  if (recentList) {
+    recentList.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action="mark-seen"]')
+      if (!btn) return
+      markRegistrationSeen(parseInt(btn.dataset.id), btn)
+    })
+  }
+
   // Profile image upload
   const uploadBtn = document.getElementById('userImageUploadBtn')
   const uploadInput = document.getElementById('userImageUpload')
@@ -88,6 +99,69 @@ async function loadUsers() {
       <tr><td colspan="5" class="px-6 py-8 text-center text-red-500 text-sm">
         ${t('table.loadError')}: ${escapeHtml(err.message)}
       </td></tr>`
+  }
+}
+
+async function loadRecentRegistrations() {
+  const card = document.getElementById('recentRegistrationsCard')
+  const list = document.getElementById('recentRegistrationsList')
+  if (!card || !list) return
+
+  try {
+    const data = await apiFetch('/api/users/recent-registrations')
+    renderRecentRegistrations(data.data || [])
+  } catch {
+    card.classList.add('hidden')
+  }
+}
+
+function renderRecentRegistrations(registrations) {
+  const card = document.getElementById('recentRegistrationsCard')
+  const list = document.getElementById('recentRegistrationsList')
+  if (!card || !list) return
+
+  if (registrations.length === 0) {
+    card.classList.add('hidden')
+    list.innerHTML = ''
+    return
+  }
+
+  card.classList.remove('hidden')
+  list.innerHTML = registrations.map(user => {
+    const date = new Date(user.created_at).toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    const profileImage = user.profile_image_url
+      ? `<img src="${escapeHtml(user.profile_image_url)}" alt="${escapeHtml(formatUserName(user))}" class="w-10 h-10 rounded-full object-cover" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
+      : `<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"><span class="material-symbols-outlined text-slate-400">person</span></div>`
+
+    return `
+      <div class="flex items-center gap-4 bg-primary/5 rounded-2xl px-4 py-3">
+        ${profileImage}
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-primary-dark truncate">${escapeHtml(formatUserName(user))}</p>
+          <p class="text-xs text-slate-500 truncate">${escapeHtml(user.email)}</p>
+          <p class="text-xs text-slate-400">${t('recent.registeredOn')}: ${date}</p>
+        </div>
+        <button data-action="mark-seen" data-id="${user.id}" class="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-medium text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors">
+          <span class="material-symbols-outlined text-sm">check</span>
+          <span data-i18n="recent.markSeen">${t('recent.markSeen')}</span>
+        </button>
+      </div>`
+  }).join('')
+}
+
+async function markRegistrationSeen(id, btn) {
+  if (btn) btn.disabled = true
+  try {
+    await apiFetch(`/api/users/${id}/registration-seen`, { method: 'PUT' })
+    const row = btn?.closest('.flex.items-center.gap-4')
+    row?.remove()
+    const list = document.getElementById('recentRegistrationsList')
+    if (list && list.children.length === 0) {
+      document.getElementById('recentRegistrationsCard')?.classList.add('hidden')
+    }
+  } catch (err) {
+    alert(t('recent.loadError') + ': ' + err.message)
+    if (btn) btn.disabled = false
   }
 }
 
