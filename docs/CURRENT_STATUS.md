@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-05-03
+Last updated: 2026-07-20
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,15 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Admin users: recent registrations report - COMPLETE** (2026-07-20)
+  - `pages/admin/users.html`: added dismissible "Nuevos registros" card above the users table, hidden when empty
+  - `src/js/admin/users.js`: `loadRecentRegistrations()` / `renderRecentRegistrations()` fetch unseen users on load; `markRegistrationSeen(id, btn)` dismisses one entry via `PUT /api/users/:id/registration-seen`, removes it from the list, hides the card once empty
+  - `src/i18n/es|en/admin-users.json`: added `recent.*` keys
+  - `backend-specs/recent-registrations.md`: spec — backend implemented and deployed: `registration_seen_at DATETIME NULL` added to `users` (backfilled to `created_at` for existing rows so they don't show up retroactively; new rows stay NULL = unseen until dismissed); `GET /api/users/recent-registrations` (registered before `GET /:id`) and `PUT /api/users/:id/registration-seen` added, both admin-only; field deliberately excluded from the generic `update()` allowed-fields list so the edit-user form can't touch it
+- [x] **Accountant: total equivalent card + delete-listener bug - COMPLETE** (2026-07-18–19)
+  - `src/js/admin/accountant.js` + `src/js/accountant.js`: "Total equivalente" balance now sums `balance_cup + balance_usd` (converted at the current rate) instead of `totalIncome - totalExpense`, which silently dropped currency-exchange transactions since income/expense totals exclude `type: 'exchange'` rows
+  - `pages/admin/accountant.html` + `pages/accountant.html`: total column simplified to show only the balance (income/expense rows removed — they duplicated the CUP/USD columns and were confusing next to the total)
+  - `src/js/admin/accountant.js`: fixed duplicate click-listener bug — `renderTransactions()` was re-attaching a delegated click listener to the persistent transactions list container on every render (filter change, add/edit/delete) without removing prior ones; a single delete click could fire several stacked handlers, showing repeated confirm dialogs and sending a second DELETE for an already-removed transaction (404). Listener now registers once in `initAdminAccountant()`.
 - [x] **Accounting: currency exchange type + correct per-currency balances - COMPLETE** (2026-05-02–03)
   - `src/js/admin/accountant.js` + `src/js/accountant.js`: exchange transactions render in teal with `⇄` sign; `saveConversion` sends `type: 'exchange'` for both legs (was `income`/`expense`, which inflated totals)
   - `pages/admin/accountant.html`: added "Cambio de Moneda" filter button; summary CUP/USD columns show a teal "Cambio de Moneda ⇄ −X CUP / +Y USD" row (hidden when zero), derived as `income − expense − balance` — no backend change needed; conversion preview changed from red/green to teal
