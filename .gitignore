@@ -18,6 +18,9 @@ dist-ssr
 /playwright-report/
 e2e/.auth/
 
+# Graphify
+graphify-out/
+
 # Claude Code local settings
 .claude/settings.local.json
 

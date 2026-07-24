@@ -1,29 +1,16 @@
-# Project: ACIKY Frontend
+# Mundo: yoga-v2 (ACIKY)
 
-## What This Project Does
-Web platform for ACIKY Kundalini Yoga center in Cuba. Provides bilingual (Spanish/English) public pages for yoga programs, instructor info, testimonials, and blog content. Includes admin panel for instructors and administrators to manage content, bookings, and community features.
+@../../CLAUDE.md
 
-## Architecture
-@docs/ARCHITECTURE.md
+## Contexto específico
+Frontend bilingüe (ES/EN) del centro de Kundalini Yoga ACIKY (Cuba). HTML5 + Tailwind CSS 4 + Vanilla JS ES2022+ + Vite 7, sin frameworks. Backend separado (Node.js + Express + MySQL) en `d:/coding/yoga-backend`.
 
-## Conventions
-@docs/CONVENTIONS.md
+## Referencias
+- Stack + convenciones → `.claude/CONVENTIONS.md`
+- Arquitectura (Route → Controller → Service → Repository) → `.claude/ARCHITECTURE.md`
+- Convenciones → `.claude/CONVENTIONS.md`
+- Tareas → `TASKS.md`
 
-## Current Status
-@docs/CURRENT_STATUS.md
-
-## Key Decisions
-@docs/decisions/_index.md
-
-## Build & Run
-- Install: `npm install`
-- Dev: `npm run dev`
-- Build: `npm run build`
-- Preview: `npm run preview`
-
-## Critical Rules
-- Never use frameworks (React/Vue/Angular) or TypeScript - vanilla JS only
-- Always read existing files before editing - follow established patterns
-- Backend changes require spec file at `backend-specs/<feature>.md` - never modify backend directly
-- All user-facing text must be bilingual via i18n with proper Spanish accents (á, é, í, ó, ú, ñ)
-- Use Material Symbols icons, never emojis - CTA buttons must use primary green colors
+## Estado actual
+Recién creado el 2026-06-21. Ver TASKS.md para tareas y docs/adr/ para decisiones.
+Pendiente → `TASKS.md`.
