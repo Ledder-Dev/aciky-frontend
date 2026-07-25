@@ -59,7 +59,7 @@ function renderProgram() {
   const lang = getLanguage()
   const days = festivalSettings?.program_json
 
-  if (!days || days.length === 0) {
+  if (!Array.isArray(days) || days.length === 0) {
     container.innerHTML = `<p class="text-center text-slate-400 text-sm py-8">${t('program.noData')}</p>`
     return
   }
