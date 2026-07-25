@@ -7,7 +7,7 @@ try {
   // .env no existe (ej. CI) — seguir con process.env tal cual.
 }
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:5173';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:5174';
 const isStaging = Boolean(process.env.PLAYWRIGHT_BASE_URL);
 
 export default defineConfig({

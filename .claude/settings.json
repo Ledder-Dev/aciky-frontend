@@ -66,6 +66,14 @@
       {
         "matcher": "clear",
         "hooks": [{ "type": "command", "command": "bash .claude/hooks/on-clear.sh" }]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$AI_OS_ROOT/_shared/scripts/check-contract-drift.sh\" 2>/dev/null || true"
+          }
+        ]
       }
     ],
     "PreToolUse": [
