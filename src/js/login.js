@@ -52,7 +52,8 @@ export function initLogin() {
     try {
       const data = await apiFetch('/api/auth/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
+        skipAuthRedirect: true
       })
 
       localStorage.setItem('user', JSON.stringify(data.user))

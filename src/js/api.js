@@ -39,8 +39,9 @@ function getAuthHeader() {
  * Throws on non-ok responses with the server's error message.
  */
 export async function apiFetch(path, options = {}) {
+  const { skipAuthRedirect, ...fetchOptions } = options
   const config = {
-    ...options,
+    ...fetchOptions,
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ export async function apiFetch(path, options = {}) {
   const data = await res.json()
 
   if (!res.ok) {
-    if (res.status === 401) {
+    if (res.status === 401 && !skipAuthRedirect) {
       localStorage.clear()
       sessionStorage.clear()
       window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
