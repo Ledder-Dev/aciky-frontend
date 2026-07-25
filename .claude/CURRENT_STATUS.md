@@ -1,19 +1,30 @@
 # Current Project Status
 
-Last updated: 2026-07-23
+Last updated: 2026-07-25
 
 ## In Progress
 _No active work now._
 
 ## Pending Actions
-- [ ] User: poblar `E2E_ADMIN_EMAIL`/`E2E_ADMIN_PASSWORD` en `.env` local (cuenta admin real, no compartir por chat)
-- [ ] Confirmar `yoga-backend` corriendo en `localhost:3000` antes de correr `npm run test:e2e`
+_Ninguna — suite e2e corrida y en verde._
 
 ## Recently Completed
+- [x] **E2E: cobertura de booking de clases** (2026-07-25)
+  - `e2e/booking.spec.ts`: gate de auth (redirect a login con `reason=booking&return=`) + deep-link WhatsApp (`wa.me`/`api.whatsapp.com`)
+  - Seed/cleanup propio vía API admin (`POST`/`DELETE /api/activities`), self-healing (barre huérfanos de corridas previas)
+  - `npm run test:e2e` → 11 passed
+- [x] **E2E suite corrida en verde contra backend local** (2026-07-25)
+  - `.env` poblado (`E2E_ADMIN_EMAIL`/`E2E_ADMIN_PASSWORD`), `yoga-backend` levantado en `localhost:3000`
+  - `npm run test:e2e` → 9 passed (15.7s)
+- [x] **fix: skip auth redirect loop on failed login attempts** (2026-07-25)
+  - `apiFetch` redirigía a login en cualquier 401, incluso el propio POST de login fallido; nuevo flag `skipAuthRedirect`
+- [x] **fix: rename activity-cards asset folder to remove space** (2026-07-25)
+  - `public/images/activity cards/` → `activity-cards/`, refs actualizadas en `index.html`
+- [x] **chore: bump e2e default port to 5174, add contract drift hook** (2026-07-25)
+  - Playwright `baseURL` sigue al puerto real de Vite; `SessionStart` hook avisa si cambia el contrato ACIKY
 - [x] **E2E test harness (Playwright)** (2026-07-23)
   - `e2e/auth.setup.ts` (login admin, guarda `e2e/.auth/admin.json`), `e2e/login.spec.ts`, `e2e/admin-dashboard.spec.ts`, `e2e/public-pages.spec.ts`
   - `npm run test:e2e` / `test:e2e:ui`; `.gitignore` cubre `.env` y `e2e/.auth/`
-  - `playwright test --list` confirma 9 tests, sin credenciales corridas aún
 - [x] **Admin users: recent registrations report** (2026-07-20)
   - Dismissible "Nuevos registros" card on `pages/admin/users.html`, backed by `registration_seen_at` on `users`
 - [x] **Accountant: total equivalent card + delete-listener bug** (2026-07-18–19)
