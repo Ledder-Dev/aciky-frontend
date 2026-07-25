@@ -9,6 +9,11 @@ _No active work now._
 _Ninguna — suite e2e corrida y en verde._
 
 ## Recently Completed
+- [x] **E2E: cobertura de admin users CRUD** (2026-07-25)
+  - `e2e/admin-users.spec.ts`: crear/editar/eliminar usuario con `confirm()` nativo, recent registrations card sin tocar datos reales
+  - Marcador único en email (`e2e-accountant-...@example.test`, dominio `.test`); sweep de seguridad por prefijo exacto de email
+  - `npm run test:e2e` → 17 passed, cero huérfanos verificados
+  - Gotcha: backend rechaza nombres con dígitos ("Name contains invalid characters") — marcador solo va en email, no en nombre
 - [x] **E2E: cobertura de accountant (transacciones, balance, exchange)** (2026-07-25)
   - `e2e/accountant.spec.ts`: resumen de fondos, CRUD manual con `confirm()` nativo, conversión de moneda (par CUP/USD + borrado), filtro por tipo
   - Datos de prueba marcados con `E2E Accountant ...` en `category`/`description`; sweep de seguridad solo por marcador exacto (nunca patrón genérico que pudiera tocar historial financiero real)
