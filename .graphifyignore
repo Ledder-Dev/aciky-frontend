@@ -1,0 +1,91 @@
+# Dependencias
+node_modules/
+
+# Claude
+.claude/
+.claudeignore
+.mpc.json
+
+# Git
+.git/
+.github/
+.gitignore
+
+# Builds
+dist/
+build/
+out/
+
+# Frameworks
+.next/
+.nuxt/
+.svelte-kit/
+.lighthouserc.yml
+.npmrc
+eslint.config.js
+iniciar_claude_code.ps1
+iniciar_opencode.ps1
+playwright.config.ts
+postcss.config.js
+tailwind.config.js
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+vitest.config.ts
+wrangler.jsonc
+wrangler-cdn.jsonc
+config.toml
+
+# Cobertura
+coverage/
+e2e/
+test-results/
+
+# Logs
+logs/
+*.log
+
+# Cachés
+.cache/
+.vscode/
+.idea/
+.qodo/
+.wrangler/
+
+# Binarios
+*.exe
+*.dll
+*.so
+scripts/
+
+# Imágenes
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# Documentos
+*.pdf
+AGENTS.md
+TASKS.md
+CLAUDE.md
+COWORK.md
+README.md
+
+# Variables de entorno
+.env
+.env.*
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+.npmrc
+
+# Graphify
+graphify-out/
+
+#Docs
+doc/

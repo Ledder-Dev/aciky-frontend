@@ -11,9 +11,19 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+
+# Playwright
+/test-results/
+/playwright-report/
+e2e/.auth/
+
+# Graphify
+graphify-out/
 
 # Claude Code local settings
 .claude/settings.local.json
+.claude/.contract-hash
 
 # Editor directories and files
 .vscode/*
