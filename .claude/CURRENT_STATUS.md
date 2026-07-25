@@ -9,6 +9,10 @@ _No active work now._
 _Ninguna — suite e2e corrida y en verde._
 
 ## Recently Completed
+- [x] **E2E: cobertura de accountant (transacciones, balance, exchange)** (2026-07-25)
+  - `e2e/accountant.spec.ts`: resumen de fondos, CRUD manual con `confirm()` nativo, conversión de moneda (par CUP/USD + borrado), filtro por tipo
+  - Datos de prueba marcados con `E2E Accountant ...` en `category`/`description`; sweep de seguridad solo por marcador exacto (nunca patrón genérico que pudiera tocar historial financiero real)
+  - `npm run test:e2e` → 15 passed, cero huérfanos verificados
 - [x] **E2E: cobertura de booking de clases** (2026-07-25)
   - `e2e/booking.spec.ts`: gate de auth (redirect a login con `reason=booking&return=`) + deep-link WhatsApp (`wa.me`/`api.whatsapp.com`)
   - Seed/cleanup propio vía API admin (`POST`/`DELETE /api/activities`), self-healing (barre huérfanos de corridas previas)
