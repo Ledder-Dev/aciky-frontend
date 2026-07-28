@@ -1,14 +1,20 @@
 # Current Project Status
 
-Last updated: 2026-07-25
+Last updated: 2026-07-28
 
 ## In Progress
 _No active work now._
 
 ## Pending Actions
-_Ninguna — suite e2e corrida y en verde._
+- PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`.
+- Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
 ## Recently Completed
+- [x] **fix: noindex missing/deleted events to resolve soft 404** (2026-07-28)
+  - Email de Google Search Console reportó Soft 404 + 5 páginas no indexadas por 4 razones
+  - `src/js/events.js`: `setNoIndex()` inyecta `<meta name="robots" content="noindex">` solo en ausencia confirmada (sin `id` o 404 explícito de API) — falla transitoria (cold-start Heroku) no des-indexa evento real
+  - Diagnóstico resto de razones GSC: robots.txt (`dashboard.html`/`admin/dashboard.html`) intencional; `schedule.html`/`contact.html` sin bug de código, backend responde rápido — solo requieren "Solicitar indexación" manual
+  - Commit `fc450d2` pusheado a `origin/development`; PR a `main` creado manualmente por el usuario (token MCP GitHub sin permiso pa crear PRs en este repo)
 - [x] **E2E: cobertura de resto de páginas (registro, verify-email, forgot/reset-password, instructor/*, resto admin/público)** (2026-07-25)
   - `e2e/auth-flows.spec.ts`: registro (marcador `e2e-register-...@example.test` + sweep), verify-email (2 estados), forgot-password, reset-password (sin token / token inválido)
   - `e2e/instructor.spec.ts`: cuenta instructor real vía `POST /api/users` (marcador `e2e-instructor-...@example.test` + sweep), login por UI, 4 páginas instructor
