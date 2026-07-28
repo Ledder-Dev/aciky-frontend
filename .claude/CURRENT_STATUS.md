@@ -9,6 +9,17 @@ _No active work now._
 _Ninguna — suite e2e corrida y en verde._
 
 ## Recently Completed
+- [x] **E2E: cobertura de resto de páginas (registro, verify-email, forgot/reset-password, instructor/*, resto admin/público)** (2026-07-25)
+  - `e2e/auth-flows.spec.ts`: registro (marcador `e2e-register-...@example.test` + sweep), verify-email (2 estados), forgot-password, reset-password (sin token / token inválido)
+  - `e2e/instructor.spec.ts`: cuenta instructor real vía `POST /api/users` (marcador `e2e-instructor-...@example.test` + sweep), login por UI, 4 páginas instructor
+  - `e2e/pages-smoke.spec.ts`: 17 páginas admin/autenticadas + 15 públicas + `event.html`/`404.html`, data-driven por selector `h1[data-i18n="..."]`
+  - Bug real encontrado y corregido: `festival.js` crasheaba con `days.map is not a function` cuando `program_json` no era array (dato malformado en BD local) — ahora usa `Array.isArray`
+  - `npm run test:e2e` → 61 passed, cero huérfanos verificados
+- [x] **E2E: cobertura de admin users CRUD** (2026-07-25)
+  - `e2e/admin-users.spec.ts`: crear/editar/eliminar usuario con `confirm()` nativo, recent registrations card sin tocar datos reales
+  - Marcador único en email (`e2e-accountant-...@example.test`, dominio `.test`); sweep de seguridad por prefijo exacto de email
+  - `npm run test:e2e` → 17 passed, cero huérfanos verificados
+  - Gotcha: backend rechaza nombres con dígitos ("Name contains invalid characters") — marcador solo va en email, no en nombre
 - [x] **E2E: cobertura de accountant (transacciones, balance, exchange)** (2026-07-25)
   - `e2e/accountant.spec.ts`: resumen de fondos, CRUD manual con `confirm()` nativo, conversión de moneda (par CUP/USD + borrado), filtro por tipo
   - Datos de prueba marcados con `E2E Accountant ...` en `category`/`description`; sweep de seguridad solo por marcador exacto (nunca patrón genérico que pudiera tocar historial financiero real)
