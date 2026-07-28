@@ -6,8 +6,15 @@
   },
   "history": {
     "title": "Nuestra Historia",
-    "p1": "ACIKY es la Asociación Nacional de Maestros de Kundalini Yoga de Cuba (NKYTA), fundada el 27 de junio de 2025 y afiliada a IKYTA — la Asociación Internacional de Maestros de Kundalini Yoga. Surgió de la unión de instructores cubanos comprometidos con elevar y sostener la enseñanza de esta ciencia sagrada en todo el país.",
-    "p2": "Hemos construido una comunidad donde los maestros se apoyan mutuamente, comparten recursos y crecen juntos, conectando la práctica del Kundalini Yoga en Cuba con la familia global de instructores certificados."
+    "p1": "ACIKY es la Asociación Nacional de Maestros de Kundalini Yoga de Cuba (NKYTA), fundada el 26 de junio de 2025 y afiliada a IKYTA — la Asociación Internacional de Maestros de Kundalini Yoga. Nació de la necesidad de unificar a los instructores cubanos, que durante años organizaron de forma independiente encuentros, retiros, clases y talleres para compartir las enseñanzas de Yogi Bhajan.",
+    "p2": "En 2024, un incentivo de Guru Sansar Singh y una invitación de 3HO a participar en un encuentro internacional llevaron a la comunidad cubana a recibir la recomendación de constituirse como asociación nacional. Ante la complejidad legal de crear asociaciones en Cuba, decidimos formar una Alianza que reuniera a todos los instructores bajo una visión unificada del legado y linaje del Kundalini Yoga.",
+    "p3": "Reconocimos el Festival Internacional de Kundalini Yoga en Cuba «Faro de Luz» — que ya celebrábamos desde antes — como nuestro evento insignia, y establecimos oficialmente ACIKY el 26 de junio de 2025, con una estructura directiva y valores compartidos por toda la comunidad."
+  },
+  "stats": {
+    "title": "ACIKY en Números",
+    "members": { "value": "43", "label": "Miembros activos" },
+    "instructors": { "value": "84+", "label": "Instructores formados desde 2016" },
+    "provinces": { "value": "3", "label": "Provincias con presencia: La Habana, Matanzas y Cienfuegos" }
   },
   "mission": {
     "title": "Nuestra Misión",
@@ -36,6 +43,10 @@
     "badge": "Kundalini Yoga tal como lo enseñó Yogi Bhajan®",
     "p1": "ACIKY enseña el Kundalini Yoga tal como fue transmitido por el Maestro Yogi Bhajan (1929–2004), quien llevó esta tecnología espiritual de Oriente a Occidente en 1969 y dedicó su vida a hacerla accesible a toda la humanidad.",
     "p2": "Todos nuestros instructores están formados en esta tradición y mantienen la integridad de las enseñanzas originales: kriyás, meditaciones, mantras y la filosofía del Dharma del Aquario."
+  },
+  "collaborations": {
+    "title": "Alianzas y Colaboraciones",
+    "description": "Desde 2016 colaboramos con la Casa de Asia en La Habana, sede oficial de ACIKY, junto a la Oficina del Historiador de la Ciudad, la Embajada de la India, la Asociación Cubana de Yoga, Om Meditación y proyectos comunitarios de salud y educación especial que llevan el Kundalini Yoga a niños y jóvenes."
   },
   "team": {
     "title": "Comité Directivo",
