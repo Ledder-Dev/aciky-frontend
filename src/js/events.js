@@ -33,6 +33,16 @@ function updateWhatsAppLink() {
   btn.href = buildWhatsAppUrl(waPhone, message)
 }
 
+function setNoIndex() {
+  let meta = document.querySelector('meta[name="robots"]')
+  if (!meta) {
+    meta = document.createElement('meta')
+    meta.name = 'robots'
+    document.head.appendChild(meta)
+  }
+  meta.content = 'noindex'
+}
+
 async function loadEvent() {
   const id = new URLSearchParams(window.location.search).get('id')
 
@@ -43,6 +53,7 @@ async function loadEvent() {
   if (!id) {
     loading?.classList.add('hidden')
     notFound?.classList.remove('hidden')
+    setNoIndex()
     return
   }
 
@@ -52,9 +63,12 @@ async function loadEvent() {
     loading?.classList.add('hidden')
     content?.classList.remove('hidden')
     renderEvent(cachedEvent)
-  } catch {
+  } catch (err) {
     loading?.classList.add('hidden')
     notFound?.classList.remove('hidden')
+    // Only noindex on confirmed absence — a transient fetch failure
+    // (e.g. Heroku free-dyno cold start) shouldn't deindex a real event.
+    if (err?.status === 404) setNoIndex()
   }
 }
 
