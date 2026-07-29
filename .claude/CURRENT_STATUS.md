@@ -6,10 +6,17 @@ Last updated: 2026-07-28
 _No active work now._
 
 ## Pending Actions
-- PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`.
+- PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`. La rama `development` ya trae encima los commits de fotos de `about.html` (`2218fba`..`b5134da`), pusheados también — irán en el mismo PR/merge.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
+- Sin commitear en working tree: correcciones manuales del usuario en `src/i18n/{en,es}/about.json` (nombre "Gurusansar Singh" en vez de "Guru Sansar Singh", año de colaboración con Casa de Asia corregido de 2016 a 2019). Pendiente que el usuario confirme y pida commit.
 
 ## Recently Completed
+- [x] **feat/fix: about.html — fotos por sección + logos de colaboraciones** (2026-07-28)
+  - Historia ampliada con contenido de `NKYTA Spotlight ACIKY.docx` (fecha fundación 26 jun 2025, sección Stats, sección Colaboraciones)
+  - Fotos añadidas: historia, linaje (Yogi Bhajan, flotante a la derecha del texto), membership, donate — todas banner completo sin recorte (`object-contain`/`h-auto`)
+  - Grid de 10 logos de colaboraciones clickeables (`target="_blank"`) a sitio web/red social real de cada aliado, tamaño reducido a `grid-cols-8 sm:grid-cols-12`
+  - Verificación visual iterativa vía Chrome MCP browser tools (screenshots ES, varias rondas de ajuste de tamaño/recorte/espaciado)
+  - Commits `2218fba`, `28f9241`, `8c820aa`, `ea28fff`, `b5134da` — pusheados a `origin/development`
 - [x] **fix: noindex missing/deleted events to resolve soft 404** (2026-07-28)
   - Email de Google Search Console reportó Soft 404 + 5 páginas no indexadas por 4 razones
   - `src/js/events.js`: `setNoIndex()` inyecta `<meta name="robots" content="noindex">` solo en ausencia confirmada (sin `id` o 404 explícito de API) — falla transitoria (cold-start Heroku) no des-indexa evento real
