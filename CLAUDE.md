@@ -21,3 +21,7 @@ nunca copiar. Ver `_shared/contracts/README.md`.
 ## Estado actual
 Recién creado el 2026-06-21. Ver TASKS.md para tareas y docs/adr/ para decisiones.
 Pendiente → `TASKS.md`.
+
+# graphify
+- **graphify** (`.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
