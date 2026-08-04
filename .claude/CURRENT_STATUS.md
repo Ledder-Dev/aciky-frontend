@@ -1,16 +1,20 @@
 # Current Project Status
 
-Last updated: 2026-07-28
+Last updated: 2026-08-04
 
 ## In Progress
 _No active work now._
 
 ## Pending Actions
-- PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`. La rama `development` ya trae encima los commits de fotos de `about.html` (`2218fba`..`b5134da`), pusheados también — irán en el mismo PR/merge.
+- PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`. La rama `development` ya trae encima los commits de fotos de `about.html` (`2218fba`..`b5134da`) y del widget de chat (`a8827ba`, `6f1d01a`), pusheados también — irán en el mismo PR/merge.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
-- Sin commitear en working tree: correcciones manuales del usuario en `src/i18n/{en,es}/about.json` (nombre "Gurusansar Singh" en vez de "Guru Sansar Singh", año de colaboración con Casa de Asia corregido de 2016 a 2019). Pendiente que el usuario confirme y pida commit.
+- Rename mundo `yoga-v2` → `yoga-frontend` pendiente — bloqueado por lock de directorio (working directory raíz de sesión Claude Code), usuario lo hará manualmente. Ver `TASKS.md` backlog `[chore][9]` pa lista completa de referencias a actualizar después.
 
 ## Recently Completed
+- [x] **feat/fix: index.html — widget de chat Supabase** (2026-08-04)
+  - Script `widget.js` (Supabase Storage) añadido a homepage con `data-project-key`/`data-endpoint`
+  - Color `data-primary-color` ajustado de `#e63946` (rojo) a `#708558` (verde salvia, `--color-primary` de marca)
+  - Commits `a8827ba`, `6f1d01a`, pusheados a `origin/development`
 - [x] **feat/fix: about.html — fotos por sección + logos de colaboraciones** (2026-07-28)
   - Historia ampliada con contenido de `NKYTA Spotlight ACIKY.docx` (fecha fundación 26 jun 2025, sección Stats, sección Colaboraciones)
   - Fotos añadidas: historia, linaje (Yogi Bhajan, flotante a la derecha del texto), membership, donate — todas banner completo sin recorte (`object-contain`/`h-auto`)
