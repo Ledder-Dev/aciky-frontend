@@ -1,11 +1,12 @@
 # Current Project Status
 
-Last updated: 2026-08-04
+Last updated: 2026-08-07
 
 ## In Progress
 _No active work now._
 
 ## Pending Actions
+- **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — dominio usa nameservers Cloudflare vía Namecheap pero zona no aparece en cuenta Cloudflare propia del usuario. Usuario debe revisar pestaña "Cloudflare" dentro del panel Namecheap o intentar login en cloudflare.com con email de compra del dominio. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
 - PR `development` → `main` (commit `fc450d2`, fix soft 404 en `event.html`) creado manualmente por el usuario, pendiente de merge — GitHub Pages despliega desde `main`. La rama `development` ya trae encima los commits de fotos de `about.html` (`2218fba`..`b5134da`) y del widget de chat (`a8827ba`, `6f1d01a`), pusheados también — irán en el mismo PR/merge.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 - Rename mundo `yoga-v2` → `yoga-frontend` pendiente — bloqueado por lock de directorio (working directory raíz de sesión Claude Code), usuario lo hará manualmente. Ver `TASKS.md` backlog `[chore][9]` pa lista completa de referencias a actualizar después.
