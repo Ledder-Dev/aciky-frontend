@@ -15,6 +15,7 @@
     "blog": "Blog",
     "testimonials": "Testimonios",
     "about": "Nosotros",
+    "faq": "Preguntas Frecuentes",
     "login": "Iniciar Sesión",
     "register": "Registrarse",
     "myProfile": "Mi Perfil",
@@ -29,6 +30,7 @@
   "footer": {
     "copyright": "ACIKY - Todos los derechos reservados.",
     "lineage": "Kundalini Yoga tal como lo enseñó Yogi Bhajan®",
+    "faq": "Preguntas Frecuentes",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Uso",
     "contact": "Contacto"

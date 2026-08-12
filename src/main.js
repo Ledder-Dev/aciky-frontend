@@ -737,6 +737,9 @@ async function initPage() {
   } else if (path.includes('/pages/membership.html')) {
     const { initMembership } = await import('./js/membership.js')
     initMembership()
+  } else if (path.includes('/pages/faq.html')) {
+    const { initFaq } = await import('./js/faq.js')
+    initFaq()
   }
 }
 

@@ -8,12 +8,17 @@ _No active work now._
 ## Pending Actions
 - **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — dominio usa nameservers Cloudflare vía Namecheap pero zona no aparece en cuenta Cloudflare propia del usuario. Usuario debe revisar pestaña "Cloudflare" dentro del panel Namecheap o intentar login en cloudflare.com con email de compra del dominio. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
-- Rename mundo `yoga-v2` → `yoga-frontend` pendiente — bloqueado por lock de directorio (working directory raíz de sesión Claude Code), usuario lo hará manualmente. Ver `TASKS.md` backlog `[chore][9]` pa lista completa de referencias a actualizar después.
 
 ## Gotcha operativo
 - `development` → `main` se auto-mergea (PR automático, ej. #105, #106) segundos después del push a `development` — `.github/workflows/deploy.yml` solo despliega en push a `main`, pero el merge automático hace que el deploy corra casi al instante. No asumir que hace falta merge manual pa que un push a `development` llegue a producción; confirmar con `git log origin/main` si hace falta certeza.
 
 ## Recently Completed
+- [x] **feat: página FAQ (pages/faq.html) + links en header/footer** (2026-08-12)
+  - `pages/faq.html`: hero + 9 categorías (36 preguntas), acordeón `<details>` nativo poblado dinámicamente vía `src/js/faq.js` desde `src/i18n/{es,en}/faq.json`
+  - JSON-LD `FAQPage` inyectado en `<head>`, recalculado en cada render (incluyendo cambio de idioma)
+  - Links a FAQ agregados en `header.html` (desktop+mobile) y `footer.html`; entradas `header.faq`/`footer.faq` en `common.json` ES/EN
+  - Ruteo vía `main.js` `initPage()` (dynamic import `initFaq()`), siguiendo patrón existente del proyecto
+  - `npm run build` verificado sin errores
 - [x] **fix: widget de chat — mover de index.html a footer partial** (2026-08-11)
   - Solo salía en homepage; movido `<script>` de `widget.js` de `index.html` a `src/partials/footer.html` (`{{> footer}}`, incluido en 47/50 páginas)
   - Verificado en vivo tras auto-merge+deploy: `aciky.org/pages/testimonials.html` y `/pages/blog.html` muestran el widget
