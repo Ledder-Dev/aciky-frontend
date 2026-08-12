@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Preguntas Frecuentes - ACIKY" />
+    <title>Preguntas Frecuentes - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Hero -->
+      <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl lg:text-5xl font-bold" data-i18n="title">Preguntas Frecuentes</h1>
+          <p class="mt-4 text-white/80 text-sm max-w-xl mx-auto" data-i18n="subtitle">Todo lo que necesitas saber sobre ACIKY, nuestras clases y el Kundalini Yoga</p>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <section class="px-4 md:px-8 lg:px-16 py-10 max-w-3xl mx-auto space-y-6" id="faqSections">
+
+        <!-- Cat 1 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">info</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat1.title">Sobre ACIKY</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="6" data-faq-cat="cat1"></div>
+        </div>
+
+        <!-- Cat 2 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">self_improvement</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat2.title">Clases y práctica presencial</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="6" data-faq-cat="cat2"></div>
+          <a href="{{basePath}}/pages/schedule.html" data-i18n="cat2.link1" class="mt-4 inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-primary-dark transition-colors">Ver horario de clases</a>
+        </div>
+
+        <!-- Cat 3 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">spa</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat3.title">Sadhanas Online (práctica virtual diaria)</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="7" data-faq-cat="cat3"></div>
+        </div>
+
+        <!-- Cat 4 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">route</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat4.title">Rutas Doradas (expansión nacional)</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="4" data-faq-cat="cat4"></div>
+        </div>
+
+        <!-- Cat 5 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">local_fire_department</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat5.title">Ceremonias de Renacimiento</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="3" data-faq-cat="cat5"></div>
+        </div>
+
+        <!-- Cat 6 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">festival</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat6.title">Festival Faro de Luz</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="1" data-faq-cat="cat6"></div>
+        </div>
+
+        <!-- Cat 7 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">workspace_premium</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat7.title">Membresía para instructores</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="5" data-faq-cat="cat7"></div>
+        </div>
+
+        <!-- Cat 8 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat8.title">Donaciones y apoyo</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="1" data-faq-cat="cat8"></div>
+          <a href="{{basePath}}/pages/donations.html" data-i18n="cat8.link1" class="mt-4 inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-primary-dark transition-colors">Ver donaciones</a>
+        </div>
+
+        <!-- Cat 9 -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">contact_support</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cat9.title">Contacto y cuenta</h2>
+          </div>
+          <div class="divide-y divide-slate-100" data-faq-count="3" data-faq-cat="cat9"></div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+          <h2 class="text-lg font-bold text-primary-dark mb-2" data-i18n="ctaTitle">¿No encontraste tu respuesta?</h2>
+          <p class="text-slate-600 text-sm mb-4" data-i18n="ctaText">Escríbenos y te ayudamos directamente.</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <a href="https://wa.me/5350759360"
+               class="inline-flex items-center gap-2 bg-primary-dark text-white px-5 py-2.5 rounded-2xl font-bold hover:bg-primary transition-colors text-sm">
+              <span class="material-symbols-outlined text-base">chat</span>
+              WhatsApp
+            </a>
+            <a href="{{basePath}}/pages/contact.html"
+               class="inline-flex items-center gap-2 border border-primary text-primary px-5 py-2.5 rounded-2xl font-bold hover:bg-primary/5 transition-colors text-sm"
+               data-i18n="footer.contact">Contacto</a>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

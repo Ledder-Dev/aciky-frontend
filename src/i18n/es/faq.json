@@ -1,0 +1,108 @@
+{
+  "pageTitle": "Preguntas Frecuentes - ACIKY",
+  "title": "Preguntas Frecuentes",
+  "subtitle": "Todo lo que necesitas saber sobre ACIKY, nuestras clases y el Kundalini Yoga",
+  "cat1": {
+    "title": "Sobre ACIKY",
+    "q1": "¿Qué es ACIKY?",
+    "a1": "ACIKY es la Alianza Cubana de Instructores en Kundalini Yoga, una organización que reúne a instructores certificados KRI en Cuba con el propósito de organizar, fortalecer y expandir la práctica del Kundalini Yoga por toda la isla.",
+    "q2": "¿Qué es el Kundalini Yoga?",
+    "a2": "Es una práctica milenaria que combina posturas físicas (kriyas), técnicas de respiración (pranayama), meditación y mantras para despertar la energía vital y elevar la conciencia, reduciendo el estrés y promoviendo mayor equilibrio y propósito.",
+    "q3": "¿Quién enseñó este linaje de Kundalini Yoga?",
+    "a3": "ACIKY enseña el Kundalini Yoga tal como fue transmitido por el Maestro Yogi Bhajan (1929–2004), quien llevó esta tradición de Oriente a Occidente en 1969.",
+    "q4": "¿ACIKY tiene un líder principal?",
+    "a4": "No. Las decisiones se toman de forma colectiva a través de un Comité Directivo, sin una figura de liderazgo único.",
+    "q5": "¿Con qué organizaciones colabora ACIKY?",
+    "a5": "Entre sus alianzas están Casa de Asia, la Oficina del Historiador de La Habana, la Embajada de la India en Cuba, IKYTA (International Kundalini Yoga Teachers Association), 3HO, y varias escuelas y espacios afines en Cuba y la región.",
+    "q6": "¿En qué provincias de Cuba tiene presencia ACIKY?",
+    "a6": "Actualmente ACIKY tiene presencia en 3 provincias y trabaja activamente para expandirse a las 15 provincias del país a través del proyecto Rutas Doradas."
+  },
+  "cat2": {
+    "title": "Clases y práctica presencial",
+    "q1": "¿Cómo puedo ver el horario de clases?",
+    "a1": "En la sección \"Clases\" del sitio se publica el horario semanal actualizado.",
+    "link1": "Ver horario de clases",
+    "q2": "¿Dónde se imparten las clases?",
+    "a2": "Las clases y meditaciones presenciales se realizan en espacios como la Casa Museo de Asia, entre otros lugares de práctica que ACIKY va sumando en Cuba.",
+    "q3": "¿La primera clase es gratis?",
+    "a3": "Sí, ACIKY ofrece una primera clase gratuita para que los nuevos participantes prueben la práctica sin compromiso.",
+    "q4": "¿Qué debo llevar a clase?",
+    "a4": "Se recomienda llegar 10 minutos antes, usar ropa cómoda, traer una manta, y evitar comer 2 horas antes de la práctica.",
+    "q5": "¿Necesito reservar mi lugar?",
+    "a5": "Sí, se recomienda confirmar la reserva por WhatsApp antes de asistir.",
+    "q6": "¿Las clases son aptas para principiantes?",
+    "a6": "Sí, las clases están diseñadas para todos los niveles, desde quienes se inician hasta practicantes más avanzados."
+  },
+  "cat3": {
+    "title": "Sadhanas Online (práctica virtual diaria)",
+    "q1": "¿Qué es la Sadhana?",
+    "a1": "Es una práctica espiritual diaria que se realiza en las Horas Ambrosiales —o Amrit Vela, \"el tiempo del néctar\"— los períodos de 4:00 a 7:00 AM y de 4:00 a 7:00 PM, cuando la energía es más calmada y receptiva. ACIKY la ofrece de forma virtual para conectar a la comunidad sin importar la ubicación.",
+    "q2": "¿En qué plataforma se realizan las sadhanas?",
+    "a2": "Se realizan por Zoom.",
+    "q3": "¿Cómo me uno a las Sadhanas Online?",
+    "a3": "Hay que contactar a ACIKY (por WhatsApp) para recibir el enlace de acceso a las sesiones diarias.",
+    "q4": "¿Qué necesito para participar?",
+    "a4": "Un dispositivo con conexión estable a internet, audio claro (auriculares o altavoces), y mantener el micrófono en silencio durante la sesión para preservar el ambiente colectivo.",
+    "q5": "¿Cuál es la estructura de una sadhana?",
+    "a5": "Sigue la secuencia tradicional: Japji Sahib, apertura, calentamiento, kriya, meditación y cierre con oración.",
+    "q6": "¿Hay un compromiso mínimo recomendado?",
+    "a6": "Sí, se sugiere comprometerse inicialmente por 40 días consecutivos para establecer el hábito y experimentar los beneficios completos de la práctica.",
+    "q7": "¿Puedo empezar poco a poco?",
+    "a7": "Sí, se recomienda a quienes son nuevos unirse primero a las sesiones de domingo y luego ir sumando más días progresivamente."
+  },
+  "cat4": {
+    "title": "Rutas Doradas (expansión nacional)",
+    "q1": "¿Qué son las Rutas Doradas?",
+    "a1": "Es el proyecto de expansión de ACIKY que lleva el Kundalini Yoga a comunidades de todas las provincias de Cuba, a través de instructores certificados que viajan para enseñar e impulsar grupos de práctica locales.",
+    "q2": "¿Cómo funciona el proceso?",
+    "a2": "Consta de seis etapas: identificación de la necesidad, planificación de la ruta, viaje e inmersión, enseñanza intensiva, establecimiento de un grupo local, y seguimiento continuo.",
+    "q3": "¿Cómo puedo participar en las Rutas Doradas?",
+    "a3": "Existen cuatro formas de involucrarse: como instructor viajero (certificación KRI, mínimo 1 año de experiencia y disponibilidad para viajar), anfitrión local (ofreciendo espacio, coordinando participantes o apoyando con alojamiento), líder emergente (recibiendo formación gratuita para sostener la práctica en su comunidad), o patrocinador (apoyando económicamente transporte, materiales o equipamiento).",
+    "q4": "¿Cuál es la meta de las Rutas Doradas?",
+    "a4": "Completar la cobertura de las 15 provincias de Cuba para 2026 y consolidar para 2027 una red autosustentable con instructores locales."
+  },
+  "cat5": {
+    "title": "Ceremonias de Renacimiento",
+    "q1": "¿Qué es una Ceremonia de Renacimiento?",
+    "a1": "Es una experiencia transformadora que simboliza la \"muerte\" del ego limitado y el nacimiento de una conciencia expandida, usando respiración (pranayama), mantras, meditación y un proceso simbólico de liberación (\"fuego transformador\").",
+    "q2": "¿Para quién está pensada esta experiencia?",
+    "a2": "Para personas en momentos de transición vital, quienes buscan sanar patrones emocionales o familiares, quienes buscan un propósito más claro, y en general para cualquier buscador espiritual comprometido con su crecimiento.",
+    "q3": "¿Cómo me entero de las próximas fechas?",
+    "a3": "Las próximas ceremonias se anuncian en la sección correspondiente del sitio; también se puede consultar disponibilidad directamente por WhatsApp."
+  },
+  "cat6": {
+    "title": "Festival Faro de Luz",
+    "q1": "¿Qué es el Festival Faro de Luz?",
+    "a1": "Es el evento anual de yoga y bienestar organizado por ACIKY. Para fechas, sede y detalles de la edición actual, consulta la página del festival, ya que esta información se actualiza cada año."
+  },
+  "cat7": {
+    "title": "Membresía para instructores",
+    "q1": "¿Quién puede ser miembro de ACIKY?",
+    "a1": "ACIKY acepta como miembros a instructores de Kundalini Yoga con certificación KRI (Kundalini Research Institute).",
+    "q2": "¿Cómo me uno como instructor certificado?",
+    "a2": "Escribiendo por WhatsApp o correo electrónico a ACIKY para iniciar el proceso de membresía. También se puede consultar la guía de membresía disponible en el sitio.",
+    "q3": "¿Qué implica la participación como miembro?",
+    "a3": "Los miembros participan de distintas formas: organizando actividades, dirigiendo clases, sirviendo a la comunidad, asistiendo a eventos, promoviendo la práctica, e intercambiando ideas dentro del colectivo.",
+    "q4": "¿Qué pasa si aún no tengo la certificación KRI pero quiero enseñar algún día?",
+    "a4": "ACIKY orienta a quienes sienten el llamado a formarse como instructores sobre el camino de certificación KRI; se recomienda contactarnos directamente para más información.",
+    "q5": "¿ACIKY tiene un equipo evaluativo o de desarrollo profesional?",
+    "a5": "Sí, cuenta con un Equipo Evaluativo CEU enfocado en formación y enseñanza, servicio (seva) y liderazgo, investigación, y beneficios adicionales para instructores."
+  },
+  "cat8": {
+    "title": "Donaciones y apoyo",
+    "q1": "¿Cómo puedo apoyar económicamente a ACIKY?",
+    "a1": "A través de la sección de donaciones del sitio, donde se explica cómo contribuir a que el Kundalini Yoga siga llegando a más personas en Cuba.",
+    "link1": "Ver donaciones"
+  },
+  "cat9": {
+    "title": "Contacto y cuenta",
+    "q1": "¿Cómo contacto a ACIKY?",
+    "a1": "Por WhatsApp (+53 5075-9360), a través del formulario de contacto del sitio, o por redes sociales (Facebook e Instagram @acikycuba).",
+    "q2": "¿Necesito crear una cuenta para participar?",
+    "a2": "El sitio permite iniciar sesión o registrarse para acceder a un perfil personal, aunque para reservar la primera clase gratuita o unirse a las sadhanas basta con escribir por WhatsApp.",
+    "q3": "¿ACIKY tiene redes sociales?",
+    "a3": "Sí: Facebook, Instagram (@acikycuba) y WhatsApp, todos enlazados en el pie de página del sitio."
+  },
+  "ctaTitle": "¿No encontraste tu respuesta?",
+  "ctaText": "Escríbenos y te ayudamos directamente."
+}
