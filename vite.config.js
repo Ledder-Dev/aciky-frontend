@@ -76,7 +76,8 @@ export default defineConfig(() => {
           accountant: resolve(__dirname, 'pages/accountant.html'),
           adminAccountant: resolve(__dirname, 'pages/admin/accountant.html'),
           adminEmailBroadcast: resolve(__dirname, 'pages/admin/email-broadcast.html'),
-          membership: resolve(__dirname, 'pages/membership.html')
+          membership: resolve(__dirname, 'pages/membership.html'),
+          faq: resolve(__dirname, 'pages/faq.html')
         }
       }
     }
