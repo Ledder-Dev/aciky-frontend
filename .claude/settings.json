@@ -147,6 +147,16 @@
                                                          }
                                                      ]
                                        }
-                                   ]
+                                   ],
+                  "UserPromptSubmit":  [
+                                           {
+                                               "hooks":  [
+                                                             {
+                                                                 "type":  "command",
+                                                                 "command":  "if command -v powershell.exe \u003e/dev/null 2\u003e\u00261; then powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/simple-notifications.ps1\" -ClearLock; fi"
+                                                             }
+                                                         ]
+                                           }
+                                       ]
               }
 }
