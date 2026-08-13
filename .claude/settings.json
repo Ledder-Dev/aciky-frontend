@@ -117,6 +117,15 @@
                                                            "command":  "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/force-push-blocker.py\""
                                                        }
                                                    ]
+                                     },
+                                     {
+                                         "matcher":  "Bash",
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/current-status-linecount.py"
+                                                       }
+                                                   ]
                                      }
                                  ],
                   "Stop":  [

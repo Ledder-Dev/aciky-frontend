@@ -10,9 +10,13 @@ _No active work now._
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
 ## Gotcha operativo
-- `development` → `main` se auto-mergea (PR automático, ej. #105, #106) segundos después del push a `development` — `.github/workflows/deploy.yml` solo despliega en push a `main`, pero el merge automático hace que el deploy corra casi al instante. No asumir que hace falta merge manual pa que un push a `development` llegue a producción; confirmar con `git log origin/main` si hace falta certeza.
+- `development` → `main` NO se auto-mergea — no hay workflow ni bot que abra/mergee PR automático (verificado 2026-08-12, sin PR pendiente tras push a `development`, sin workflow de auto-PR en `gh workflow list`). `.github/workflows/deploy.yml` solo despliega en push a `main`. Hace falta `gh pr create --base main --head development` + `gh pr merge` manual pa que un push a `development` llegue a producción. (Nota anterior de esta sección, sobre auto-merge, era incorrecta — corregida.)
 
 ## Recently Completed
+- [x] **fix: FAQ 404 en producción + fusiona link FAQ en dropdown "Nosotros"** (2026-08-12)
+  - `vite.config.js`: faltaba entry `faq: resolve(__dirname, 'pages/faq.html')` en `build.rollupOptions.input` — Vite multi-page build solo emite HTML registrado ahí, dev server lo enmascaraba (sirve archivos directo de disco)
+  - `header.html` desktop nav: "Nosotros" y "Preguntas Frecuentes" eran links sueltos, apretados junto a Blog/Testimonios — fusionados en dropdown "Nosotros" (mismo patrón hover ya usado por "Actividades"/"Galería"), mobile menu sin cambios (lista vertical, no apretada)
+  - Verificado en navegador (dev server): FAQ carga sin 404, dropdown abre con ambos links
 - [x] **feat: página FAQ (pages/faq.html) + links en header/footer** (2026-08-12)
   - `pages/faq.html`: hero + 9 categorías (36 preguntas), acordeón `<details>` nativo poblado dinámicamente vía `src/js/faq.js` desde `src/i18n/{es,en}/faq.json`
   - JSON-LD `FAQPage` inyectado en `<head>`, recalculado en cada render (incluyendo cambio de idioma)
