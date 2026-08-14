@@ -1,0 +1,12 @@
+﻿# Subset de skills de _shared/skills/ curado para este mundo.
+# Un nombre por linea (sin categoria), '#' para comentarios.
+# Regenerar symlinks: pwsh ../../_shared/scripts/link-world-skills.ps1 -World ACIKY-frontend
+accessibility
+security-audit
+security-best-practices
+supabase
+supabase-postgres-best-practices
+tailwind-design-system
+umami
+web-design-guidelines
+writing-guidelines

@@ -1,9 +1,9 @@
 # Current Project Status
 
-Last updated: 2026-08-11
+Last updated: 2026-08-13
 
 ## In Progress
-_No active work now._
+- **FAQ: docs expandidos + página viva sincronizada + chatbot verificado — sin commitear.** `docs/ACIKY_FAQs.md`/`_EN.md` (untracked, 9→12 categorías, ~65+ Q&A) y `pages/faq.html` + `src/i18n/{es,en}/faq.json` + `src/js/faq.js` (modified, misma expansión 9→12 categorías en la página viva, más fix de WhatsApp hardcodeado en CTA usando `getWhatsAppNumber()`). Chatbot Supabase (widget en `footer.html`) probado en `aciky.org` con 3 preguntas — responde bien, cero fallos. Falla solo en dev (`localhost:5174`, CORS externo, no accionable desde repo). Pendiente: usuario confirma commit.
 
 ## Pending Actions
 - **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — dominio usa nameservers Cloudflare vía Namecheap pero zona no aparece en cuenta Cloudflare propia del usuario. Usuario debe revisar pestaña "Cloudflare" dentro del panel Namecheap o intentar login en cloudflare.com con email de compra del dominio. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
@@ -13,6 +13,9 @@ _No active work now._
 - `development` → `main` NO se auto-mergea — no hay workflow ni bot que abra/mergee PR automático (verificado 2026-08-12, sin PR pendiente tras push a `development`, sin workflow de auto-PR en `gh workflow list`). `.github/workflows/deploy.yml` solo despliega en push a `main`. Hace falta `gh pr create --base main --head development` + `gh pr merge` manual pa que un push a `development` llegue a producción. (Nota anterior de esta sección, sobre auto-merge, era incorrecta — corregida.)
 
 ## Recently Completed
+- [x] **fix: número WhatsApp en contact.html usa config admin, no valor fijo** (2026-08-13)
+  - Mismo bug patrón encontrado luego en `pages/faq.html` (ver In Progress) — hardcode `wa.me/5350759360` reemplazado por `getWhatsAppNumber()`/`buildWhatsAppUrl()`
+  - Commit `44b5c2d`, pusheado a `origin/development`
 - [x] **fix: FAQ 404 en producción + fusiona link FAQ en dropdown "Nosotros"** (2026-08-12)
   - `vite.config.js`: faltaba entry `faq: resolve(__dirname, 'pages/faq.html')` en `build.rollupOptions.input` — Vite multi-page build solo emite HTML registrado ahí, dev server lo enmascaraba (sirve archivos directo de disco)
   - `header.html` desktop nav: "Nosotros" y "Preguntas Frecuentes" eran links sueltos, apretados junto a Blog/Testimonios — fusionados en dropdown "Nosotros" (mismo patrón hover ya usado por "Actividades"/"Galería"), mobile menu sin cambios (lista vertical, no apretada)

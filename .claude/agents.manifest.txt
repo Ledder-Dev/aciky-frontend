@@ -1,0 +1,14 @@
+# Subset de agentes de _shared/agents/ curado para este mundo.
+# Un nombre por linea (sin .md), '#' para comentarios.
+# Regenerar symlinks: pwsh _shared/scripts/link-world-agents.ps1 -World alborstudio
+changelog-generator
+code-reviewer
+context-manager
+debugger
+documentation-engineer
+frontend-developer
+performance-profiler
+planner
+qa-expert
+seo-analyzer
+ui-designer

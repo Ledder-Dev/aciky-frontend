@@ -2,11 +2,12 @@ import { apiFetch } from './api.js'
 import { t } from './i18n.js'
 import { getUser } from './auth.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 const PROD_EMAIL = 'info.aciky@gmail.com'
 const DEV_EMAIL = 'info.aciky@gmail.com'
 
-export function initContact() {
+export async function initContact() {
   const user = getUser()
 
   // Redirect instructor away from contact page
@@ -30,6 +31,15 @@ export function initContact() {
   const emailDisplay = document.getElementById('emailDisplay')
   if (emailLink) emailLink.href = `mailto:${email}`
   if (emailDisplay) emailDisplay.textContent = email
+
+  const waPhone = await getWhatsAppNumber()
+  const waUrl = buildWhatsAppUrl(waPhone)
+  const whatsappCard = document.getElementById('whatsappCard')
+  const whatsappNumberDisplay = document.getElementById('whatsappNumberDisplay')
+  const whatsappSocialIcon = document.getElementById('whatsappSocialIcon')
+  if (whatsappCard) whatsappCard.href = waUrl
+  if (whatsappNumberDisplay) whatsappNumberDisplay.textContent = `+${waPhone}`
+  if (whatsappSocialIcon) whatsappSocialIcon.href = waUrl
 
   setupAuthSection()
 

@@ -1,0 +1,1 @@
+../../../../_shared/commands/visual-test.md

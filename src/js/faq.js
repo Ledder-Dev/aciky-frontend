@@ -1,4 +1,5 @@
 import { t } from './i18n.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 function escapeHtml(str) {
   if (!str) return ''
@@ -54,7 +55,15 @@ function injectFaqSchema(items) {
   document.head.appendChild(script)
 }
 
+async function setupWhatsappCta() {
+  const cta = document.getElementById('faqWhatsappCta')
+  if (!cta) return
+  const waPhone = await getWhatsAppNumber()
+  cta.href = buildWhatsAppUrl(waPhone)
+}
+
 export function initFaq() {
   renderFaqSections()
+  setupWhatsappCta()
   window.addEventListener('languageChanged', renderFaqSections)
 }
