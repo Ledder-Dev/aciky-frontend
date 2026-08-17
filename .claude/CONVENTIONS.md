@@ -1,6 +1,6 @@
 # Convenciones — yoga-v2 (ACIKY)
 
-Hereda: @$AI_OS_ROOT/_shared/CONVENTIONS.md
+Hereda: @../../../_shared/CONVENTIONS.md
 
 Convenciones inferidas de estructura real del proyecto. Más allá de linting:
 decisiones de diseño que todo colaborador sigue.
