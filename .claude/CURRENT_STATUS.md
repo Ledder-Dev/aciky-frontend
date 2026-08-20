@@ -1,9 +1,9 @@
 # Current Project Status
 
-Last updated: 2026-08-13
+Last updated: 2026-08-19
 
 ## In Progress
-- **FAQ: docs expandidos + página viva sincronizada + chatbot verificado — sin commitear.** `docs/ACIKY_FAQs.md`/`_EN.md` (untracked, 9→12 categorías, ~65+ Q&A) y `pages/faq.html` + `src/i18n/{es,en}/faq.json` + `src/js/faq.js` (modified, misma expansión 9→12 categorías en la página viva, más fix de WhatsApp hardcodeado en CTA usando `getWhatsAppNumber()`). Chatbot Supabase (widget en `footer.html`) probado en `aciky.org` con 3 preguntas — responde bien, cero fallos. Falla solo en dev (`localhost:5174`, CORS externo, no accionable desde repo). Pendiente: usuario confirma commit.
+_Nada activo._
 
 ## Pending Actions
 - **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — dominio usa nameservers Cloudflare vía Namecheap pero zona no aparece en cuenta Cloudflare propia del usuario. Usuario debe revisar pestaña "Cloudflare" dentro del panel Namecheap o intentar login en cloudflare.com con email de compra del dominio. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
@@ -11,8 +11,12 @@ Last updated: 2026-08-13
 
 ## Gotcha operativo
 - `development` → `main` NO se auto-mergea — no hay workflow ni bot que abra/mergee PR automático (verificado 2026-08-12, sin PR pendiente tras push a `development`, sin workflow de auto-PR en `gh workflow list`). `.github/workflows/deploy.yml` solo despliega en push a `main`. Hace falta `gh pr create --base main --head development` + `gh pr merge` manual pa que un push a `development` llegue a producción. (Nota anterior de esta sección, sobre auto-merge, era incorrecta — corregida.)
+- **`main` tiene 4 commits que `development` no tiene** (verificado 2026-08-19): `f2993b9`, `662c8b9`, `0d6333d`, `662db98` — fixes de conventions/settings, hechos directo en `main` (probablemente por sync automático del universo, fuera de este repo). No propagados a `development`, sin acción tomada — revisar si hace falta cherry-pick antes de próximo PR `development`→`main` pa no perderlos en un merge normal.
 
 ## Recently Completed
+- [x] **docs: FAQ ES/EN expandido 9→12 categorías + sync página viva + fix WhatsApp CTA** (2026-08-13)
+  - `docs/ACIKY_FAQs.md`/`_EN.md`, `pages/faq.html`, `src/i18n/{es,en}/faq.json`, `src/js/faq.js` — commit `8c27acd`, pusheado a `origin/development`
+  - Chatbot Supabase (widget `footer.html`) verificado en vivo en `aciky.org`, 3 preguntas, cero fallos. Falla solo en dev local por CORS externo, no accionable desde repo.
 - [x] **fix: número WhatsApp en contact.html usa config admin, no valor fijo** (2026-08-13)
   - Mismo bug patrón encontrado luego en `pages/faq.html` (ver In Progress) — hardcode `wa.me/5350759360` reemplazado por `getWhatsAppNumber()`/`buildWhatsAppUrl()`
   - Commit `44b5c2d`, pusheado a `origin/development`
