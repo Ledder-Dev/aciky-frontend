@@ -40,3 +40,7 @@ semgrep-scan
 # --- Git ---
 commit-push-pr
 commit
+
+# --- Tareas / tracking ---
+task-start
+task-end
