@@ -14,8 +14,8 @@ Frontend bilingüe (ES/EN) del centro de Kundalini Yoga ACIKY (Cuba). HTML5 + Ta
 ## Contrato de API
 @$AI_OS_ROOT/_shared/contracts/aciky/api-contract.yaml
 
-Contraparte backend: `yoga-backend`. Fuente de verdad es
-`worlds/yoga-backend/dist/api-contract.yaml` — este contrato es symlink,
+Contraparte backend: `aciky-backend`. Fuente de verdad es
+`worlds/aciky-backend/dist/api-contract.yaml` — este contrato es symlink,
 nunca copiar. Ver `_shared/contracts/README.md`.
 
 ## Estado actual
