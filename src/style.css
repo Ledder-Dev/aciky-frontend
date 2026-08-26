@@ -31,6 +31,14 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* No max-width existed before - content stretched edge-to-edge past 1440px */
+main,
+header,
+footer {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
