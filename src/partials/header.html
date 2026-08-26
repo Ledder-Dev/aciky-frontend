@@ -12,7 +12,7 @@
   <!-- Desktop Navigation -->
   <nav class="hidden lg:flex items-center gap-6">
     <div class="relative group">
-      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1">
+      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1" data-i18n-aria="header.activitiesMenu" aria-label="Menu de actividades" aria-haspopup="true">
         <span data-i18n="header.activities">Actividades</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="relative group">
-      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1">
+      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1" data-i18n-aria="header.galleryMenu" aria-label="Menu de galeria" aria-haspopup="true">
         <span data-i18n="header.gallery">Galería</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -42,7 +42,7 @@
     <a href="{{basePath}}/pages/blog.html" class="text-text hover:text-primary transition-colors font-medium" data-i18n="header.blog">Blog</a>
     <a href="{{basePath}}/pages/testimonials.html" class="text-text hover:text-primary transition-colors font-medium" data-i18n="header.testimonials">Testimonios</a>
     <div class="relative group">
-      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1">
+      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1" data-i18n-aria="header.aboutMenu" aria-label="Menu de nosotros" aria-haspopup="true">
         <span data-i18n="header.about">Nosotros</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -58,7 +58,7 @@
   <!-- Desktop Language Toggle + Auth -->
   <div class="hidden lg:flex items-center gap-3">
     <!-- Language Toggle -->
-    <button id="langToggle" class="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-sm font-medium text-primary-dark hover:bg-slate-50 transition-colors">
+    <button id="langToggle" class="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-sm font-medium text-primary-dark hover:bg-slate-50 transition-colors" data-i18n-aria="header.changeLanguage" aria-label="Cambiar idioma">
       <span class="material-symbols-outlined text-sm">translate</span>
       <span id="langToggleText">ES</span>
     </button>
@@ -111,7 +111,7 @@
       <a href="{{basePath}}/pages/faq.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.faq">Preguntas Frecuentes</a>
 
       <!-- Mobile Language Toggle -->
-      <button id="mobileLangToggle" class="flex items-center justify-center gap-2 w-full py-3 text-primary-dark font-medium border-b border-slate-100">
+      <button id="mobileLangToggle" class="flex items-center justify-center gap-2 w-full py-3 text-primary-dark font-medium border-b border-slate-100" data-i18n-aria="header.changeLanguage" aria-label="Cambiar idioma">
         <span class="material-symbols-outlined text-sm">translate</span>
         <span id="mobileLangToggleText">ES</span>
       </button>
