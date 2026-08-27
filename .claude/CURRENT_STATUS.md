@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-08-19
+Last updated: 2026-08-20
 
 ## In Progress
 _Nada activo._
@@ -10,10 +10,17 @@ _Nada activo._
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
 ## Gotcha operativo
-- `development` → `main` NO se auto-mergea — no hay workflow ni bot que abra/mergee PR automático (verificado 2026-08-12, sin PR pendiente tras push a `development`, sin workflow de auto-PR en `gh workflow list`). `.github/workflows/deploy.yml` solo despliega en push a `main`. Hace falta `gh pr create --base main --head development` + `gh pr merge` manual pa que un push a `development` llegue a producción. (Nota anterior de esta sección, sobre auto-merge, era incorrecta — corregida.)
-- **`main` tiene 4 commits que `development` no tiene** (verificado 2026-08-19): `f2993b9`, `662c8b9`, `0d6333d`, `662db98` — fixes de conventions/settings, hechos directo en `main` (probablemente por sync automático del universo, fuera de este repo). No propagados a `development`, sin acción tomada — revisar si hace falta cherry-pick antes de próximo PR `development`→`main` pa no perderlos en un merge normal.
+- `development` → `main` NO se auto-mergea — no hay workflow ni bot que abra/mergee PR automático (verificado 2026-08-12, sin PR pendiente tras push a `development`, sin workflow de auto-PR en `gh workflow list`). `.github/workflows/deploy.yml` solo despliega en push a `main`. Hace falta `gh pr create --base main --head development` + `gh pr merge` manual (o merge manual local) pa que un push a `development` llegue a producción.
+- **Rama `development` renombrada a `devRandy`** (2026-08-20): local `git branch -m` + push como rama nueva `origin/devRandy` (trackeando). `origin/development` (remoto viejo) sigue existiendo, sin borrar — pendiente decidir si se elimina. Los 4 commits que antes estaban solo en `main` (`f2993b9`, `662c8b9`, `0d6333d`, `662db98`) ya están mergeados: `main`+`devRandy` con contenido idéntico ahora (verificado con `git diff --stat`), diferencia de conteo de commits es solo ruido de merge commits acumulados en `main` vía PRs, no código real perdido.
+- `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
+- [x] **infra: rename `development`→`devRandy` + sync `develop`** (2026-08-20)
+  - `develop` estaba 4 commits atrás de `development`/`main` — merge sin conflictos, pusheado a `origin/develop`
+  - Ver Gotcha operativo arriba pa detalle completo
+- [x] **seo: faq.html a sitemap.xml + merge manual `development`→`main`** (2026-08-20)
+  - Search Console: "Indexed, though blocked by robots.txt" — esperado (login/dashboard/admin), sin acción
+  - `faq.html` faltaba en `public/sitemap.xml`, agregado (`monthly`, `0.7`); commit `a66d32e`, merge manual a `main` `228bc37`
 - [x] **docs: FAQ ES/EN expandido 9→12 categorías + sync página viva + fix WhatsApp CTA** (2026-08-13)
   - `docs/ACIKY_FAQs.md`/`_EN.md`, `pages/faq.html`, `src/i18n/{es,en}/faq.json`, `src/js/faq.js` — commit `8c27acd`, pusheado a `origin/development`
   - Chatbot Supabase (widget `footer.html`) verificado en vivo en `aciky.org`, 3 preguntas, cero fallos. Falla solo en dev local por CORS externo, no accionable desde repo.

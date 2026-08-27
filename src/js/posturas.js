@@ -4,10 +4,13 @@ import { shareContent } from './utils/share.js'
 
 let allItems = []
 
+let openLightboxById = () => {}
+
 export async function initPosturas() {
   await loadPosturas()
   setupLightbox()
   setupSearch()
+  checkHashForPosture()
 
   // Re-render with localized text when language changes (no re-fetch needed)
   window.addEventListener('languageChanged', () => {
@@ -16,6 +19,15 @@ export async function initPosturas() {
       renderPosturas(query)
     }
   })
+
+  window.addEventListener('hashchange', checkHashForPosture)
+}
+
+function checkHashForPosture() {
+  const match = window.location.hash.match(/^#posture-(\d+)$/)
+  if (match && allItems.length > 0) {
+    openLightboxById(parseInt(match[1]))
+  }
 }
 
 async function loadPosturas() {
@@ -108,12 +120,7 @@ function setupLightbox() {
   let currentLightboxImage = null
   let currentLightboxId = null
 
-  // Open lightbox on card click
-  container?.addEventListener('click', (e) => {
-    const card = e.target.closest('.postura-card')
-    if (!card) return
-
-    const { id, image, title, description } = card.dataset
+  const openLightbox = ({ id, image, title, description }) => {
     currentLightboxTitle = title
     currentLightboxImage = image || null
     currentLightboxId = id || null
@@ -126,7 +133,25 @@ function setupLightbox() {
     modal.classList.remove('hidden')
     modal.classList.add('flex')
     document.body.style.overflow = 'hidden'
+  }
+
+  // Open lightbox on card click
+  container?.addEventListener('click', (e) => {
+    const card = e.target.closest('.postura-card')
+    if (!card) return
+    openLightbox(card.dataset)
   })
+
+  openLightboxById = (id) => {
+    const item = allItems.find(i => i.id === id)
+    if (!item) return
+    openLightbox({
+      id: item.id,
+      image: item.image_url,
+      title: localized(item, 'title'),
+      description: localized(item, 'description')
+    })
+  }
 
   document.getElementById('lightboxShareBtn')?.addEventListener('click', () => {
     const url = currentLightboxId ? `${API_BASE}/share/posture/${currentLightboxId}` : window.location.href
