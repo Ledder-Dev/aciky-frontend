@@ -23,12 +23,20 @@
 
 /* Base styles */
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
   margin: 0;
   min-height: 100dvh;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* No max-width existed before - content stretched edge-to-edge past 1440px */
+main,
+header,
+footer {
+  max-width: 1440px;
+  margin-inline: auto;
 }
 
 /* Smooth scrolling */

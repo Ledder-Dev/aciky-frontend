@@ -440,7 +440,7 @@ function generateReport() {
   <title>${t('report.title')} — ACIKY</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #1e293b; padding: 40px; font-size: 13px; }
+    body { font-family: 'Manrope', Arial, sans-serif; color: #1e293b; padding: 40px; font-size: 13px; }
     .header { border-bottom: 3px solid #708558; padding-bottom: 16px; margin-bottom: 24px; }
     .header h1 { font-size: 22px; font-weight: 700; color: #5c6c4a; }
     .header p { color: #64748b; margin-top: 4px; font-size: 12px; }

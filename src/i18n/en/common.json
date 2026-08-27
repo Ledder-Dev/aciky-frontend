@@ -25,7 +25,11 @@
     "adminPanel": "Admin Panel",
     "finances": "Finances",
     "greeting": "Hello, {{name}}",
-    "openMenu": "Open menu"
+    "openMenu": "Open menu",
+    "activitiesMenu": "Activities menu",
+    "galleryMenu": "Gallery menu",
+    "aboutMenu": "About menu",
+    "changeLanguage": "Change language"
   },
   "footer": {
     "copyright": "ACIKY - All rights reserved.",
@@ -33,7 +37,8 @@
     "faq": "FAQ",
     "privacy": "Privacy Policy",
     "terms": "Terms of Use",
-    "contact": "Contact"
+    "contact": "Contact",
+    "whatsapp": "WhatsApp"
   },
   "adminNav": {
     "admin": "Admin",

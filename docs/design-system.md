@@ -28,7 +28,7 @@ secundarios, NUNCA para CTAs principales — esos siempre van en primary-dark.
 ## Espaciado
 - Mobile-first: `px-4 md:px-8 lg:px-16`
 - Hero section: card-style `h-[420px] rounded-3xl` (NO full-width)
-- Quote section: `p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary`
+- Quote section: `p-8 bg-white rounded-2xl shadow-sm` (sin borde de acento lateral)
 
 ## Componentes clave
 - Botón CTA primario: `bg-primary-dark text-white hover:bg-primary`

@@ -123,7 +123,7 @@ function closePreview() {
 
 function buildEmailPreview({ subjectEs, subjectEn, bodyEs, bodyEn }) {
   return `
-    <div style="font-family: 'Plus Jakarta Sans', sans-serif; max-width: 560px; margin: 0 auto;">
+    <div style="font-family: 'Manrope', sans-serif; max-width: 560px; margin: 0 auto;">
       <div style="background: #5c6c4a; padding: 24px; border-radius: 12px 12px 0 0; text-align: center;">
         <span style="color: white; font-size: 22px; font-weight: bold; letter-spacing: 3px;">ACIKY</span>
         <p style="color: rgba(255,255,255,0.7); font-size: 12px; margin: 4px 0 0;">Alianza Cubana de Instructores en Kundalini Yoga</p>
