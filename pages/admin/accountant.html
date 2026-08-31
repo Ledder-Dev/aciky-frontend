@@ -63,65 +63,74 @@
               <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
               <span data-i18n="summary.title">Fondo ACIKY</span>
             </h2>
-            <!-- Total currency toggle -->
-            <div class="flex items-center gap-2 text-sm">
-              <span class="text-slate-500" data-i18n="summary.viewIn">Ver en</span>
-              <button data-total-currency="CUP" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-primary-dark text-white">CUP</button>
-              <button data-total-currency="USD" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">USD</button>
+          </div>
+
+          <!-- Period movements: respects month filter -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-3 flex-wrap gap-1">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide" data-i18n="summary.periodTitle">Movimientos del período</p>
+              <span id="periodLabel" class="text-xs text-slate-400"></span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">CUP</p>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
+                  <span id="incomeCup" class="font-semibold text-green-600">—</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
+                  <span id="expenseCup" class="font-semibold text-accent-terracotta">—</span>
+                </div>
+                <div id="exchangeCupRow" class="hidden flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
+                  <span id="exchangeCup" class="font-semibold text-accent-teal">—</span>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">USD</p>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
+                  <span id="incomeUsd" class="font-semibold text-green-600">—</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
+                  <span id="expenseUsd" class="font-semibold text-accent-terracotta">—</span>
+                </div>
+                <div id="exchangeUsdRow" class="hidden flex justify-between text-sm">
+                  <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
+                  <span id="exchangeUsd" class="font-semibold text-accent-teal">—</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <!-- CUP column -->
-            <div class="space-y-2">
-              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">CUP</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
-                <span id="incomeCup" class="font-semibold text-green-600">—</span>
+          <!-- Fund balance: always real total, unaffected by month filter -->
+          <div class="border-t border-slate-100 pt-4">
+            <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
+              <p class="text-xs font-bold text-primary uppercase tracking-wide" data-i18n="summary.fundTitle">Balance actual del fondo</p>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500" data-i18n="summary.viewIn">Ver en</span>
+                <button data-total-currency="CUP" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-primary-dark text-white">CUP</button>
+                <button data-total-currency="USD" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">USD</button>
               </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
-                <span id="expenseCup" class="font-semibold text-accent-terracotta">—</span>
-              </div>
-              <div id="exchangeCupRow" class="hidden flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
-                <span id="exchangeCup" class="font-semibold text-accent-teal">—</span>
-              </div>
-              <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
-                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-3" data-i18n="summary.fundNote">Saldo real disponible — no cambia al filtrar por mes.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="flex justify-between text-sm items-baseline">
+                <span class="font-semibold text-primary-dark">CUP</span>
                 <span id="balanceCup" class="font-bold text-primary-dark">—</span>
               </div>
-            </div>
-
-            <!-- USD column -->
-            <div class="space-y-2">
-              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">USD</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
-                <span id="incomeUsd" class="font-semibold text-green-600">—</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
-                <span id="expenseUsd" class="font-semibold text-accent-terracotta">—</span>
-              </div>
-              <div id="exchangeUsdRow" class="hidden flex justify-between text-sm">
-                <span class="text-slate-500" data-i18n="summary.exchange">Intercambios</span>
-                <span id="exchangeUsd" class="font-semibold text-accent-teal">—</span>
-              </div>
-              <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
-                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+              <div class="flex justify-between text-sm items-baseline">
+                <span class="font-semibold text-primary-dark">USD</span>
                 <span id="balanceUsd" class="font-bold text-primary-dark">—</span>
               </div>
-            </div>
-
-            <!-- Total column -->
-            <div class="space-y-2 bg-primary/5 rounded-xl p-4 flex flex-col justify-center">
-              <p class="text-xs font-bold text-primary uppercase tracking-wide" data-i18n="summary.total">Total equivalente</p>
-              <div class="flex justify-between text-sm">
-                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+              <div class="space-y-1 bg-primary/5 rounded-xl p-4 flex flex-col justify-center">
+                <p class="text-xs font-bold text-primary uppercase tracking-wide" data-i18n="summary.total">Total equivalente</p>
                 <span id="totalBalance" class="font-bold text-lg text-primary-dark">—</span>
+                <p id="totalCurrencyLabel" class="text-xs text-primary font-medium">CUP</p>
               </div>
-              <p id="totalCurrencyLabel" class="text-xs text-primary text-right font-medium">CUP</p>
             </div>
           </div>
         </div>

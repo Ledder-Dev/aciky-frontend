@@ -2,7 +2,7 @@ import { requireAccountantAccess } from '../auth.js'
 import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
 
-let summary = { income_cup: 0, income_usd: 0, expense_cup: 0, expense_usd: 0, balance_cup: 0, balance_usd: 0 }
+let summary = { income_cup: 0, income_usd: 0, expense_cup: 0, expense_usd: 0, exchange_cup: 0, exchange_usd: 0, balance_cup: 0, balance_usd: 0 }
 let exchangeRate = 520
 let totalCurrency = 'CUP'
 let filterType = 'all'
@@ -133,28 +133,29 @@ function renderSummary() {
 
   document.getElementById('incomeCup').textContent = fmt(summary.income_cup, 'CUP')
   document.getElementById('expenseCup').textContent = fmt(summary.expense_cup, 'CUP')
-  document.getElementById('balanceCup').textContent = fmt(summary.balance_cup, 'CUP')
   document.getElementById('incomeUsd').textContent = fmt(summary.income_usd, 'USD')
   document.getElementById('expenseUsd').textContent = fmt(summary.expense_usd, 'USD')
-  document.getElementById('balanceUsd').textContent = fmt(summary.balance_usd, 'USD')
 
-  const exchangeOutCup = (summary.income_cup || 0) - (summary.expense_cup || 0) - (summary.balance_cup || 0)
-  const exchangeInUsd = (summary.balance_usd || 0) - (summary.income_usd || 0) + (summary.expense_usd || 0)
-
+  const exchangeCupAmount = summary.exchange_cup || 0
+  const exchangeUsdAmount = summary.exchange_usd || 0
   const cupRow = document.getElementById('exchangeCupRow')
   const usdRow = document.getElementById('exchangeUsdRow')
-  if (exchangeOutCup > 0.001) {
-    document.getElementById('exchangeCup').textContent = `⇄ −${Number(exchangeOutCup).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CUP`
+  if (exchangeCupAmount > 0.001) {
+    document.getElementById('exchangeCup').textContent = `⇄ −${Number(exchangeCupAmount).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CUP`
     cupRow?.classList.remove('hidden')
   } else {
     cupRow?.classList.add('hidden')
   }
-  if (exchangeInUsd > 0.001) {
-    document.getElementById('exchangeUsd').textContent = `⇄ +${Number(exchangeInUsd).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`
+  if (exchangeUsdAmount > 0.001) {
+    document.getElementById('exchangeUsd').textContent = `⇄ +${Number(exchangeUsdAmount).toLocaleString('es-CU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`
     usdRow?.classList.remove('hidden')
   } else {
     usdRow?.classList.add('hidden')
   }
+
+  // balance_cup/balance_usd siempre reflejan el saldo real del fondo (histórico), ignoran filterMonth
+  document.getElementById('balanceCup').textContent = fmt(summary.balance_cup, 'CUP')
+  document.getElementById('balanceUsd').textContent = fmt(summary.balance_usd, 'USD')
 
   const totalBal = totalCurrency === 'CUP'
     ? (summary.balance_cup || 0) + (summary.balance_usd || 0) * exchangeRate
@@ -162,7 +163,14 @@ function renderSummary() {
 
   document.getElementById('totalBalance').textContent = fmt(totalBal, totalCurrency)
   const label = document.getElementById('totalCurrencyLabel')
-  if (label) label.textContent = totalCurrency === 'CUP' ? `1 USD = ${exchangeRate} CUP` : `1 USD = ${exchangeRate} CUP`
+  if (label) label.textContent = `1 USD = ${exchangeRate} CUP`
+
+  const periodLabel = document.getElementById('periodLabel')
+  if (periodLabel) {
+    periodLabel.textContent = filterMonth
+      ? new Date(filterMonth + '-15').toLocaleDateString('es-CU', { month: 'long', year: 'numeric' })
+      : t('report.allMonths')
+  }
 }
 
 function renderTransactions(transactions, canEditDelete = false) {
@@ -480,24 +488,37 @@ function generateReport() {
       <div class="value">${generatedDate}</div>
     </div>
   </div>
-  <p class="section-title">${t('report.summaryTitle')}</p>
+  <p class="section-title">${t('report.periodTitle')}</p>
   <div class="summary-grid">
     <div class="summary-card">
       <div class="currency">CUP</div>
       <div class="summary-row"><span class="label">${t('report.income')}</span><span class="income">${fmt(summary.income_cup, 'CUP')}</span></div>
       <div class="summary-row"><span class="label">${t('report.expenses')}</span><span class="expense">${fmt(summary.expense_cup, 'CUP')}</span></div>
-      <div class="summary-row balance"><span>${t('report.balance')}</span><span>${fmt(summary.balance_cup, 'CUP')}</span></div>
     </div>
     <div class="summary-card">
       <div class="currency">USD</div>
       <div class="summary-row"><span class="label">${t('report.income')}</span><span class="income">${fmt(summary.income_usd, 'USD')}</span></div>
       <div class="summary-row"><span class="label">${t('report.expenses')}</span><span class="expense">${fmt(summary.expense_usd, 'USD')}</span></div>
-      <div class="summary-row balance"><span>${t('report.balance')}</span><span>${fmt(summary.balance_usd, 'USD')}</span></div>
     </div>
     <div class="summary-card" style="background:#f0f4ec;border-color:#a3be84">
       <div class="currency" style="color:#708558">${t('report.total')} (${totalCurrency})</div>
       <div class="summary-row"><span class="label">${t('report.income')}</span><span class="income">${fmt(totalIncome, totalCurrency)}</span></div>
       <div class="summary-row"><span class="label">${t('report.expenses')}</span><span class="expense">${fmt(totalExpense, totalCurrency)}</span></div>
+    </div>
+  </div>
+
+  <p class="section-title">${t('report.fundTitle')}</p>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="currency">CUP</div>
+      <div class="summary-row balance"><span>${t('report.balance')}</span><span>${fmt(summary.balance_cup, 'CUP')}</span></div>
+    </div>
+    <div class="summary-card">
+      <div class="currency">USD</div>
+      <div class="summary-row balance"><span>${t('report.balance')}</span><span>${fmt(summary.balance_usd, 'USD')}</span></div>
+    </div>
+    <div class="summary-card" style="background:#f0f4ec;border-color:#a3be84">
+      <div class="currency" style="color:#708558">${t('report.total')} (${totalCurrency})</div>
       <div class="summary-row balance" style="border-color:#a3be84"><span>${t('report.balance')}</span><span style="font-size:15px">${fmt(totalBal, totalCurrency)}</span></div>
       <div class="rate">${t('report.exchangeRate')}: 1 USD = ${exchangeRate} CUP</div>
     </div>
