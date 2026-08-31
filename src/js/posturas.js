@@ -1,12 +1,16 @@
 import { apiFetch, API_BASE } from './api.js'
 import { localized } from './i18n.js'
 import { shareContent } from './utils/share.js'
+import { requireAuth } from './auth.js'
 
 let allItems = []
 
 let openLightboxById = () => {}
 
 export async function initPosturas() {
+  const user = await requireAuth()
+  if (!user) return
+
   await loadPosturas()
   setupLightbox()
   setupSearch()

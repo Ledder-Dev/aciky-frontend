@@ -1,10 +1,14 @@
 import { apiFetch } from './api.js'
 import { localized } from './i18n.js'
 import { shareContent } from './utils/share.js'
+import { requireAuth } from './auth.js'
 
 let allVideos = []
 
 export async function initVideos() {
+  const user = await requireAuth()
+  if (!user) return
+
   await loadVideos()
   setupVideoModal()
   setupSearch()
