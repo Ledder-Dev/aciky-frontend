@@ -10,7 +10,11 @@
     "cup": "CUP",
     "usd": "USD",
     "total": "Total equivalente",
-    "viewIn": "Ver en"
+    "viewIn": "Ver en",
+    "periodTitle": "Movimientos del período",
+    "fundTitle": "Balance actual del fondo",
+    "fundNote": "Saldo real disponible — no cambia al filtrar por mes.",
+    "exchange": "Intercambios"
   },
   "filter": {
     "all": "Todas",
@@ -38,13 +42,14 @@
     "period": "Período",
     "allMonths": "Todos los meses",
     "generatedOn": "Generado el",
-    "summaryTitle": "Resumen del fondo",
     "transactionsTitle": "Movimientos",
     "noTransactions": "No hay transacciones en este período.",
     "income": "Ingresos",
     "expenses": "Gastos",
     "balance": "Balance",
     "total": "Total equivalente",
-    "exchangeRate": "Tasa de cambio"
+    "exchangeRate": "Tasa de cambio",
+    "periodTitle": "Movimientos del período",
+    "fundTitle": "Balance del fondo"
   }
 }
