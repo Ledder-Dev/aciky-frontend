@@ -10,7 +10,11 @@
     "cup": "CUP",
     "usd": "USD",
     "total": "Total equivalent",
-    "viewIn": "View in"
+    "viewIn": "View in",
+    "periodTitle": "Period movements",
+    "fundTitle": "Current fund balance",
+    "fundNote": "Real available balance — unaffected by the month filter.",
+    "exchange": "Exchanges"
   },
   "filter": {
     "all": "All",
@@ -38,13 +42,14 @@
     "period": "Period",
     "allMonths": "All months",
     "generatedOn": "Generated on",
-    "summaryTitle": "Fund summary",
     "transactionsTitle": "Transactions",
     "noTransactions": "No transactions in this period.",
     "income": "Income",
     "expenses": "Expenses",
     "balance": "Balance",
     "total": "Total equivalent",
-    "exchangeRate": "Exchange rate"
+    "exchangeRate": "Exchange rate",
+    "periodTitle": "Period movements",
+    "fundTitle": "Fund balance"
   }
 }
