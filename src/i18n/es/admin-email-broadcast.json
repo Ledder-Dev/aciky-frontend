@@ -25,6 +25,13 @@
     "send": "Enviar emails",
     "sending": "Enviando..."
   },
+  "attachments": {
+    "title": "Adjuntos",
+    "hint": "Solo PDF, máximo 10MB.",
+    "add": "Adjuntar PDF",
+    "tooLarge": "El archivo supera los 10MB.",
+    "uploadError": "Error al subir el adjunto"
+  },
   "preview": {
     "title": "Vista previa del email"
   },
