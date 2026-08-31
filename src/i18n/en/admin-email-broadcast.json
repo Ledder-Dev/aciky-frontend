@@ -25,6 +25,13 @@
     "send": "Send emails",
     "sending": "Sending..."
   },
+  "attachments": {
+    "title": "Attachments",
+    "hint": "PDF only, max 10MB.",
+    "add": "Attach PDF",
+    "tooLarge": "File exceeds 10MB.",
+    "uploadError": "Error uploading attachment"
+  },
   "preview": {
     "title": "Email preview"
   },

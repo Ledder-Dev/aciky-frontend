@@ -2,6 +2,8 @@ import { t } from '../i18n.js'
 import { apiFetch } from '../api.js'
 import { requireAdmin } from '../auth.js'
 
+let attachments = []
+
 export async function initEmailBroadcast() {
   await requireAdmin()
 
@@ -14,8 +16,64 @@ export async function initEmailBroadcast() {
 
   document.getElementById('roleUser')?.addEventListener('change', updateRecipientCount)
   document.getElementById('roleInstructor')?.addEventListener('change', updateRecipientCount)
+  document.getElementById('attachmentInput')?.addEventListener('change', handleAttachmentUpload)
 
   await updateRecipientCount()
+}
+
+async function handleAttachmentUpload(e) {
+  const file = e.target.files[0]
+  if (!file) return
+  e.target.value = ''
+
+  const errorEl = document.getElementById('attachmentError')
+  errorEl?.classList.add('hidden')
+
+  const MAX_PDF_BYTES = 10 * 1024 * 1024
+  if (file.size > MAX_PDF_BYTES) {
+    if (errorEl) { errorEl.textContent = t('attachments.tooLarge'); errorEl.classList.remove('hidden') }
+    return
+  }
+
+  try {
+    const formData = new FormData()
+    formData.append('file', file)
+    const response = await apiFetch('/api/upload/pdf', { method: 'POST', body: formData, headers: {} })
+    if (response.data?.url) {
+      attachments.push({ url: response.data.url, filename: file.name })
+      renderAttachments()
+    }
+  } catch (err) {
+    if (errorEl) { errorEl.textContent = t('attachments.uploadError') + ': ' + err.message; errorEl.classList.remove('hidden') }
+  }
+}
+
+function renderAttachments() {
+  const list = document.getElementById('attachmentList')
+  if (!list) return
+  list.innerHTML = attachments.map((a, i) => `
+    <li class="flex items-center justify-between gap-2 px-3 py-2 bg-slate-50 rounded-xl text-sm">
+      <span class="flex items-center gap-2 text-slate-600 truncate">
+        <span class="material-symbols-outlined text-base text-slate-400">picture_as_pdf</span>
+        ${escapeHtml(a.filename)}
+      </span>
+      <button type="button" data-remove="${i}" class="text-slate-400 hover:text-red-600">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </li>
+  `).join('')
+  list.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      attachments.splice(Number(btn.dataset.remove), 1)
+      renderAttachments()
+    })
+  })
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div')
+  div.textContent = str
+  return div.innerHTML
 }
 
 function initToolbars() {
@@ -175,7 +233,7 @@ async function sendBroadcast(e) {
   try {
     const result = await apiFetch('/api/emails/broadcast', {
       method: 'POST',
-      body: JSON.stringify({ subject_es: subjectEs, subject_en: subjectEn, body_es: bodyEs, body_en: bodyEn, roles })
+      body: JSON.stringify({ subject_es: subjectEs, subject_en: subjectEn, body_es: bodyEs, body_en: bodyEn, roles, attachments })
     })
 
     const resultData = result.data || result
@@ -206,6 +264,8 @@ function resetForm() {
   document.getElementById('broadcastForm')?.reset()
   document.getElementById('bodyEs').innerHTML = ''
   document.getElementById('bodyEn').innerHTML = ''
+  attachments = []
+  renderAttachments()
   const sendBtn = document.getElementById('sendBtn')
   sendBtn.disabled = false
   sendBtn.querySelector('[data-i18n]').textContent = t('form.send')

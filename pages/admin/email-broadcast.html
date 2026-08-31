@@ -145,6 +145,19 @@
           </div>
         </div>
 
+        <!-- Attachments -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-3">
+          <h2 class="text-sm font-bold text-primary-dark" data-i18n="attachments.title">Adjuntos</h2>
+          <p class="text-xs text-slate-400" data-i18n="attachments.hint">Solo PDF, máximo 10MB.</p>
+          <ul id="attachmentList" class="space-y-2"></ul>
+          <label class="inline-flex items-center gap-2 px-4 py-2 border border-dashed border-slate-300 rounded-2xl text-sm text-slate-500 cursor-pointer hover:border-primary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-base">attach_file</span>
+            <span data-i18n="attachments.add">Adjuntar PDF</span>
+            <input type="file" id="attachmentInput" accept="application/pdf" class="hidden" />
+          </label>
+          <p id="attachmentError" class="hidden text-sm text-red-600"></p>
+        </div>
+
         <!-- Preview button -->
         <div class="flex justify-end">
           <button type="button" id="previewBtn"
