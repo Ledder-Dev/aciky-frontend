@@ -6,7 +6,7 @@ import { requireAuth } from './auth.js'
 let allVideos = []
 
 export async function initVideos() {
-  const user = await requireAuth()
+  const user = await requireAuth('gallery')
   if (!user) return
 
   await loadVideos()

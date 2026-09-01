@@ -8,7 +8,7 @@ let allItems = []
 let openLightboxById = () => {}
 
 export async function initPosturas() {
-  const user = await requireAuth()
+  const user = await requireAuth('gallery')
   if (!user) return
 
   await loadPosturas()

@@ -5,7 +5,8 @@
   "subtitle": "Bienvenido de vuelta a tu práctica",
   "email": "Correo Electrónico",
   "emailPlaceholder": "tu@correo.com",
-  "password": "Contraseña",
+  "password":
+    "Contraseña",
   "passwordPlaceholder": "Tu contraseña",
   "submitBtn": "Iniciar Sesión",
   "submitting": "Iniciando...",
@@ -18,7 +19,8 @@
   },
   "info": {
     "bookingRedirect": "Debes iniciar sesión para reservar una clase.",
-    "contactRedirect": "Debes iniciar sesión para enviarnos un mensaje."
+    "contactRedirect": "Debes iniciar sesión para enviarnos un mensaje.",
+    "galleryRedirect": "Debes iniciar sesión o registrarte para ver este contenido."
   },
   "errors": {
     "default": "Error al iniciar sesión"
