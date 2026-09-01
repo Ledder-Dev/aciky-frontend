@@ -119,10 +119,11 @@ export function updateAuthUI(isAuthenticated, user) {
 }
 
 /** Redirect to login if not authenticated. Returns the user or null. */
-export async function requireAuth() {
+export async function requireAuth(reason) {
   const user = await checkAuth()
   if (!user) {
-    window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
+    const suffix = reason ? `?reason=${reason}` : ''
+    window.location.href = import.meta.env.BASE_URL + 'pages/login.html' + suffix
     return null
   }
   return user

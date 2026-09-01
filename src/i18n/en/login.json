@@ -5,7 +5,8 @@
   "subtitle": "Welcome back to your practice",
   "email": "Email Address",
   "emailPlaceholder": "you@email.com",
-  "password": "Password",
+  "password":
+    "Password",
   "passwordPlaceholder": "Your password",
   "submitBtn": "Sign In",
   "submitting": "Signing in...",
@@ -18,7 +19,8 @@
   },
   "info": {
     "bookingRedirect": "You must sign in to book a class.",
-    "contactRedirect": "You must sign in to send us a message."
+    "contactRedirect": "You must sign in to send us a message.",
+    "galleryRedirect": "You must sign in or register to view this content."
   },
   "errors": {
     "default": "Error signing in"
