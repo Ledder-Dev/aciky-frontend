@@ -27,7 +27,8 @@ export function initLogin() {
   if (reason && infoDiv) {
     const infoMessages = {
       booking: 'info.bookingRedirect',
-      contact: 'info.contactRedirect'
+      contact: 'info.contactRedirect',
+      gallery: 'info.galleryRedirect'
     }
     const key = infoMessages[reason]
     if (key) {
