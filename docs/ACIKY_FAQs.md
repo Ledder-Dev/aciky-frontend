@@ -33,7 +33,7 @@ Sí, once principios que incluyen: crear un entorno de apoyo para que cada instr
 La comunidad cuenta con miembros activos e instructores formados desde 2016; las cifras exactas se actualizan en la sección "Sobre Nosotros" del sitio.
 
 **¿Con qué organizaciones colabora ACIKY?**
-Entre sus alianzas están Casa de Asia (sede oficial de ACIKY desde 2019), la Oficina del Historiador de La Habana, la Embajada de la India en Cuba, IKYTA, 3HO, la Asociación Cubana de Yoga, Om Meditación, y proyectos comunitarios de salud y educación especial que llevan el Kundalini Yoga a niños y jóvenes.
+Entre sus alianzas están Casa de Asia (sede oficial de ACIKY desde 2019), la Oficina del Historiador de La Habana, la Embajada de la India en Cuba, IKYTA, 3HO, la Asociación Cubana de Yoga, Om Meditación, Basanti Escuela, Dluzverde, Centro Árbol, Somos Imperfectos, y proyectos comunitarios de salud y educación especial que llevan el Kundalini Yoga a niños y jóvenes.
 
 **¿En qué provincias de Cuba tiene presencia ACIKY?**
 Actualmente ACIKY tiene presencia en 3 provincias (La Habana, Matanzas y Cienfuegos) y trabaja activamente para expandirse a las 15 provincias del país a través del proyecto Rutas Doradas.
@@ -150,7 +150,7 @@ Tradicionalmente en octubre, aunque las fechas exactas, sede y tema de cada edic
 Todas las sesiones de Kundalini Yoga, talleres especializados, sesiones de música sagrada, meditaciones grupales, comidas vegetarianas orgánicas, alojamiento en habitaciones compartidas, y acceso a la comunidad privada post-festival.
 
 **¿Hay algún beneficio por registrarse temprano?**
-Sí, los primeros 50 registros reciben descuentos especiales y materiales adicionales.
+Consulta la página del festival para conocer si la edición actual ofrece beneficios por registro anticipado, ya que estos varían según el año.
 
 **¿Puedo apoyar el festival sin asistir?**
 Sí, a través de una donación en la sección de donaciones del sitio.
@@ -261,7 +261,7 @@ El sitio permite iniciar sesión o registrarse para acceder a un perfil personal
 ## 12. Contacto
 
 **¿Cómo contacto a ACIKY?**
-Por WhatsApp (+53 5075-9360), a través del formulario de contacto del sitio, o por redes sociales (Facebook e Instagram @acikycuba).
+Por WhatsApp, correo electrónico (info.aciky@gmail.com), el formulario de contacto del sitio, o por redes sociales (Facebook e Instagram @acikycuba).
 
 **¿ACIKY tiene redes sociales?**
 Sí: Facebook, Instagram (@acikycuba) y WhatsApp, todos enlazados en el pie de página del sitio.
