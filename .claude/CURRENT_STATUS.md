@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-08-31
+Last updated: 2026-09-01
 
 ## In Progress
 _Nada activo._
@@ -18,6 +18,10 @@ _Nada activo._
 - `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
+- [x] **docs: FAQ resincronizado contra aciky.org en vivo** (2026-09-01)
+  - Recorrido de 10+ páginas del sitio (about, festival, golden-routes, membership, donations, rebirthing, spaces, onlinesadhana, contact) via Chrome MCP pa verificar contenido de `docs/ACIKY_FAQs.md`/`_EN.md` y `src/i18n/{es,en}/faq.json`
+  - Corregido: alianzas ACIKY (4 socios nuevos: Basanti Escuela, Dluzverde, Centro Árbol, Somos Imperfectos), descuento festival "primeros 50" ya no vigente en vivo (genérico ahora), correo `info.aciky@gmail.com` agregado a Contacto, número WhatsApp hardcodeado quitado de docs (era inconsistente con config dinámica)
+  - `npm run build` verificado sin errores. Sin commit todavía — ver propuesta abajo
 - [x] **auth: mensaje contextual en login al redirigir desde galeria** (2026-08-31)
   - `requireAuth(reason)` opcional agrega `?reason=gallery` al redirigir a login; `login.js` mapea a `info.galleryRedirect` (mismo patron que `booking`/`contact`); agregado a locales es/en
   - Feedback usuario en produccion: gate de auth funcionaba pero sin explicacion pal usuario — resuelto
