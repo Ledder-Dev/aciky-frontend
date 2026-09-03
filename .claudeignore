@@ -65,6 +65,8 @@ iniciar_claude_code.ps1
 iniciar_opencode.ps1
 AGENTS.md
 COWORK.md
+opencode.json
+.opencode/*
 
 # Archivos temporales
 *.tmp
