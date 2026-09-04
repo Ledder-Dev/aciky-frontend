@@ -12,7 +12,7 @@ description: Cierra la sesión de yoga-v2 (ACIKY) dejando el proyecto en estado 
    - En progreso → asegurar en "doing"
    - Nuevas tareas → añadir a "backlog"
 
-3. Actualiza `.claude/CURRENT_STATUS.md`:
+3. Actualiza `CURRENT_STATUS.md`:
    - "Last Work Done" con lo de esta sesión
    - "Known Pending Areas" si cambió algo
    - Fecha de última actualización

@@ -16,7 +16,7 @@ description: Inicia sesión en yoga-v2 (ACIKY) cargando contexto completo del pr
    git status && git log --oneline -5
    ```
 
-3. Lee `.claude/CURRENT_STATUS.md` para ver dónde quedó la última sesión.
+3. Lee `CURRENT_STATUS.md` para ver dónde quedó la última sesión.
 
 4. Carga contexto según la capa que vas a tocar:
    - Página / módulo JS → `.claude/ARCHITECTURE.md` + `.claude/CONVENTIONS.md`

@@ -6,7 +6,7 @@ Frontend bilingüe (ES/EN) para ACIKY. Sitio público + panel admin + portal ins
 ## Antes de empezar
 Lee `CLAUDE.md`, luego `docs/adr/` para decisiones tomadas.
 Stack + convenciones en `.claude/CONVENTIONS.md`.
-Estado en `.claude/CURRENT_STATUS.md`.
+Estado en `CURRENT_STATUS.md`.
 
 ## Stack
 HTML5 + Tailwind CSS 4 + Vanilla JS ES2022+ + Vite 7, sin frameworks

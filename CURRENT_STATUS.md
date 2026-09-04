@@ -1,13 +1,13 @@
 # Current Project Status
 
-Last updated: 2026-09-01
+Last updated: 2026-09-03
 
 ## In Progress
 _Nada activo._
 
 ## Pending Actions
+- **Forzar refresh del icono ACIKY en Dashy** — proxy externo `allesedv.com` sigue sirviendo copia vieja cacheada del favicon (200 pero icono en blanco) pese a que el HTML ya declara `<link rel="icon" type="image/x-icon">` correcto. Sin acceso pa purgar cache de ese servicio desde el repo — probar quitar/re-agregar el tile en Dashy. Ver `TASKS.md` backlog `[infra][24]`.
 - **Implementar spec backend `backend-specs/email-broadcast-consent-unsubscribe.md`** — consentimiento explicito + token de unsubscribe pa broadcasts masivos, pendiente del lado `aciky-backend` (este repo solo escribio el spec, nunca toca ese repo directo).
-- **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — antes bloqueado porque la zona no aparecia en cuenta Cloudflare propia del usuario (DNS via Namecheap). Usuario ya migró DNS de Namecheap a Cloudflare directo (2026-09-03), acceso ya no es blocker. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
 ## Gotcha operativo
@@ -18,16 +18,19 @@ _Nada activo._
 - `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
-- [x] **fix: favicon.ico faltante en producción** (2026-09-03)
-  - `public/` solo tenía `logo.svg`; Dashy monitoring pedía `/favicon.ico` directo, 404
-  - Rasterizado via Playwright/Chromium (data URI base64, 64x64) — 1er intento guardó bytes PNG crudos renombrados a `.ico` (servía bien en navegador por content-type, pero parsers de magic bytes como el de Dashy lo rechazaban)
-  - Corregido envolviendo el PNG en contenedor ICO real (header ICONDIR/ICONDIRENTRY), mismo formato que `worlds/ladder-web/public/favicon.ico`
-  - Commits `0067dd2`+`5c2ca72`, PRs #127-130 mergeados `devRandy`→`develop`→`main`
-  - Cloudflare edge cacheaba la versión vieja (`max-age=14400`) tras el deploy — usuario purgó cache manual desde dashboard (ya migrado de Namecheap a Cloudflare directo), verificado `cf-cache-status: MISS` + `last-modified` actualizado
+- [x] **infra: caídas intermitentes aciky.org resueltas** (2026-09-04)
+  - Usuario tomó control directo del dominio en Cloudflare, migró nameservers de Namecheap a Cloudflare propio. Sin causa raíz puntual confirmada, reportado resuelto tras el cambio.
+- [x] **fix: favicon.ico faltante en producción + fallback explícito en `<link rel="icon">`** (2026-09-03)
+  - `public/` solo tenía `logo.svg` (SVG-only `<link>`); tile de ACIKY en Dashy (`icon: favicon`) mostraba icono roto
+  - `public/favicon.ico` generado rasterizando el SVG (Playwright/Chromium, data URI base64, 64x64); 1er intento guardó bytes PNG crudos renombrados `.ico` (servía bien en navegador, pero parsers de magic bytes lo rechazaban) — corregido envolviéndolo en contenedor ICO real, mismo formato que `worlds/ladder-web`
+  - Root cause completo: las 51 páginas solo declaraban `<link rel="icon" type="image/svg+xml">`; el proxy de favicons de Dashy (`allesedv.com`) lee el `<link>` del HTML, no rasteriza SVG ni hace fallback implícito a `/favicon.ico` como un navegador — agregado `<link rel="icon" type="image/x-icon" href="favicon.ico">` explícito en las 51 páginas, mismo patrón que `worlds/freemanstyle` (que sí funciona en Dashy)
+  - Commits `0067dd2`+`5c2ca72`+`41999ce`, PRs #127-132 mergeados `devRandy`→`develop`→`main`, verificado en vivo (`curl -I`, magic bytes, `<link>` tag)
+  - Cloudflare edge cacheaba versión vieja tras el primer deploy — usuario purgó cache manual desde dashboard (ya migrado de Namecheap a Cloudflare directo)
+  - Pendiente: proxy `allesedv.com` de Dashy sigue con cache stale del favicon — ver Pending Actions
 - [x] **docs: FAQ resincronizado contra aciky.org en vivo** (2026-09-01)
   - Recorrido de 10+ páginas del sitio (about, festival, golden-routes, membership, donations, rebirthing, spaces, onlinesadhana, contact) via Chrome MCP pa verificar contenido de `docs/ACIKY_FAQs.md`/`_EN.md` y `src/i18n/{es,en}/faq.json`
   - Corregido: alianzas ACIKY (4 socios nuevos: Basanti Escuela, Dluzverde, Centro Árbol, Somos Imperfectos), descuento festival "primeros 50" ya no vigente en vivo (genérico ahora), correo `info.aciky@gmail.com` agregado a Contacto, número WhatsApp hardcodeado quitado de docs (era inconsistente con config dinámica)
-  - `npm run build` verificado sin errores. Sin commit todavía — ver propuesta abajo
+  - `npm run build` verificado sin errores. Commit `283d273`
 - [x] **auth: mensaje contextual en login al redirigir desde galeria** (2026-08-31)
   - `requireAuth(reason)` opcional agrega `?reason=gallery` al redirigir a login; `login.js` mapea a `info.galleryRedirect` (mismo patron que `booking`/`contact`); agregado a locales es/en
   - Feedback usuario en produccion: gate de auth funcionaba pero sin explicacion pal usuario — resuelto

@@ -12,6 +12,16 @@
     "errorEmpty": "El número no puede estar vacío",
     "previewLabel": "Vista previa del enlace:"
   },
+  "cleanup": {
+    "title": "Frecuencia de limpieza de Cloudinary",
+    "description": "Cada cuántos días se eliminan archivos huérfanos de Cloudinary",
+    "label": "Frecuencia (días)",
+    "placeholder": "30",
+    "hint": "Debe ser un número entero mayor que 0. Valor por defecto: 30 días.",
+    "save": "Guardar",
+    "saved": "Frecuencia guardada correctamente",
+    "errorInvalid": "Debe ser un número entero mayor que 0"
+  },
   "errors": {
     "loadError": "No se pudo cargar la configuración",
     "saveError": "Error al guardar. Intenta nuevamente."

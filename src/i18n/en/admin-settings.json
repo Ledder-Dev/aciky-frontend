@@ -12,6 +12,16 @@
     "errorEmpty": "Number cannot be empty",
     "previewLabel": "Link preview:"
   },
+  "cleanup": {
+    "title": "Cloudinary cleanup frequency",
+    "description": "How often orphaned Cloudinary files are removed",
+    "label": "Frequency (days)",
+    "placeholder": "30",
+    "hint": "Must be a whole number greater than 0. Default: 30 days.",
+    "save": "Save",
+    "saved": "Frequency saved successfully",
+    "errorInvalid": "Must be a whole number greater than 0"
+  },
   "errors": {
     "loadError": "Could not load settings",
     "saveError": "Error saving. Please try again."
