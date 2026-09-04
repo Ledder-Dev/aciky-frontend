@@ -6,12 +6,16 @@ import { resetWhatsAppCache } from '../utils/whatsapp.js'
 export async function initAdminSettings() {
   requireAdmin()
   await loadWhatsAppNumber()
+  await loadCleanupFrequency()
 
   document.getElementById('whatsappSaveBtn')
     ?.addEventListener('click', saveWhatsAppNumber)
 
   document.getElementById('whatsappInput')
     ?.addEventListener('input', updatePreview)
+
+  document.getElementById('cleanupFrequencySaveBtn')
+    ?.addEventListener('click', saveCleanupFrequency)
 }
 
 async function loadWhatsAppNumber() {
@@ -24,7 +28,7 @@ async function loadWhatsAppNumber() {
       updatePreview()
     }
   } catch {
-    showFeedback(t('errors.loadError'), true)
+    showFeedback('whatsappFeedback', t('errors.loadError'), true)
   }
 }
 
@@ -48,9 +52,45 @@ async function saveWhatsAppNumber() {
     resetWhatsAppCache()
     if (input) input.value = phone
     updatePreview()
-    showFeedback(t('whatsapp.saved'), false)
+    showFeedback('whatsappFeedback', t('whatsapp.saved'), false)
   } catch {
-    showFeedback(t('errors.saveError'), true)
+    showFeedback('whatsappFeedback', t('errors.saveError'), true)
+  } finally {
+    btn.disabled = false
+  }
+}
+
+async function loadCleanupFrequency() {
+  try {
+    const data = await apiFetch('/api/settings')
+    const days = (data.data || {})['cleanup_frequency_days']
+    const input = document.getElementById('cleanupFrequencyInput')
+    if (input && days) input.value = days
+  } catch {
+    showFeedback('cleanupFrequencyFeedback', t('errors.loadError'), true)
+  }
+}
+
+async function saveCleanupFrequency() {
+  const input = document.getElementById('cleanupFrequencyInput')
+  const days = Number(input?.value)
+
+  if (!Number.isInteger(days) || days < 1) {
+    showFeedback('cleanupFrequencyFeedback', t('cleanup.errorInvalid'), true)
+    return
+  }
+
+  const btn = document.getElementById('cleanupFrequencySaveBtn')
+  btn.disabled = true
+
+  try {
+    await apiFetch('/api/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ cleanup_frequency_days: days })
+    })
+    showFeedback('cleanupFrequencyFeedback', t('cleanup.saved'), false)
+  } catch {
+    showFeedback('cleanupFrequencyFeedback', t('errors.saveError'), true)
   } finally {
     btn.disabled = false
   }
@@ -73,8 +113,8 @@ function updatePreview() {
   }
 }
 
-function showFeedback(msg, isError) {
-  const el = document.getElementById('whatsappFeedback')
+function showFeedback(elementId, msg, isError) {
+  const el = document.getElementById(elementId)
   if (!el) return
   el.textContent = msg
   el.className = isError

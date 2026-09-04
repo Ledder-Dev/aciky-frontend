@@ -8,7 +8,6 @@ _Nada activo._
 ## Pending Actions
 - **Forzar refresh del icono ACIKY en Dashy** — proxy externo `allesedv.com` sigue sirviendo copia vieja cacheada del favicon (200 pero icono en blanco) pese a que el HTML ya declara `<link rel="icon" type="image/x-icon">` correcto. Sin acceso pa purgar cache de ese servicio desde el repo — probar quitar/re-agregar el tile en Dashy. Ver `TASKS.md` backlog `[infra][24]`.
 - **Implementar spec backend `backend-specs/email-broadcast-consent-unsubscribe.md`** — consentimiento explicito + token de unsubscribe pa broadcasts masivos, pendiente del lado `aciky-backend` (este repo solo escribio el spec, nunca toca ese repo directo).
-- **Investigar caídas intermitentes aciky.org** (530 / "response stream aborted", detectadas por monitoreo externo el 2026-08-05) — antes bloqueado porque la zona no aparecia en cuenta Cloudflare propia del usuario (DNS via Namecheap). Usuario ya migró DNS de Namecheap a Cloudflare directo (2026-09-03), acceso ya no es blocker. Es infra/DNS, fuera del repo. Ver `TASKS.md` backlog `[infra][10]`.
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
 ## Gotcha operativo
@@ -19,6 +18,8 @@ _Nada activo._
 - `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
+- [x] **infra: caídas intermitentes aciky.org resueltas** (2026-09-04)
+  - Usuario tomó control directo del dominio en Cloudflare, migró nameservers de Namecheap a Cloudflare propio. Sin causa raíz puntual confirmada, reportado resuelto tras el cambio.
 - [x] **fix: favicon.ico faltante en producción + fallback explícito en `<link rel="icon">`** (2026-09-03)
   - `public/` solo tenía `logo.svg` (SVG-only `<link>`); tile de ACIKY en Dashy (`icon: favicon`) mostraba icono roto
   - `public/favicon.ico` generado rasterizando el SVG (Playwright/Chromium, data URI base64, 64x64); 1er intento guardó bytes PNG crudos renombrados `.ico` (servía bien en navegador, pero parsers de magic bytes lo rechazaban) — corregido envolviéndolo en contenedor ICO real, mismo formato que `worlds/ladder-web`
