@@ -1,12 +1,12 @@
 # Current Project Status
 
-Last updated: 2026-09-03
+Last updated: 2026-09-04
 
 ## In Progress
 _Nada activo._
 
 ## Pending Actions
-- **Forzar refresh del icono ACIKY en Dashy** — proxy externo `allesedv.com` sigue sirviendo copia vieja cacheada del favicon (200 pero icono en blanco) pese a que el HTML ya declara `<link rel="icon" type="image/x-icon">` correcto. Sin acceso pa purgar cache de ese servicio desde el repo — probar quitar/re-agregar el tile en Dashy. Ver `TASKS.md` backlog `[infra][24]`.
+- **Fondo blanco del ícono ACIKY en Dashy** — `.ico` ya confirmado transparente y sitio real (`aciky.org`) muestra bien el favicon; en Dashy sigue con fondo blanco, sospecha proxy `f1.allesedv.com` compone sobre lienzo blanco al servir. Alternativa: cambiar `icon: favicon` a `icon: direct-url` en `ladder/dashy/pages/Pagina_Principal.yml` (repo distinto) — usuario pidió no tocarlo por ahora. Ver `TASKS.md` backlog `[infra][26]`.
 - **Implementar spec backend `backend-specs/email-broadcast-consent-unsubscribe.md`** — consentimiento explicito + token de unsubscribe pa broadcasts masivos, pendiente del lado `aciky-backend` (este repo solo escribio el spec, nunca toca ese repo directo).
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
 
@@ -18,6 +18,14 @@ _Nada activo._
 - `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
+- [x] **fix: favicon.ico con canal alpha (fondo transparente)** (2026-09-04)
+  - PNG embebido tenía colortype 2 (RGB sin alpha), heredado de rasterizado original vía screenshot Playwright/Chromium sin `omitBackground: true`
+  - SVG fuente (`logo.svg`) confirmado sin fondo blanco propio — defecto solo en la rasterización
+  - Regenerado con `sharp` (`--no-save`), re-envuelto en mismo contenedor ICO; nuevo PNG colortype 6 (RGBA), verificado byte a byte contra `dist/favicon.ico`
+  - Commit `ac15142`, PR #136 mergeado a `master`. Confirmado bien en `aciky.org`; Dashy sigue con fondo blanco por causa distinta (ver Pending Actions)
+- [x] **infra: link `<link rel="icon">` reordenado, favicon Dashy carga** (2026-09-04)
+  - Proxy `f1.allesedv.com` leía el primer `<link rel="icon">` (SVG) y no caía al `.ico` — reordenado `.ico` primero en las 51 páginas
+  - Commit `0cc6fa0`, PR #135 mergeado a `master`, usuario confirmó "ya funciona"
 - [x] **infra: caídas intermitentes aciky.org resueltas** (2026-09-04)
   - Usuario tomó control directo del dominio en Cloudflare, migró nameservers de Namecheap a Cloudflare propio. Sin causa raíz puntual confirmada, reportado resuelto tras el cambio.
 - [x] **fix: favicon.ico faltante en producción + fallback explícito en `<link rel="icon">`** (2026-09-03)
