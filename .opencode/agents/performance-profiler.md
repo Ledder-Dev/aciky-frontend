@@ -1,1 +1,0 @@
-../../../../_shared/agents/core/performance-profiler.md

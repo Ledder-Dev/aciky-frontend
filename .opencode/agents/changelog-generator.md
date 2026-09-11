@@ -1,1 +1,0 @@
-../../../../_shared/agents/git/changelog-generator.md

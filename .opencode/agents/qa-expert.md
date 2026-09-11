@@ -1,1 +1,0 @@
-../../../../_shared/agents/core/qa-expert.md
