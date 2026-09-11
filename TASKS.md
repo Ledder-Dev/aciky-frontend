@@ -7,6 +7,7 @@
 - [ ] [P] [auth][31] **Checkbox subscribe/unsubscribe en registro** — preguntar en `register.js` si el usuario quiere recibir novedades de eventos/actividades/cursos/blog, enviar `email_broadcast_consent` en `POST /api/auth/register`. Depende de que backend implemente primero `backend-specs/email-broadcast-consent-unsubscribe.md` (columna + endpoint unsubscribe) — sin eso el checkbox queda sin efecto. Bloqueado — usuario en medio de migración backend, no subir hasta terminarla. (2026-09-09)
 
 ## doing
+- [ ] [S] [infra][32] **Cliente OpenAPI tipado + manifest `x-consumers` + gateway proxeando solo lo consumido** — `apiFetch()` respaldado por cliente tipado (`openapi-fetch`+`api-types.d.ts`), `scripts/sync-used-endpoints.js`+`check-used-endpoints.js` con drift check en CI (`.github/workflows/check-endpoints.yml`), `gateway-routes.json` (86 rutas) generado pa `ladder-gateway` (Fase 6 ya implementada del lado del gateway, commit `251b945`). Spec nuevo pa aciky-backend: `backend-specs/gateway-manifest-endpoint.md` (endpoint `/__manifest`, sin eso el gateway responde 401 fail-closed en trafico real). PR #141 (`feat/openapi-typed-client`→`develop`) abierto, bloqueado por CI `check-used-endpoints`: checkout de `aciky-backend` (repo privado) necesita PAT cross-repo (`ACIKY_BACKEND_PAT`, secret ya creado, pendiente aprobacion del owner de la org, esperada 2026-09-11). Retomar merge+borrado de rama en cuanto el check pase. ADR local `docs/adr/0001-...md`, global `ADR-G043`. (2026-09-10)
 
 ## review
 
