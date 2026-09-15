@@ -1,0 +1,432 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/activities",
+    "operationId": "get__api_activities"
+  },
+  {
+    "method": "POST",
+    "path": "/api/activities",
+    "operationId": "post__api_activities"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/activities/{id}",
+    "operationId": "delete__api_activities_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/activities/{id}",
+    "operationId": "get__api_activities_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/activities/{id}",
+    "operationId": "put__api_activities_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/activities/instructor/{id}",
+    "operationId": "put__api_activities_instructor_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/activities/instructor/my-classes",
+    "operationId": "get__api_activities_instructor_my_classes"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/check",
+    "operationId": "get__api_auth_check"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/forgot-password",
+    "operationId": "post__api_auth_forgot_password"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/login",
+    "operationId": "post__api_auth_login"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/logout",
+    "operationId": "post__api_auth_logout"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/register",
+    "operationId": "post__api_auth_register"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/resend-verification",
+    "operationId": "post__api_auth_resend_verification"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/reset-password",
+    "operationId": "post__api_auth_reset_password"
+  },
+  {
+    "method": "GET",
+    "path": "/api/blog",
+    "operationId": "get__api_blog"
+  },
+  {
+    "method": "POST",
+    "path": "/api/blog",
+    "operationId": "post__api_blog"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/blog/{id}",
+    "operationId": "delete__api_blog_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/blog/{id}",
+    "operationId": "put__api_blog_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/blog/all",
+    "operationId": "get__api_blog_all"
+  },
+  {
+    "method": "GET",
+    "path": "/api/cleanup/orphaned",
+    "operationId": "get__api_cleanup_orphaned"
+  },
+  {
+    "method": "POST",
+    "path": "/api/cleanup/orphaned",
+    "operationId": "post__api_cleanup_orphaned"
+  },
+  {
+    "method": "GET",
+    "path": "/api/cleanup/orphaned-pdfs",
+    "operationId": "get__api_cleanup_orphaned_pdfs"
+  },
+  {
+    "method": "POST",
+    "path": "/api/cleanup/orphaned-pdfs",
+    "operationId": "post__api_cleanup_orphaned_pdfs"
+  },
+  {
+    "method": "POST",
+    "path": "/api/contact",
+    "operationId": "post__api_contact"
+  },
+  {
+    "method": "GET",
+    "path": "/api/donations",
+    "operationId": "get__api_donations"
+  },
+  {
+    "method": "POST",
+    "path": "/api/donations",
+    "operationId": "post__api_donations"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/donations/{id}/status",
+    "operationId": "put__api_donations_id_status"
+  },
+  {
+    "method": "POST",
+    "path": "/api/emails/broadcast",
+    "operationId": "post__api_emails_broadcast"
+  },
+  {
+    "method": "GET",
+    "path": "/api/events",
+    "operationId": "get__api_events"
+  },
+  {
+    "method": "POST",
+    "path": "/api/events",
+    "operationId": "post__api_events"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/events/{id}",
+    "operationId": "delete__api_events_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/events/{id}",
+    "operationId": "get__api_events_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/events/{id}",
+    "operationId": "put__api_events_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/festival",
+    "operationId": "get__api_festival"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/festival",
+    "operationId": "put__api_festival"
+  },
+  {
+    "method": "GET",
+    "path": "/api/gallery",
+    "operationId": "get__api_gallery"
+  },
+  {
+    "method": "POST",
+    "path": "/api/gallery",
+    "operationId": "post__api_gallery"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/gallery/{id}",
+    "operationId": "delete__api_gallery_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/gallery/{id}",
+    "operationId": "put__api_gallery_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/gallery/all",
+    "operationId": "get__api_gallery_all"
+  },
+  {
+    "method": "GET",
+    "path": "/api/rebirthing",
+    "operationId": "get__api_rebirthing"
+  },
+  {
+    "method": "POST",
+    "path": "/api/rebirthing",
+    "operationId": "post__api_rebirthing"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/rebirthing/{id}",
+    "operationId": "delete__api_rebirthing_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/rebirthing/{id}",
+    "operationId": "put__api_rebirthing_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/rebirthing/instructor/{id}",
+    "operationId": "put__api_rebirthing_instructor_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/rebirthing/instructor/my-sessions",
+    "operationId": "get__api_rebirthing_instructor_my_sessions"
+  },
+  {
+    "method": "GET",
+    "path": "/api/routes",
+    "operationId": "get__api_routes"
+  },
+  {
+    "method": "POST",
+    "path": "/api/routes",
+    "operationId": "post__api_routes"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/routes/{id}",
+    "operationId": "delete__api_routes_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/routes/{id}",
+    "operationId": "put__api_routes_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/routes/instructor/{id}",
+    "operationId": "put__api_routes_instructor_id"
+  },
+  {
+    "method": "GET",
+    "path": "/api/routes/instructor/my-routes",
+    "operationId": "get__api_routes_instructor_my_routes"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sadhana/participants",
+    "operationId": "get__api_sadhana_participants"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sadhana/participants",
+    "operationId": "post__api_sadhana_participants"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/sadhana/participants/{userId}",
+    "operationId": "delete__api_sadhana_participants_userId"
+  },
+  {
+    "method": "GET",
+    "path": "/api/settings",
+    "operationId": "get__api_settings"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/settings",
+    "operationId": "put__api_settings"
+  },
+  {
+    "method": "GET",
+    "path": "/api/spaces",
+    "operationId": "get__api_spaces"
+  },
+  {
+    "method": "POST",
+    "path": "/api/spaces",
+    "operationId": "post__api_spaces"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/spaces/{id}",
+    "operationId": "delete__api_spaces_id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/testimonials",
+    "operationId": "post__api_testimonials"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/testimonials/{id}",
+    "operationId": "delete__api_testimonials_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/testimonials/{id}",
+    "operationId": "put__api_testimonials_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/testimonials/{id}/featured",
+    "operationId": "put__api_testimonials_id_featured"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/testimonials/{id}/status",
+    "operationId": "put__api_testimonials_id_status"
+  },
+  {
+    "method": "GET",
+    "path": "/api/testimonials/all",
+    "operationId": "get__api_testimonials_all"
+  },
+  {
+    "method": "GET",
+    "path": "/api/testimonials/approved",
+    "operationId": "get__api_testimonials_approved"
+  },
+  {
+    "method": "GET",
+    "path": "/api/transactions",
+    "operationId": "get__api_transactions"
+  },
+  {
+    "method": "POST",
+    "path": "/api/transactions",
+    "operationId": "post__api_transactions"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/transactions/{id}",
+    "operationId": "delete__api_transactions_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/transactions/{id}",
+    "operationId": "put__api_transactions_id"
+  },
+  {
+    "method": "POST",
+    "path": "/api/upload",
+    "operationId": "post__api_upload"
+  },
+  {
+    "method": "POST",
+    "path": "/api/upload/content",
+    "operationId": "post__api_upload_content"
+  },
+  {
+    "method": "POST",
+    "path": "/api/upload/gallery",
+    "operationId": "post__api_upload_gallery"
+  },
+  {
+    "method": "POST",
+    "path": "/api/upload/image",
+    "operationId": "post__api_upload_image"
+  },
+  {
+    "method": "POST",
+    "path": "/api/upload/pdf",
+    "operationId": "post__api_upload_pdf"
+  },
+  {
+    "method": "GET",
+    "path": "/api/users",
+    "operationId": "get__api_users"
+  },
+  {
+    "method": "POST",
+    "path": "/api/users",
+    "operationId": "post__api_users"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/users/{id}",
+    "operationId": "delete__api_users_id"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/users/{id}/registration-seen",
+    "operationId": "put__api_users_id_registration_seen"
+  },
+  {
+    "method": "GET",
+    "path": "/api/users/instructors",
+    "operationId": "get__api_users_instructors"
+  },
+  {
+    "method": "GET",
+    "path": "/api/users/me",
+    "operationId": "get__api_users_me"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/users/profile",
+    "operationId": "put__api_users_profile"
+  },
+  {
+    "method": "GET",
+    "path": "/api/users/recent-registrations",
+    "operationId": "get__api_users_recent_registrations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/users/team",
+    "operationId": "get__api_users_team"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/users/team/order",
+    "operationId": "put__api_users_team_order"
+  }
+]

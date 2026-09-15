@@ -1,0 +1,32 @@
+name: Check used-endpoints drift
+
+on:
+  pull_request:
+  push:
+    branches: [develop, master]
+
+jobs:
+  check-used-endpoints:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: aciky-frontend
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Ledder-Dev/aciky-backend
+          path: aciky-backend
+          token: ${{ secrets.ACIKY_BACKEND_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: aciky-frontend/package-lock.json
+
+      - working-directory: aciky-frontend
+        run: npm ci
+
+      - working-directory: aciky-frontend
+        run: npm run check:used-endpoints
