@@ -1,11 +1,14 @@
 # Current Project Status
 
-Last updated: 2026-09-06
+Last updated: 2026-09-15
 
 ## In Progress
-_Nada activo._
+- **`[infra][32]` Cliente OpenAPI tipado + manifest de endpoints + gateway** — PR #141 (`feat/openapi-typed-client`→`develop`) abierto, CI `check-used-endpoints` bloqueado por PAT pendiente de aprobación. Ver TASKS.md doing y Pending Actions.
 
 ## Pending Actions
+- **`[spaces][33]` loop de reload infinito en `pages/login.html` al refrescar, root cause sin identificar** — reproducido en vivo (Chrome MCP + pestaña manual sin extension), mecanismo confirmado (`vite:ws:disconnect` en `/@vite/client` dispara `location.reload()` cuando el WS HMR se cae y vuelve a conectar), pero por qué el WS se cae repetido cada ~3.5-4s sigue sin causa. Hipótesis McAfee WebAdvisor probada y descartada (parados los 4 procesos + Chrome reiniciado completo, loop persiste). Detalle completo en `TASKS.md` backlog.
+- **BLOQUEADO — PR #141 (cliente OpenAPI + gateway manifest)**: CI `check-used-endpoints` falla porque `aciky-backend` es repo privado y `GITHUB_TOKEN` default no tiene acceso cross-repo. Fix ya aplicado al workflow (commit `0f61d8b`, usa `secrets.ACIKY_BACKEND_PAT`), pero el PAT fine-grained está "pending" de aprobación del owner de la org `Ledder-Dev` (socio del usuario) — esperada 2026-09-11. En cuanto se apruebe: confirmar que el check pasa, mergear PR #141 a `develop`, borrar rama `feat/openapi-typed-client`. Trabajo del lado `ladder-gateway` ya completo y pusheado a `develop` ahí (commit `251b945`), no requiere acción. Spec nuevo pendiente del lado `aciky-backend`: `backend-specs/gateway-manifest-endpoint.md` (endpoint `/__manifest`, requisito para que el gateway sirva tráfico real — hoy fail-closed 401, gap conocido y no bloqueante para este repo).
+- **BLOQUEADO — migración backend en curso (2026-09-09)**: usuario en medio de migración en `aciky-backend`, no se puede subir ningún cambio hasta terminarla. Afecta 3 features nuevos, todos documentados en `TASKS.md` backlog pero SIN tocar código todavía: `[spaces][29]` gate dirección/contacto en espacios, `[gallery][30]` preview público + gate solo en vista completa (además requiere reescribir `backend-specs/gallery-require-auth.md`, que hoy pide lo opuesto: 401 total), `[auth][31]` checkbox subscribe/unsubscribe en registro (depende del spec de abajo). Retomar recién cuando usuario confirme migración terminada.
 - **Fondo blanco del ícono ACIKY en Dashy** — `.ico` ya confirmado transparente y sitio real (`aciky.org`) muestra bien el favicon; en Dashy sigue con fondo blanco, sospecha proxy `f1.allesedv.com` compone sobre lienzo blanco al servir. Alternativa: cambiar `icon: favicon` a `icon: direct-url` en `ladder/dashy/pages/Pagina_Principal.yml` (repo distinto) — usuario pidió no tocarlo por ahora. Ver `TASKS.md` backlog `[infra][26]`.
 - **Implementar spec backend `backend-specs/email-broadcast-consent-unsubscribe.md`** — consentimiento explicito + token de unsubscribe pa broadcasts masivos, pendiente del lado `aciky-backend` (este repo solo escribio el spec, nunca toca ese repo directo).
 - Tras merge/deploy: verificar en Search Console (Inspección de URLs) que `event.html?id=<inválido>` muestre `<meta name="robots" content="noindex">`, luego "Solicitar indexación" en las 5 URLs reportadas (`event.html` afectado, `schedule.html`, `contact.html`; los 2 `dashboard.html` bloqueados por robots.txt son intencionales, sin acción).
@@ -66,13 +69,6 @@ _Nada activo._
 - [x] **docs: FAQ ES/EN expandido 9→12 categorías + sync página viva + fix WhatsApp CTA** (2026-08-13)
   - `docs/ACIKY_FAQs.md`/`_EN.md`, `pages/faq.html`, `src/i18n/{es,en}/faq.json`, `src/js/faq.js` — commit `8c27acd`, pusheado a `origin/development`
   - Chatbot Supabase (widget `footer.html`) verificado en vivo en `aciky.org`, 3 preguntas, cero fallos. Falla solo en dev local por CORS externo, no accionable desde repo.
-- [x] **fix: número WhatsApp en contact.html usa config admin, no valor fijo** (2026-08-13)
-  - Mismo bug patrón encontrado luego en `pages/faq.html` (ver In Progress) — hardcode `wa.me/5350759360` reemplazado por `getWhatsAppNumber()`/`buildWhatsAppUrl()`
-  - Commit `44b5c2d`, pusheado a `origin/development`
-- [x] **fix: FAQ 404 en producción + fusiona link FAQ en dropdown "Nosotros"** (2026-08-12)
-  - `vite.config.js`: faltaba entry `faq: resolve(__dirname, 'pages/faq.html')` en `build.rollupOptions.input` — Vite multi-page build solo emite HTML registrado ahí, dev server lo enmascaraba (sirve archivos directo de disco)
-  - `header.html` desktop nav: "Nosotros" y "Preguntas Frecuentes" eran links sueltos, apretados junto a Blog/Testimonios — fusionados en dropdown "Nosotros" (mismo patrón hover ya usado por "Actividades"/"Galería"), mobile menu sin cambios (lista vertical, no apretada)
-  - Verificado en navegador (dev server): FAQ carga sin 404, dropdown abre con ambos links
 - [x] **feat: página FAQ (pages/faq.html) + links en header/footer** (2026-08-12)
   - `pages/faq.html`: hero + 9 categorías (36 preguntas), acordeón `<details>` nativo poblado dinámicamente vía `src/js/faq.js` desde `src/i18n/{es,en}/faq.json`
   - JSON-LD `FAQPage` inyectado en `<head>`, recalculado en cada render (incluyendo cambio de idioma)

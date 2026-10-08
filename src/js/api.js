@@ -1,3 +1,5 @@
+import { createApiClient } from '../lib/api-client.js'
+
 // API Configuration
 export const API_BASE =
   window.location.hostname === 'aciky.org' ||
@@ -34,45 +36,45 @@ function getAuthHeader() {
   }
 }
 
+// Typed client (generated from the OpenAPI contract, see `npm run generate:api-types`).
+// bodySerializer is identity because call sites already JSON.stringify their own bodies.
+const apiClient = createApiClient(API_BASE)
+apiClient.use({
+  onRequest({ request }) {
+    const auth = getAuthHeader()
+    if (auth.Authorization) request.headers.set('Authorization', auth.Authorization)
+    if (request.method === 'GET' || request.method === 'HEAD') {
+      request.headers.delete('Content-Type')
+    }
+    return request
+  }
+})
+
 /**
  * Fetch wrapper with credentials and JSON handling.
  * Throws on non-ok responses with the server's error message.
+ * Internally backed by the typed OpenAPI client (see `src/lib/api-client.js`).
  */
 export async function apiFetch(path, options = {}) {
-  const { skipAuthRedirect, ...fetchOptions } = options
-  const config = {
-    ...fetchOptions,
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      ...getAuthHeader(),
-      ...options.headers
-    }
-  }
+  const { skipAuthRedirect, method = 'GET', body, headers } = options
+  const httpMethod = method.toUpperCase()
 
-  // Don't set Content-Type for GET/HEAD (no body) or FormData (browser sets it)
-  if (!options.method || options.method === 'GET' || options.method === 'HEAD') {
-    delete config.headers['Content-Type']
-  }
+  const { data, error, response } = await apiClient[httpMethod](path, {
+    body,
+    headers,
+    bodySerializer: (b) => b
+  })
 
-  // Don't set Content-Type for FormData - let browser set it with boundary
-  if (options.body instanceof FormData) {
-    delete config.headers['Content-Type']
-  }
-
-  const res = await fetch(`${API_BASE}${path}`, config)
-  const data = await res.json()
-
-  if (!res.ok) {
-    if (res.status === 401 && !skipAuthRedirect) {
+  if (!response.ok) {
+    if (response.status === 401 && !skipAuthRedirect) {
       localStorage.clear()
       sessionStorage.clear()
       window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
       return
     }
-    const err = new Error(data.message || 'Request failed')
-    err.status = res.status
-    err.data = data
+    const err = new Error(error?.message || 'Request failed')
+    err.status = response.status
+    err.data = error
     throw err
   }
 

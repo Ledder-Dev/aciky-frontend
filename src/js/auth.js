@@ -6,8 +6,10 @@ let currentUser = null
 
 export async function checkAuth() {
   try {
-    const data = await apiFetch('/api/auth/check')
-    if (!data) return null // apiFetch handled a 401 and is redirecting
+    // skipAuthRedirect: a 401 here means "not logged in", not an error - checking
+    // auth status must never trigger apiFetch's global redirect-to-login (would
+    // infinite-loop when called from login.html itself, see [spaces][33]/[infra][32])
+    const data = await apiFetch('/api/auth/check', { skipAuthRedirect: true })
 
     const isAuthenticated = data.isAuthenticated
     const user = data.user || null
@@ -27,6 +29,15 @@ export async function checkAuth() {
     updateAuthUI(isAuthenticated, user)
     return currentUser
   } catch (error) {
+    if (error.status === 401) {
+      currentUser = null
+      localStorage.removeItem('user')
+      localStorage.removeItem('loginTime')
+      sessionStorage.removeItem('user')
+      sessionStorage.removeItem('loginTime')
+      updateAuthUI(false, null)
+      return null
+    }
     // Network failure only - use stored data to avoid logging out during brief outages
     console.error('Auth check failed:', error)
     const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user')

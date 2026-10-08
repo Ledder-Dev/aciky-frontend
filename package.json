@@ -8,13 +8,22 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "generate:api-types": "openapi-typescript ../aciky-backend/dist/api-contract.yaml -o src/lib/api-types.d.ts",
+    "sync:used-endpoints": "node scripts/sync-used-endpoints.js",
+    "check:used-endpoints": "node scripts/check-used-endpoints.js",
+    "generate:gateway-routes": "node scripts/generate-gateway-routes.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.1.18",
+    "js-yaml": "^4.3.2",
+    "openapi-typescript": "^7.13.0",
     "tailwindcss": "^4.1.18",
     "vite": "^7.2.4",
     "vite-plugin-handlebars": "^2.0.0"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
   }
 }
