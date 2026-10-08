@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ACIKY Frontend Architecture",
+    "subtitle": "Bilingual Kundalini Yoga platform frontend",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/Ledder-Dev/aciky-frontend.git",
+      "provider": "github",
+      "revision": "95b07151ea532b4584c9e5ccd674a1c23d40fb5c"
+    },
+    "viewBox": [1200, 800]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "User Browser",
+      "sublabel": "ES/EN visitors",
+      "pos": [40, 240],
+      "size": [140, 72]
+    },
+    {
+      "id": "frontend",
+      "type": "frontend",
+      "label": "ACIKY Frontend",
+      "sublabel": "Vite + Vanilla JS",
+      "sources": [
+        {
+          "path": "vite.config.js",
+          "line": 1,
+          "label": "Build config"
+        }
+      ],
+      "pos": [240, 240],
+      "size": [140, 72]
+    },
+    {
+      "id": "pages",
+      "type": "frontend",
+      "label": "Static Pages",
+      "sublabel": "HTML + Handlebars",
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 1,
+          "label": "Home page"
+        }
+      ],
+      "pos": [440, 140],
+      "size": [140, 72]
+    },
+    {
+      "id": "scripts",
+      "type": "frontend",
+      "label": "JavaScript Modules",
+      "sublabel": "ES2022+ features",
+      "sources": [
+        {
+          "path": "src/js/admin/dashboard.js",
+          "line": 1,
+          "label": "Admin logic"
+        }
+      ],
+      "pos": [440, 340],
+      "size": [140, 72]
+    },
+    {
+      "id": "i18n",
+      "type": "frontend",
+      "label": "i18n System",
+      "sublabel": "ES/EN locales",
+      "sources": [
+        {
+          "path": "src/i18n/en/home.json",
+          "line": 1,
+          "label": "EN translations"
+        }
+      ],
+      "pos": [440, 460],
+      "size": [140, 72]
+    },
+    {
+      "id": "backend",
+      "type": "backend",
+      "label": "ACIKY Backend",
+      "sublabel": "Express + MySQL",
+      "brand": "node-js",
+      "pos": [640, 240],
+      "size": [140, 72]
+    },
+    {
+      "id": "cdn",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "Static hosting",
+      "brand": "github",
+      "pos": [240, 80],
+      "size": [140, 72]
+    },
+    {
+      "id": "hosting",
+      "type": "cloud",
+      "label": "Heroku",
+      "sublabel": "Backend hosting",
+      "pos": [840, 240],
+      "size": [140, 72]
+    },
+    {
+      "id": "database",
+      "type": "database",
+      "label": "MySQL",
+      "sublabel": "User data & content",
+      "brand": "mysql",
+      "pos": [840, 400],
+      "size": [140, 72]
+    },
+    {
+      "id": "e2e",
+      "type": "security",
+      "label": "Playwright Tests",
+      "sublabel": "E2E validation",
+      "sources": [
+        {
+          "path": "playwright.config.ts",
+          "line": 1,
+          "label": "Test config"
+        }
+      ],
+      "pos": [640, 80],
+      "size": [140, 72]
+    }
+  ],
+  "connections": [
+    {
+      "from": "user",
+      "to": "frontend",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "from": "frontend",
+      "to": "pages",
+      "label": "renders",
+      "labelDy": -8
+    },
+    {
+      "from": "frontend",
+      "to": "scripts",
+      "label": "executes",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "from": "frontend",
+      "to": "i18n",
+      "label": "translates",
+      "fromSide": "bottom",
+      "toSide": "left"
+    },
+    {
+      "from": "frontend",
+      "to": "backend",
+      "label": "REST API (CORS)",
+      "variant": "emphasis",
+      "labelAt": [520, 270]
+    },
+    {
+      "from": "cdn",
+      "to": "frontend",
+      "label": "serves",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "backend",
+      "to": "hosting",
+      "label": "deployed to"
+    },
+    {
+      "from": "backend",
+      "to": "database",
+      "label": "SQL queries",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "e2e",
+      "to": "frontend",
+      "label": "tests",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": -70
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Multi-repo Architecture",
+      "items": [
+        "Frontend (this repo): Static HTML + Vanilla JS",
+        "Backend (separate): Node.js + Express + MySQL",
+        "Independent deployments: GitHub Pages + Heroku"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Key Features",
+      "items": [
+        "Bilingual (ES/EN) with i18n system",
+        "Role-based access: Admin, Instructor, Accountant",
+        "E2E tested with Playwright",
+        "Session-based auth via CORS"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Tech Stack",
+      "items": [
+        "Vite 7 + Handlebars for templating",
+        "Tailwind CSS 4 for styling",
+        "Vanilla JavaScript ES2022+",
+        "No frameworks (by design)"
+      ]
+    }
+  ]
+}
