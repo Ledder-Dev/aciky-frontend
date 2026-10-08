@@ -1,1 +1,1 @@
-C:/Users/camac/AppData/Local/_shared/skills/supabase/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md
+../../../../../../_shared/skills/supabase/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md

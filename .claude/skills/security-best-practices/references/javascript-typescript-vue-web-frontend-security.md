@@ -1,1 +1,1 @@
-C:/Users/camac/AppData/Local/_shared/skills/security/security-best-practices/references/javascript-typescript-vue-web-frontend-security.md
+../../../../../../_shared/skills/security/security-best-practices/references/javascript-typescript-vue-web-frontend-security.md

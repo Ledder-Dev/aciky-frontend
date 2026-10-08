@@ -1,1 +1,1 @@
-C:/Users/camac/AppData/Local/_shared/skills/security/security-best-practices/references/javascript-general-web-frontend-security.md
+../../../../../../_shared/skills/security/security-best-practices/references/javascript-general-web-frontend-security.md

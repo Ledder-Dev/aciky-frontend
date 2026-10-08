@@ -1,1 +1,1 @@
-C:/Users/camac/AppData/Local/_shared/skills/security/security-best-practices/references/javascript-typescript-nextjs-web-server-security.md
+../../../../../../_shared/skills/security/security-best-practices/references/javascript-typescript-nextjs-web-server-security.md
