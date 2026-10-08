@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ledder-Dev/aciky-backend
+          ref: develop
           path: aciky-backend
           token: ${{ secrets.ACIKY_BACKEND_PAT }}
 

@@ -1,1 +1,1 @@
-../../../../../../_shared/skills/security/security-best-practices/references/javascript-jquery-web-frontend-security.md
+C:/Users/camac/AppData/Local/_shared/skills/security/security-best-practices/references/javascript-jquery-web-frontend-security.md
