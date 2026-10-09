@@ -300,6 +300,11 @@
     "operationId": "delete__api_spaces_id"
   },
   {
+    "method": "PUT",
+    "path": "/api/spaces/{id}",
+    "operationId": "put__api_spaces_id"
+  },
+  {
     "method": "POST",
     "path": "/api/testimonials",
     "operationId": "post__api_testimonials"
