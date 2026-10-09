@@ -8,7 +8,7 @@ _Nada en curso. Siguiente: definir prioridad (ver Pending Actions)._
 ## Pending Actions
 - **`[spaces][33]` loop de reload infinito en `pages/login.html` al refrescar, root cause sin identificar** — reproducido en vivo (Chrome MCP + pestaña manual sin extension), mecanismo confirmado (`vite:ws:disconnect` en `/@vite/client` dispara `location.reload()` cuando el WS HMR se cae y vuelve a conectar), pero por qué el WS se cae repetido cada ~3.5-4s sigue sin causa. Hipótesis McAfee WebAdvisor probada y descartada (parados los 4 procesos + Chrome reiniciado completo, loop persiste). **2026-10-09: ya no se reproduce** (Vite en `5183`/`5174`, Chrome real, WS estable) — queda abierta hasta que reaparezca. Detalle completo en `TASKS.md` backlog.
 - **`[infra][36]`** quitar `ref: develop` de `check-endpoints.yml` cuando `aciky-backend` promueva `develop`→`main` (main dispara deploy; cutover `[db][012]` pendiente).
-- **4 llamadas `PUT /api/spaces/${id}`** (`admin/spaces.js`, `instructor/mySpace.js`) sin match en el contrato OpenAPI — sin tarea aún; decidir si es fix frontend o falta en el backend.
+- **4 llamadas `PUT /api/spaces/${id}`** (`admin/spaces.js`, `instructor/mySpace.js`) sin match en el contrato OpenAPI — causa en el backend (`generate-contract.js` descarta rutas con comentario final); tareas `[infra][008]` en `aciky-backend` y `[spaces][37]` aquí (2026-10-09). El frontend no necesita cambios de código.
 - **BLOQUEADO — migración backend en curso (2026-09-09)**: usuario en medio de migración en `aciky-backend`, no se puede subir ningún cambio hasta terminarla. Afecta 3 features nuevos, todos documentados en `TASKS.md` backlog pero SIN tocar código todavía: `[spaces][29]` gate dirección/contacto en espacios, `[gallery][30]` preview público + gate solo en vista completa (además requiere reescribir `backend-specs/gallery-require-auth.md`, que hoy pide lo opuesto: 401 total), `[auth][31]` checkbox subscribe/unsubscribe en registro (depende del spec de abajo). Retomar recién cuando usuario confirme migración terminada.
 - **Fondo blanco del ícono ACIKY en Dashy** — `.ico` ya confirmado transparente y sitio real (`aciky.org`) muestra bien el favicon; en Dashy sigue con fondo blanco, sospecha proxy `f1.allesedv.com` compone sobre lienzo blanco al servir. Alternativa: cambiar `icon: favicon` a `icon: direct-url` en `ladder/dashy/pages/Pagina_Principal.yml` (repo distinto) — usuario pidió no tocarlo por ahora. Ver `TASKS.md` backlog `[infra][26]`.
 - **Implementar spec backend `backend-specs/email-broadcast-consent-unsubscribe.md`** — consentimiento explicito + token de unsubscribe pa broadcasts masivos, pendiente del lado `aciky-backend` (este repo solo escribio el spec, nunca toca ese repo directo).
@@ -74,12 +74,6 @@ _Nada en curso. Siguiente: definir prioridad (ver Pending Actions)._
 - [x] **docs: FAQ ES/EN expandido 9→12 categorías + sync página viva + fix WhatsApp CTA** (2026-08-13)
   - `docs/ACIKY_FAQs.md`/`_EN.md`, `pages/faq.html`, `src/i18n/{es,en}/faq.json`, `src/js/faq.js` — commit `8c27acd`, pusheado a `origin/development`
   - Chatbot Supabase (widget `footer.html`) verificado en vivo en `aciky.org`, 3 preguntas, cero fallos. Falla solo en dev local por CORS externo, no accionable desde repo.
-- [x] **feat: página FAQ (pages/faq.html) + links en header/footer** (2026-08-12)
-  - `pages/faq.html`: hero + 9 categorías (36 preguntas), acordeón `<details>` nativo poblado dinámicamente vía `src/js/faq.js` desde `src/i18n/{es,en}/faq.json`
-  - JSON-LD `FAQPage` inyectado en `<head>`, recalculado en cada render (incluyendo cambio de idioma)
-  - Links a FAQ agregados en `header.html` (desktop+mobile) y `footer.html`; entradas `header.faq`/`footer.faq` en `common.json` ES/EN
-  - Ruteo vía `main.js` `initPage()` (dynamic import `initFaq()`), siguiendo patrón existente del proyecto
-  - `npm run build` verificado sin errores
 Ver `git log --oneline` pa historial anterior a 2026-08-12 (widget chat, about.html fotos, noindex soft 404, suite E2E completa, hotfixes de accounting/membership).
 
 ## Known Issues
