@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-10-08
+Last updated: 2026-10-09
 
 ## In Progress
 _Nada en curso. Siguiente: definir prioridad (ver Pending Actions)._
@@ -22,6 +22,10 @@ _Nada en curso. Siguiente: definir prioridad (ver Pending Actions)._
 - `develop` (rama intermedia) estaba desalineada — 4 commits propios nunca propagados (fix import relativo CONVENTIONS, ref yoga-backend en contrato API, recorte `settings.json`, compactación `ARCHITECTURE.md`). Sincronizada 2026-08-20: merge de `devRandy` sin conflictos, sus 4 commits propios preservados, pusheada a `origin/develop`.
 
 ## Recently Completed
+- [x] **infra: `PUT /api/spaces/{id}` marcado `x-consumers: [web]`, `gateway-routes.json` 86→87** (2026-10-09, `[spaces][37]`)
+  - Causa en `aciky-backend`: `generate-contract.js` descartaba rutas con comentario final (`[infra][008]`, `d4e4052`); el frontend no cambió código. CI `check-endpoints` en verde (run `38004710244`). Commit `b71c12f`
+- [x] **chore: rama `feat/openapi-typed-client` borrada (local y `origin`); `[spaces][33]` investigada, ya no reproduce** (2026-10-09)
+  - Vite en `5183`/`5174` + Chrome real + WS HMR desde Node sin loop; sigue abierta en backlog hasta que reaparezca
 - [x] **infra: PR #141 (cliente OpenAPI + manifest + gateway) mergeado a `develop`** (2026-10-08)
   - Conflicto `.opencode/agents/*` resuelto conservando `develop`; CI `check-used-endpoints` fallaba por apuntar a `aciky-backend@main` (sin marcas `x-consumers`) — workflow ahora usa `ref: develop` (commit `2ce89f0`, tarea `[infra][36]` para revertirlo tras promover el backend)
   - Error propio corregido en `9411f1f`: `2ce89f0` arrastró 7 symlinks de `.claude/skills` reescritos a rutas absolutas de Windows (ver Gotcha operativo)
