@@ -9,7 +9,7 @@ export default defineConfig(() => {
   return {
     base: basePath + '/',
     server: {
-    port: 5174,
+    port: 5183,
     strictPort: true,
     },
     plugins: [

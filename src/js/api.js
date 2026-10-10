@@ -8,7 +8,7 @@ export const API_BASE =
     ? 'https://api.aciky.org'
     : window.location.hostname === '192.168.1.70'
     ? 'http://192.168.1.70:3000'
-    : 'http://localhost:3000'
+    : 'http://localhost:3010'
 
 /**
  * Get full API URL for a path
